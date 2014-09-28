@@ -21,7 +21,7 @@
 \DocumentTitle{Especificação de Requisitos}
 \Project{Processador de Propósito Geral Simples}
 \Organization{Universidade Estadual de Feira de Santana}
-\Version{Compilação 1.0}
+\Version{Compilação 1.1}
 \capa
 
 \newpage
@@ -36,12 +36,13 @@
     \begin{tabular}[pos]{|m{2cm} | m{7.2cm} | m{3.8cm}|} 
       \hline
       \cellcolor[gray]{0.9}
-      \textbf{Data} & \cellcolor[gray]{0.9}\textbf{Descrição} & \cellcolor[gray]{0.9}\textbf{Autor(s)}\\ \hline
+      \textbf{Data} & \cellcolor[gray]{0.9}\textbf{Descrição} & \cellcolor[gray]{0.9}\textbf{Autor(es)}\\ \hline
       \hline
       \small 26/09/2014 & \small Inicialização do documento & \small patrickecomp \\ \hline      
       \small 26/09/2014 &
-      \small
-          Inclusão dos requisitos [FR1] à [FR8] retirados do problema 01; & \small patrickecomp \\ \hline     
+      \small Inclusão dos requisitos [FR1] à [FR8] retirados do WARM-UP & \small patrickecomp \\ \hline 
+      \small 28/09/2014 & \small Inclusão dos requisitos [FR9] à [FR13] & \small santana22 e gabri14el \\ \hline
+          
     \end{tabular}
   \end{table}
 
@@ -79,14 +80,14 @@ Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para 
       \begin{tabular}[pos]{|m{2.5cm} | m{11.5cm}|} 
         \hline
         \cellcolor[gray]{0.9}\textbf{Termo} & \cellcolor[gray]{0.9}\textbf{Descrição} \\ \hline
-        \flushright Requisito Funcional     & Requisitos de hardware que compõem os módulos, descrevendo as ações que o 
+        \flushright \centering {Requisito Funcional} & Requisitos de hardware que compõem os módulos, descrevendo as ações que o 
                                     mesmo deve estar apto a executar. Estas informações são capturadas a partir 
                                     do desenvolvimento dos casos de uso, que documentam as entradas, os processos 
                                     e as saídas geradas.  \\ \hline
-        \flushright Requisito Não \mbox{Funcional} & Requisitos de hardware que compõem os módulos, representando as características 
+        \flushright \centering {Requisito Não \mbox{Funcional}} & Requisitos de hardware que compõem os módulos, representando as características 
                                     que o mesmo deve ter, ou restrições que o mesmo deve operar. Estas características
                                     referem-se a técnicas, algoritmos, tecnologias e especificidades do Sistema como um todo.  \\ \hline
-        \flushright Dependências              & Requisitos de reuso de IP-cores, descrevendo as funções que cada um deve exercer. \\ \hline
+        \flushright \centering {Dependências}              & Requisitos de reuso de IP-cores, descrevendo as funções que cada um deve exercer. \\ \hline
       \end{tabular}
     \end{center}
   \end{table}  
@@ -102,6 +103,7 @@ Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para 
           FR      & Requisito Funcional  \\ \hline
           NFR     & Requisito Não Funcional  \\ \hline
           D       & Dependência  \\ \hline
+		  PC & Program Counter \\ \hline 
         \end{tabular}
       \end{center}
     \end{table}  
@@ -170,8 +172,31 @@ Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para 
       \requirement{Operação OR}
       {O módulo deve ser capaz de realizar a operação OR lógico de dois operandos de 8 bits.}
       {Essencial}      
-     
-    \end{functional}    
+    \end{functional}  
+    
+    \subsection{Conjunto de Operações de Desvio}
+	    
+	  \begin{functional}
+		\requirement{Operação JR}
+		{O módulo deve ser capaz de realizar desvios para endereços específicos na memória.}
+		{Essencial} 
+		 
+		 \requirement{Operação JPC}
+		 {O módulo deve ser capaz de realizar desvios para endereços específicos na memória relativos ao PC.}
+		 {Essencial}
+		 
+		 \requirement{Operação BRFL}
+		 {O módulo deve ser capaz de realizar desvios condicionais com base em um \textit{flag}.}
+		 {Essencial}
+		 
+		 \requirement{Operação CALL}
+		 {O módulo deve ser capaz de desviar a execução para uma sub-rotina.}
+		 {Essencial}
+		 
+		 \requirement{Operação RET}
+		 {O módulo deve ser capaz de retornar a execução de uma sub-rotina.}
+		 {Essencial}
+	  \end{functional}
 
   \section{Requisitos não Funcionais}
   Esta seção apresenta a lista de Requisitos não Funcionais do projeto.
