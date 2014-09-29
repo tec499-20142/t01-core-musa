@@ -21,7 +21,7 @@
 \DocumentTitle{Especificação de Requisitos}
 \Project{Processador de Propósito Geral Simples}
 \Organization{Universidade Estadual de Feira de Santana}
-\Version{Compilação 1.1}
+\Version{Compilação 1.2}
 \capa
 
 \newpage
@@ -40,9 +40,9 @@
       \hline
       \small 26/09/2014 & \small Inicialização do documento & \small patrickecomp \\ \hline      
       \small 26/09/2014 &
-      \small Inclusão dos requisitos [FR1] à [FR8] retirados do WARM-UP & \small patrickecomp \\ \hline 
-      \small 28/09/2014 & \small Inclusão dos requisitos [FR9] à [FR13] & \small santana22 e gabri14el \\ \hline
-          
+      \small Inclusão dos requisitos [FR1] à [FR8] & \small patrickecomp \\ \hline 
+      \small 28/09/2014 & \small Inclusão dos requisitos [FR11] à [FR15] & \small santana22 e gabri14el \\ \hline
+      \small 28/09/2014 & \small Concepção da introdução e inclusão dos requisitos [FR9] e [FR10] & \small manuellemacedo \\ \hline      
     \end{tabular}
   \end{table}
 
@@ -55,13 +55,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Document main content
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introdução}
-
-Texto do Levantamento de requisitos do problema 01 abaixo para que possamos aqui desenvolver uma introdução seguindo esse texto como exemplo.
-
-
-Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para diversos propósitos. Grandes empresas, hoje em dia, buscam o reuso para economia de tempo e dinheiro porque ao adquirir um \textit{IP-Core} ele tem em mãos um circuito devidamente testado e pronto para o reuso em seu próprio projeto.  Neste documento será tratado sobre um \textit{IP-Core} que tem como funcionalidade realizar operações logicas e aritméticas utilizando a interface de comunicação RS-232, este poderá ser usado para diversos propósitos.    
-
+\input{introducao}    
 
 \subsection{Visão Geral do Documento}
   \begin{itemize}
@@ -171,7 +165,15 @@ Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para 
 
       \requirement{Operação OR}
       {O módulo deve ser capaz de realizar a operação OR lógico de dois operandos de 8 bits.}
-      {Essencial}      
+      {Essencial}  
+      
+      \requirement{Operação NOT}
+      {O módulo deve ser capaz de realizar a operação NOT lógico de dois operandos de 8 bits.}
+      {Essencial}   
+      
+      \requirement{Operação CMP}
+      {O módulo deve ser capaz de comparar dois registradores de 8 bits cada e ativar um flag}
+      {Essencial}
     \end{functional}  
     
     \subsection{Conjunto de Operações de Desvio}
@@ -203,11 +205,11 @@ Um \textit{IP-Core} é um circuito que tem como principal objetivo o reuso para 
 
 
 
-\section{Dependências}
+%\section{Dependências}
 
-  \begin{dependencies}
-    \dependency{}
-    {}
+% \begin{dependencies}
+%    \dependency{}
+%    {}
 
 \end{dependencies}  
 
