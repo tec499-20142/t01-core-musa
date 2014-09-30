@@ -216,12 +216,10 @@
 	    
 	  \begin{functional}
 		\requirement{Operação NOP}
-		{O módulo não realiza operação. \textit{Refresh} nas memórias e incrementar o contador de programa. 
-		Reserva espaço de memória para carregar novas instruções. }
+		{O módulo não realiza operação. \textit{Refresh} nas memórias e incrementar o contador de programa. Reserva espaço de memória para carregar novas instruções. }
 		{Essencial} 
         \requirement{Operação HALT}
-        {O módulo paralisa a execução de um programa e continua a realizar operação HALT até que uma requisição de 
-        interrupção seja aceita. Não incrementa o contador de programa. \textit{Refresh} das memórias é realizado.}
+        {O módulo paralisa a execução de um programa e continua a realizar operação HALT até a requisição de uma interrupção for aceita . Não incrementa o contador de programa. \textit{Refresh} das memórias é realizado.}
         {Essencial}         
 	  \end{functional}
 	  
