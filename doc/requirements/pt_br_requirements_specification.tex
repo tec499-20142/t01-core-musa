@@ -45,7 +45,9 @@
       \small 29/09/2014 & \small Inclusão dos requisitos [FR17] à [FR22] & \small patrickecomp, mirelarios e tarles-w7 \\ \hline   
       \small 29/09/2014 & \small Inclusão dos requisitos [FR23] e [FR24] & \small ardersonqdv, lucas \\ \hline 
       \small 29/09/2014 & \small Inclusão do requisito [FR7] & \small patrickecomp \\ \hline 
-      \small 30/09/2014 & \small Refinamento da introdução,  revisão preliminar do documento e revisão da [FR16] & \small santana22 \\ \hline      
+      \small 30/09/2014 & \small Refinamento da introdução,  revisão preliminar do documento e revisão da [FR16] & \small santana22 \\ \hline
+      \small 30/09/2014 & \small Revisão do requisito [FR13] & \small santana22 e gabri14el \\ \hline
+      \small 30/09/2014 & \small Adição do requisito [NFR1] & \small santana22 \\ \hline
     \end{tabular}
   \end{table}
 
@@ -190,7 +192,7 @@
 		{Essencial} 
 		 
 		 \requirement{Operação JPC}
-		 {O módulo deve ser capaz de realizar desvios para endereços específicos na memória relativos ao PC.}
+		 {O módulo deve ser capaz de realizar desvios para o próximo endereço de PC.}
 		 {Essencial}
 		 
 		 \requirement{Operação BRFL}
@@ -220,9 +222,15 @@
         {Essencial}
          
 	  \end{functional}
-
-
-
+	  
   \section{Requisitos não Funcionais}
   Esta seção apresenta a lista de Requisitos não Funcionais do projeto.
+  \begin{nonfunctional}
+  	
+  \requirement{Interfaceamento}
+  {Este módulo deve ser capaz de interfacear com algum mecanismo de saída.}
+  {Desejável}
+  
+  \end{nonfunctional}
+  
 \end{document}
