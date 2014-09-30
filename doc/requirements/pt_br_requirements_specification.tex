@@ -43,7 +43,9 @@
       \small Inclusão dos requisitos [FR1] à [FR8] & \small patrickecomp \\ \hline 
       \small 28/09/2014 & \small Inclusão dos requisitos [FR11] à [FR15] & \small santana22 e gabri14el \\ \hline
       \small 28/09/2014 & \small Concepção da introdução e inclusão dos requisitos [FR9] e [FR10] & \small manuellemacedo \\ \hline 
-            \small 29/09/2014 & \small Inclusão dos requisitos [FR16] e [FR21] & \small patrickecomp, mirelarios e tarles-w7 \\ \hline 
+            \small 29/09/2014 & \small Inclusão dos requisitos [FR17]  [FR22] & \small patrickecomp, mirelarios e tarles-w7 \\ \hline   
+                        \small 29/09/2014 & \small Inclusão dos requisitos [FR23] e [FR24] & \small ardersonqdv, lucas \\ \hline 
+                                                \small 29/09/2014 & \small Inclusão do requisito [FR7] & \small patrickecomp \\ \hline 
     \end{tabular}
   \end{table}
 
@@ -206,8 +208,22 @@
 		 {Essencial}
          
 	  \end{functional}
+      
+ \input{requisitosmemoria}
+ 
+          \subsection{Conjunto de Operações de Controle}
+	    
+	  \begin{functional}
+		\requirement{Operação NOP}
+		{Mneumônimo da palavra No Operation que significa uma instrução que não faz nada, a não ser refrescar as memorias dinâmicas e incrementar o contador. Esta instrução é comumente empregada para reservar espaço na memória para introduzir posteriormente uma rotina, ou para remover instruções sem precisar fazer uma nova montagem.}
+		{Essencial} 
+        \requirement{Operação HALT}
+        {Paralisa a execução do programa até que uma requisição de interrupção seja aceita.O microprocessador não fica efetivamente parado, mas continuamente está executando a instrução HALT sem incrementar o contador de programa e com isto, o refrescamento das memórias é realizado.}
+        {Essencial}
+         
+	  \end{functional}
 
-\input{requisitosmemoria}
+
 
   \section{Requisitos não Funcionais}
   Esta seção apresenta a lista de Requisitos não Funcionais do projeto.
