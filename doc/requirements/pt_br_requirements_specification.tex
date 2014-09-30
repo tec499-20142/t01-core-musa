@@ -21,7 +21,7 @@
 \DocumentTitle{Especificação de Requisitos}
 \Project{Processador de Propósito Geral Simples}
 \Organization{Universidade Estadual de Feira de Santana}
-\Version{Compilação 1.3}
+\Version{Compilação 1.4}
 \capa
 
 \newpage
@@ -39,10 +39,13 @@
       \textbf{Data} & \cellcolor[gray]{0.9}\textbf{Descrição} & \cellcolor[gray]{0.9}\textbf{Autor(es)}\\ \hline
       \hline
       \small 26/09/2014 & \small Inicialização do documento & \small patrickecomp \\ \hline      
-      \small 26/09/2014 &
-      \small Inclusão dos requisitos [FR1] à [FR8] & \small patrickecomp \\ \hline 
+      \small 26/09/2014 & \small Inclusão dos requisitos [FR1] à [FR8] & \small patrickecomp \\ \hline 
       \small 28/09/2014 & \small Inclusão dos requisitos [FR11] à [FR15] & \small santana22 e gabri14el \\ \hline
-      \small 28/09/2014 & \small Concepção da introdução e inclusão dos requisitos [FR9] e [FR10] & \small manuellemacedo \\ \hline      
+      \small 28/09/2014 & \small Concepção da introdução e inclusão dos requisitos [FR9] e [FR10] & \small manuellemacedo \\ \hline 
+      \small 29/09/2014 & \small Inclusão dos requisitos [FR17] à [FR22] & \small patrickecomp, mirelarios e tarles-w7 \\ \hline   
+      \small 29/09/2014 & \small Inclusão dos requisitos [FR23] e [FR24] & \small ardersonqdv, lucas \\ \hline 
+      \small 29/09/2014 & \small Inclusão do requisito [FR7] & \small patrickecomp \\ \hline 
+      \small 30/09/2014 & \small Refinamento da introdução,  revisão preliminar do documento e revisão da [FR16] & \small santana22 \\ \hline      
     \end{tabular}
   \end{table}
 
@@ -152,6 +155,11 @@
       {Detecção de overflow aritmético}
       {O módulo deve ser capaz de detectar \textit{overflow} aritmético.}
       {Importante}
+      
+      \requirement
+      {Detecção de zero}
+      {O módulo deve ser capaz de detectar no resultado da operação o valor zero e habilitar uma \textit{flag}.}
+      {Importante}
     \end{functional}
 
   \subsection{Conjunto de Operações Lógicas} 
@@ -170,7 +178,7 @@
       {Essencial}   
       
       \requirement{Operação CMP}
-      {O módulo deve ser capaz de comparar dois registradores de 8 bits cada e ativar um flag}
+      {O módulo deve ser capaz de comparar dois registradores de 8 bits cada e ativar um \textit{flag}.}
       {Essencial}
     \end{functional}  
     
@@ -194,9 +202,26 @@
 		 {Essencial}
 		 
 		 \requirement{Operação RET}
-		 {O módulo deve ser capaz de retornar a execução de uma sub-rotina.}
+		 {O módulo deve ser capaz de retornar para a execução normal logo após o  termino de uma sub-rotina.}
 		 {Essencial}
+         
 	  \end{functional}
+      
+ \input{requisitosmemoria}
+ 
+          \subsection{Conjunto de Operações de Controle}
+	    
+	  \begin{functional}
+		\requirement{Operação NOP}
+		{Mnemônimo da palavra No Operation que significa uma instrução que não faz nada, a não ser refrescar as memorias dinâmicas e incrementar o contador. Esta instrução é comumente empregada para reservar espaço na memória para introduzir posteriormente uma rotina, ou para remover instruções sem precisar fazer uma nova montagem.}
+		{Essencial} 
+        \requirement{Operação HALT}
+        {Paralisa a execução do programa até que uma requisição de interrupção seja aceita. O microprocessador não fica efetivamente parado, mas continuamente está executando a instrução HALT sem incrementar o contador de programa e com isto, o \textit{refresh} das memórias é realizado.}
+        {Essencial}
+         
+	  \end{functional}
+
+
 
   \section{Requisitos não Funcionais}
   Esta seção apresenta a lista de Requisitos não Funcionais do projeto.
