@@ -1,0 +1,18 @@
+\section{Atores do Sistema}
+
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture} 
+      \umlactor{Controle IF} 
+      \umlactor[x=2]{Controle}
+      \umlactor[x=4]{LED de overflow} 
+      \umlactor[x=6.5]{LED de dados}  
+    \end{tikzpicture} 
+  \end{figure}
+
+  \begin{description}
+    \actor{Controle IF}{Entidade responsável por controlar os pacotes de entrada de dados.}    
+    \actor{Controle}{Unidade que controla a execução das operações.}
+    \actor{LED de overflow}{Interface de saída que aciona o LED de overflow.}
+    \actor{LEDs de dados:}{Interface de saída que aciona os sinais de dados.}
+  \end{description}

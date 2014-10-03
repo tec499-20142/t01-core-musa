@@ -1,0 +1,42 @@
+  \usecase{Unidade de Processamento}
+  A \textbf{Unidade de Processamento} é responsável por realizar as operações aritméticas e lógicas, de acordo com o código de entrada.
+  
+  \actors
+    \begin{description}
+     \actor{Controle}{Unidade que controla a execução das operações.}
+     \actor{LED de overflow}{Interface de saída que aciona o LED de overflow.}
+     \actor{LEDs de dados:}{Interface de saída que aciona os sinais de dados.}
+    \end{description}
+  
+  \preconditions 
+    \begin{itemize}
+     \item Atender aos requisitos funcionais [FR7-12];
+     \item Codificação das operações deve ser definida;
+     \item Identificação das unidades sequenciais e combinacionais;
+    \end{itemize}
+
+  \postconditions
+    \begin{itemize}
+     \item O módulo deve ser capaz de detectar overflow aritmético;
+     \item O resultado deve estar presente nas saídas correspondentes aos pinos de dados usando uma codificação binária;
+    \end{itemize}
+  
+  % \ucdiagram{./pictures/uc_exemple.png}
+  \subsubsection*{Diagrama de Caso de Uso}
+  \input{./usecases/processing.tikz}
+ 
+  
+  % descricao do fluxo principal de eventos
+  \begin{mainflow}
+    \item Decodificar o indicador operação;
+    \item Realizar operação aritmética ou lógica;
+    \item Armazenar o resultado em um registrador;
+  \end{mainflow}
+  
+  % descricao do fluxo secundário (quando existir)
+  \begin{secondaryflow} 
+    \sfitem{Valor do resultado excede o suportado}
+    \begin{enumerate}
+      \item Habilitar sinal de overflow;
+    \end{enumerate}
+  \end{secondaryflow} 
