@@ -2,27 +2,40 @@
   
     \begin{functional}
       \requirement{Operação de soma}
-      {O módulo deve ser capaz de realizar a operação de soma de dois valores de 8 bits.}
+      {O módulo deve ser capaz de realizar a operação de soma de dois valores de 16 bits.}
+      {Essencial}
+      
+       \requirement{Operação de soma imediata}
+      {O módulo deve ser capaz de realizar a operação de soma de dois valores de 16 bits, sendo que um é valor imediato.}
       {Essencial}
 
       \requirement{Operação de subtração}
-      {O módulo deve ser capaz de realizar a operação de subtração de dois valores de 8 bits.}
+      {O módulo deve ser capaz de realizar a operação de subtração de dois valores de 16 bits.}
+      {Essencial}
+      
+      \requirement{Operação de subtração imediata}
+      {O módulo deve ser capaz de realizar a operação de subtração de dois valores de 16 bits, sendo que um é valor imediato.}
       {Essencial}
 
       \requirement{Operação de multiplicação}
-      {O módulo deve ser capaz de realizar a operação de multiplicação de dois valores de 8 bits. }
+      {O módulo deve ser capaz de realizar a operação de multiplicação de dois valores de 16 bits. }
       {Essencial}
 
       \requirement{Operação de divisão}
-      {O módulo deve ser capaz de realizar a operação de divisão de dois valores de 8 bits.}
+      {O módulo deve ser capaz de realizar a operação de divisão de dois valores de 16 bits.}
       {Essencial} 
+     
 
       \requirement{Tamanho da palavra de saída}
-      {O componente deve apresentar uma saída única de 8 bits para todas as operações aritméticas.}
+      {O componente deve apresentar uma saída única de 16 bits para todas as operações aritméticas.}
       {Importante}       
 
       \requirement{Detecção de overflow aritmético}
       {O módulo deve ser capaz de detectar \textit{overflow} aritmético.}
+      {Importante}
+      
+      \requirement{Detecção de underflow aritmético}
+      {O módulo deve ser capaz de detectar \textit{underflow} aritmético.}
       {Importante}
       
       \requirement{Detecção de zero}
