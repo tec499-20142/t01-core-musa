@@ -1,0 +1,45 @@
+\usecase{Unidade Lógica Aritmética}
+A \textbf{Unidade Lógica Aritmética} é responsável por realizar as operações aritméticas e lógicas, de acordo com o código da operação.
+  
+\actors
+	\begin{description}
+	\actor{Unidade de Controle}{Unidade que controla a execução das operações.}
+	\end{description}
+  
+\preconditions 
+	\begin{itemize}
+	\item Atender aos requisitos funcionais [FRX-XX];
+	\item Codificação das operações deve ser definida;
+	\item Identificação das unidades sequenciais e combinacionais;
+	\end{itemize}
+
+\postconditions
+    \begin{itemize}
+     \item O módulo deve ser capaz de detectar overflow e underflow aritmético;
+     \item O módulo deve ser capaz de ativar flags;
+     \item O resultado deve estar armazenada no banco de registradores; %necessário?
+     \end{itemize}
+  
+%\ucdiagram{./pictures/uc_exemple.png}
+%\subsubsection*{Diagrama de Caso de Uso}
+%\input{./usecases/processing.tikz}
+ 
+  
+%descricao do fluxo principal de eventos
+\begin{mainflow}
+\item Decodificar o indicador operação;
+\item Realizar operação aritmética ou lógica;
+\item Armazenar o resultado no banco de registradores;
+\end{mainflow}
+  
+% descricao do fluxo secundário (quando existir)
+\begin{secondaryflow} 
+\sfitem{Valor do resultado excede o suportado}
+\begin{enumerate}
+\item Habilitar sinal de overflow ou underflow;
+\end{enumerate}
+\sfitem{Operação que ativa flags}
+\begin{enumerate}
+\item Habilitar um dos sinais de flags;
+\end{enumerate}
+\end{secondaryflow} 
