@@ -1,31 +1,19 @@
-	  \begin{nonfunctional}
+\begin{nonfunctional}
 	  	
 	  \requirement{Interfaceamento}
 	  {Este módulo deve ser capaz de interfacear com um mecanismo de saída.}
 	  {Desejável}
 	  
-	  \requirement{Tamanho da palavra de instrução}
-	  {O tamanho da palavra de intrução será de 32 bits.}
-	  {Importante}
-	  
 	   \requirement{Modo de Armazenamento}
         {O tratamento e o armazenamento na memória de dados será feito no formato big-endian.}
         {Importante}
         
-        \requirement{Modo de endereçamento da memória de dados e instruções}
-        {O módulo deve possuir três modos de endereçamento: imediato, por registrador e base-deslocamento.}
-        {Importante}
-        
-       \requirement{Tipo de memória de dados}
-        {O módulo deve utilizar memória do tipo SPRAM.}
-        {Imnportante}
-        
        \requirement{Tamanho da memória de dados}
-        {A memória de dados deve ser de 512 Kbyte.}
+        {A memória de dados deve ser de 32 Kbytes de memória de block (M9k).}
         {Essencial}
         
        \requirement{Tamanho da memória de instruções}
-        {A memória de dados deve ser de 512 Kbyte.}
+        {A memória de instruções deve ser de 64 Kbytes de memória de block (M9k).}
         {Essencial}
         
        \requirement{Tamanho do banco de registradores}
@@ -37,7 +25,7 @@
 		{Importante}
 		
 		\requirement{Arquitetura multi-ciclo}
-		{As instruções serão executadas em alguns ciclos de clock.}
+		{As instruções serão executadas em cinco ciclos de clock.}
 		{Essencial}		
 			  
 	  \end{nonfunctional}

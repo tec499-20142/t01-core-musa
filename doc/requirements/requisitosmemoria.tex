@@ -8,21 +8,25 @@
 		\requirement{Operação SW}
 		{O módulo deve ser capaz de armazenar dados na memória de dados.}
 		{Essencial}
-
-		\requirement{Escrever na memória de intruções}
-		{O módulo deve ser capaz de armazenar instruções na memória de instruções.}
-		{Essencial}
 		
 		\requirement{Ler na memória de instruções}
 		{O módulo deve ser capaz de ler instruções na memória de instruções.}
 		{Essencial}
         
 		\requirement{Organização de memória}
-		 {O módulo deve possuir duas memórias diferentes e independentes (Arquitetura de Harvad).}
+		 {O módulo deve possuir duas memórias diferentes e independentes (Arquitetura de Harvad). Sendo elas: RAM para dados e ROM para instruções.}
 		 {Essencial}
+                
+        \requirement{Modo de endereçamento}
+        {O módulo deve possuir três modos de endereçamento: imediato, por registrador e base-deslocamento.}
+        {Essencial}
+         
+       	\requirement{Tamanho da palavra de instrução}
+	  {O tamanho da palavra de intrução será de 32 bits.}
+	  {Essencial}
 
 		\requirement{Padrão de conversão de tamanho de palavra}
 		{O módulo deve converter dados de 16 bits para 32 bits utilizando o padrão zero-extend ou o padrão sign-extend.}
-
+		{Essencial}
 		 
 	 \end{functional}
