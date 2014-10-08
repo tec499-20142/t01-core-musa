@@ -2,27 +2,27 @@
   \begin{tikzpicture}
   
       \umlactor[x=-2,y=0]{Controle} 
-      \umlactor[x=8,y=-4.5]{ULA} 
+      \umlactor[x=7,y=-6.5]{ULA} 
        
     \begin{umlsystem}[x=0, fill=red!10]{Unidade de Controle} 
       \umlusecase[name=busca]{IF}
-      \umlusecase[x=1,name=decod]{ID} 
-      \umlusecase[x=4, name=sinais]{Transmite SC}    
+      \umlusecase[x=2,name=decod]{ID} 
+      \umlusecase[x=5, name=sinais]{Transmite SC}    
     \end{umlsystem}
           
-    \begin{umlsystem}[x=4,y=4, fill=red!10]{Banco de Registradores}
+    \begin{umlsystem}[x=10,y=5, fill=red!10]{Banco de Registradores}
       \umlusecase[name=readregs]{Ler no Banco} 
-      \umlusecase[y=-2,name=writeregs]{Escrever no Banco}       
+      \umlusecase[x=4,name=writeregs]{Escrever no Banco}       
     \end{umlsystem}
                
-    \begin{umlsystem}[x=4, fill=red!10]{Memória de Dados}     
+    \begin{umlsystem}[x=10, fill=red!10]{Memória de Dados}     
       \umlusecase[name=readmemoria]{Ler na DM} 
-      \umlusecase[y=-2, name=writememoria]{Escrever na DM}
+      \umlusecase[x=4, name=writememoria]{Escrever na DM}
     \end{umlsystem}  
     
               
-    \begin{umlsystem}[x=4,y=-4, fill=red!10]{ULA}            
-      \umlusecase[name=ula]{Efetuar OLA} 
+    \begin{umlsystem}[x=10,y=-6.5, fill=red!10]{ULA}            
+      \umlusecase[name=operacao]{Efetuar OLA} 
       \umlusecase[x=4,y=2, width=1.5cm, name=processa]{Processar resultado}   
       \umlusecase[x=4,y=-2, fill=green!20,width=1cm, name=flags]{Definir flags}   
     \end{umlsystem} 
@@ -34,11 +34,11 @@
       \umlassoc{sinais}{writeregs}
       \umlassoc{sinais}{readmemoria}
       \umlassoc{sinais}{writememoria}
-      \umlassoc{sinais}{ula}
-      \umlinclude{ula}{processa}
-      \umlassoc{ula}{flags}
+      \umlassoc{sinais}{operacao}
+      \umlinclude{operacao}{processa}
+      \umlassoc{operacao}{flags}
       \umlassoc{processa}{writeregs}
       \umlassoc{writeregs}{readmemoria}
       \umlassoc{readregs}{writememoria}
-      \umlassoc{ULA}{ula}
+      \umlassoc{ULA}{operacao}
   \end{tikzpicture} 
