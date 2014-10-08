@@ -1,28 +1,44 @@
   \flushleft
-  \begin{tikzpicture} 
-    \begin{umlsystem}[x=0, fill=red!10]{Unidade de Controle} 
-      \umlusecase[name=decod]{ID} 
-      \umlusecase[x=4, name=sinais]{Transmite SC}
-      \umlusecase[x=8,y=2,name=regs]{Ler/Escrever no RB} 
-      \umlusecase[x=8,y=0, name=memoria]{Ler/Escrever na DM} 
-      \umlusecase[x=8,y=-2, name=ula]{Efetuar OLA} 
-      \umlusecase[x=12,y=0, width=1.5cm, name=processa]{Processar resultado}   
-      \umlusecase[x=12,y=-2, fill=green!20,width=1cm, name=flags]{Definir flags} 
-
+  \begin{tikzpicture}
+  
       \umlactor[x=-2,y=0]{Controle} 
       \umlactor[x=8,y=-4.5]{ULA} 
-      %\umlactor[x=7.5, y=-3]{LED de overflow}   
-
-      \umlassoc{Controle}{decod}
-      \umlinclude{decod}{sinais}
-      \umlassoc{sinais}{regs}
-      \umlassoc{sinais}{memoria}
+       
+    \begin{umlsystem}[x=0, fill=red!10]{Unidade de Controle} 
+      \umlusecase[name=busca]{IF}
+      \umlusecase[x=1,name=decod]{ID} 
+      \umlusecase[x=4, name=sinais]{Transmite SC}    
+    \end{umlsystem}
+          
+    \begin{umlsystem}[x=4,y=4, fill=red!10]{Banco de Registradores}
+      \umlusecase[name=readregs]{Ler no Banco} 
+      \umlusecase[y=-2,name=writeregs]{Escrever no Banco}       
+    \end{umlsystem}
+               
+    \begin{umlsystem}[x=4, fill=red!10]{Memória de Dados}     
+      \umlusecase[name=readmemoria]{Ler na DM} 
+      \umlusecase[y=-2, name=writememoria]{Escrever na DM}
+    \end{umlsystem}  
+    
+              
+    \begin{umlsystem}[x=4,y=-4, fill=red!10]{ULA}            
+      \umlusecase[name=ula]{Efetuar OLA} 
+      \umlusecase[x=4,y=2, width=1.5cm, name=processa]{Processar resultado}   
+      \umlusecase[x=4,y=-2, fill=green!20,width=1cm, name=flags]{Definir flags}   
+    \end{umlsystem} 
+    
+      \umlassoc{Controle}{busca}
+      \umlassoc{busca}{decod}
+      \umlassoc{decod}{sinais}
+      \umlassoc{sinais}{readregs}
+      \umlassoc{sinais}{writeregs}
+      \umlassoc{sinais}{readmemoria}
+      \umlassoc{sinais}{writememoria}
       \umlassoc{sinais}{ula}
       \umlinclude{ula}{processa}
       \umlassoc{ula}{flags}
-      \umlinclude{processa}{regs}
-      \umlassoc{regs}{memoria}
+      \umlassoc{processa}{writeregs}
+      \umlassoc{writeregs}{readmemoria}
+      \umlassoc{readregs}{writememoria}
       \umlassoc{ULA}{ula}
-
-    \end{umlsystem} 
   \end{tikzpicture} 
