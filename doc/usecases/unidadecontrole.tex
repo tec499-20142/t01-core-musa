@@ -1,5 +1,7 @@
-  \usecase{Unidade de Processamento}
-  A \textbf{Unidade de Processamento} é responsável por realizar as operações aritméticas e lógicas, de acordo com o código de entrada.
+  \usecase{Unidade de Controle}
+ 
+    A \textbf{Unidade de Controle} é responsável por definir a partir de uma instrução decodificada o comportamento de outros módulos, 
+    por exemplo: ULA. 
   
   \actors
     \begin{description}
@@ -8,15 +10,13 @@
   
   \preconditions 
     \begin{itemize}
-     \item Atender aos requisitos funcionais [FR7-12];
-     \item Codificação das operações deve ser definida;
+     \item Atender aos requisitos funcionais [FR27], [FR29-30];
      \item Identificação das unidades sequenciais e combinacionais;
     \end{itemize}
 
   \postconditions
     \begin{itemize}
-     \item O módulo deve ser capaz de detectar overflow aritmético;
-     \item O resultado deve estar presente nas saídas correspondentes aos pinos de dados usando uma codificação binária;
+      \item Analisar
     \end{itemize}
   
   % \ucdiagram{./pictures/uc_exemple.png}
