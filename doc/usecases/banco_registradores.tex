@@ -1,0 +1,14 @@
+\usecase{Banco de Registradores}
+
+	O banco de registradores é responsável por armazenar os dados oriundos da memória, diretamente da instrução recebida ou da ULA.
+
+	\actors
+    \begin{description}
+     \actor{Controle}{Unidade que controla a execução das operações.}
+    \end{description}
+
+	% descricao do fluxo principal de eventos
+	\begin{mainflow}
+    \item Ativar flag de leitura;
+    \item Ativar flag de escrita;
+  	\end{mainflow}
