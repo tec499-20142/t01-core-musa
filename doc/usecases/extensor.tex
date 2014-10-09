@@ -1,0 +1,34 @@
+\usecase{Extensor de Bits}
+O \textbf{Extensor de Bi}t é responsável por transformar um valor em outro de largura diferente.
+  
+\actors
+	\begin{description}
+	\actor{Controle}{Unidade que controla a execução das operações.}
+	\end{description}
+  
+\preconditions 
+	\begin{itemize}
+	\item Atender o requisito funcional [FR31];
+	\item Receber dados menores que 32 bits;
+	\end{itemize}
+
+\postconditions
+    \begin{itemize}
+     \item O módulo deve ser capaz de fazer a réplica de sinal do bit mais significativo carregando-o nos bits restantes para dados com sinal;
+     \item O módulo deve ser capaz de fazer preencher os bits restantes com zeros para dados sem sinal;
+     \end{itemize}
+  
+%descricao do fluxo principal de eventos
+\begin{mainflow}
+\item Identificar se o dado de entrada a ser tratado é com sinal ou não;
+\item Realizar a extensão dos bits;
+\item Devolve o dado alterado;
+\end{mainflow}
+  
+% descricao do fluxo secundário (quando existir)
+%\begin{secondaryflow} 
+%\sfitem{}
+%\begin{enumerate}
+%\item ;
+%\end{enumerate}
+%\end{secondaryflow} 

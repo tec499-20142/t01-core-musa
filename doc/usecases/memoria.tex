@@ -1,0 +1,32 @@
+\usecase{Memória de Dados}
+A \textbf{Mémoria de Dados} é responsável por armazenar os dados do programa.
+  
+\actors
+	\begin{description}
+	\actor{Controle}{Unidade que controla a execução das operações.}
+	\end{description}
+  
+\preconditions 
+	\begin{itemize}
+	\item Atender aos requisitos funcionais [FR25-26];
+	\item O(s) dado(s) a serem armazenados devem estar no banco de registradores;
+	\end{itemize}
+
+\postconditions
+    \begin{itemize}
+     \item A memória não deve permitir sobrescrita dados quando não-autorizado;
+     \end{itemize}
+  
+%descricao do fluxo principal de eventos
+\begin{mainflow}
+\item Recebecor o endereço de onde o dado será armazenado/lido;
+\item Realizar a leitura/escrita do dado;
+\end{mainflow}
+  
+% descricao do fluxo secundário (quando existir)
+%\begin{} 
+%\sfitem{}
+%\begin{enumerate}
+%\item ;
+%\end{enumerate}
+%\end{secondaryflow} 
