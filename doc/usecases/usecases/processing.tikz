@@ -1,7 +1,7 @@
   \flushleft
   \begin{tikzpicture}
   
-      \umlactor[x=-4,y=4.5]{Controle} 
+      \umlactor[x=-4]{Controle} 
       \umlactor[x=5.5,y=-5]{Controle ULA} 
        
     \begin{umlsystem}[x=0, fill=red!10]{Unidade de Controle} 
@@ -35,7 +35,7 @@
       \umlusecase[x=4, name=singext]{Sign Extend}      
     \end{umlsystem} 
     
-      \umlassoc{Controle}{busca}
+      \umlassoc{Controle}{decod}
       \umlassoc{Controle ULA}{operacao}
       \umlinclude{busca}{decod}
       \umlassoc{decod}{sinais}
