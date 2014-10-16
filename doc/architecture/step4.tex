@@ -1,0 +1,33 @@
+\section{Acesso à memória}
+
+	\subsection{Diagrama de Classe}
+
+	\begin{tikzpicture}
+	\umlclass[x=0,y=0]{MemoryExecute}{
+		+ zero : input bit \\ + address : input bit \\ + writeData : input bit[TBD] \\ + memRead : input bit \\ + 				memWrite : input bit
+		}{
+		+ readData() \\ + writeToRegister()
+	}
+	\end{tikzpicture}
+
+\subsection{Definições de entrada e saída}
+
+	\begin{center}
+        \begin{longtable}[pos]{| l | c | c | m{7cm} |} \hline
+          \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Nome}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Tamanho}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Direção}} &
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+          \endhead
+          \hline
+          \endlastfoot
+
+          zero          	       & 1   & entrada   & Executa branch quando é zero.    \\ \hline
+          address                  & TBD & entrada   & Endereço no qual o dado deve ser escrito.    \\ \hline
+          memRead                  & 1   & entrada   & Sinal proveniente da UC que abilita leitura.    \\ \hline
+          memWrite                 & 1   & entrada   & Sinal proveniente da UC que abilita escrita.    \\ \hline
+          writeData      		   & 1   & entrada   & O dado a ser escrito na memória. \\ \hline
+          readData	               & TBD & saída     & Dado a ser utilizado pelo MUX do "Write Back".    \\ \hline
+          writeToRegister          & TBD & saída     & Dado do segundo operando.    \\
+        \end{longtable}
+      \end{center}

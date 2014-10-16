@@ -1,0 +1,20 @@
+\usecase{Banco de Registradores}
+
+	O \textbf{Banco de Registradores }é responsável por armazenar os dados oriundos da memória, diretamente da instrução recebida ou da ULA.
+
+	\actors
+    \begin{description}
+     \actor{Controle}{Unidade que controla a execução das operações.}
+    \end{description}
+
+
+\postconditions
+    \begin{itemize}
+     \item O banco não deve permitir sobrescrita dados quando não-autorizado;
+     \end{itemize}
+
+	% descricao do fluxo principal de eventos
+	\begin{mainflow}
+    \item Realiza a leitura dos dados de acordo com o endereço contido na instrução;
+    \item Realiza a escrita dos dados de acordo com o endereço contido na instrução;
+  	\end{mainflow}

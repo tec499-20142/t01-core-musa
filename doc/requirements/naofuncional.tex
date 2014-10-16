@@ -2,26 +2,34 @@
 	  	
 	   \requirement{Modo de Armazenamento}
         {O tratamento e o armazenamento na memória de dados será feito no formato big-endian.}
-        {Importante}
+        {-}
+        
+       \requirement{Organização de memória}
+		 {O módulo deve possuir duas memórias diferentes e independentes. Sendo elas: RAM para dados e ROM para instruções.}
+		 {-}
         
        \requirement{Tamanho da memória de dados}
         {A memória de dados deve ser de 32 Kbytes de memória de block (M9k).}
-        {Essencial}
+        {-}
+       
+      	\requirement{Tamanho da palavra de instrução}
+	  {O tamanho de intrução será de 32 bits.}
+	  {-}
         
        \requirement{Tamanho da memória de instruções}
         {A memória de instruções deve ser de 64 Kbytes de memória de block (M9k).}
-        {Essencial}
+        {-}
         
        \requirement{Tamanho do banco de registradores}
         {O banco de registradores possui 32 registradores cada um com 32 bits.}
-        {Essencial}
+        {-}
 	  
 		\requirement{Formato dos Números}
 		{Na representação dos números inteiros para a soma e subtração será adotado números com sinal e o complemento $a_{2}$ para representação de valores negativos}
-		{Importante}
+		{-}
 		
 		\requirement{Arquitetura multi-ciclo}
 		{As instruções serão executadas em cinco ciclos de clock.}
-		{Essencial}		
+		{-}		
 			  
 	  \end{nonfunctional}

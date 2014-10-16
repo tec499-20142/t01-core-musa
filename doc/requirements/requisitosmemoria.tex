@@ -1,4 +1,4 @@
-\subsection{Conjunto de Operações de Memória}
+\subsection{Conjunto de Instruções de acesso à Memória}
 
 	  \begin{functional}
 		\requirement{Operação LW}
@@ -9,21 +9,13 @@
 		{O módulo deve ser capaz de armazenar dados na memória de dados.}
 		{Essencial}
 		
-		\requirement{Ler na memória de instruções}
+		\requirement{Leitura da memória de instruções}
 		{O módulo deve ser capaz de ler instruções na memória de instruções.}
 		{Essencial}
-        
-		\requirement{Organização de memória}
-		 {O módulo deve possuir duas memórias diferentes e independentes (Arquitetura de Harvad). Sendo elas: RAM para dados e ROM para instruções.}
-		 {Essencial}
                 
-        \requirement{Modo de endereçamento}
+        \requirement{Modo de endereçamento de dados}
         {O módulo deve possuir três modos de endereçamento: imediato, por registrador e base-deslocamento.}
         {Essencial}
-         
-       	\requirement{Tamanho da palavra de instrução}
-	  {O tamanho da palavra de intrução será de 32 bits.}
-	  {Essencial}
 
 		\requirement{Padrão de conversão de tamanho de palavra}
 		{O módulo deve converter dados de 16 bits para 32 bits utilizando o padrão zero-extend ou o padrão sign-extend.}

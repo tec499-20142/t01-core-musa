@@ -10,33 +10,35 @@
   
   \preconditions 
     \begin{itemize}
-     \item Atender aos requisitos funcionais [FR27], [FR29-30];
+     \item Atender aos requisitos funcionais [FR20-24], [FR32-33];
      \item Identificação das unidades sequenciais e combinacionais;
+     \item Busca da instrução.
     \end{itemize}
 
   \postconditions
     \begin{itemize}
-      \item Analisar
+      \item Ativar sinais de controle.
     \end{itemize}
   
   % \ucdiagram{./pictures/uc_exemple.png}
+    \begin{landscape} 
+    \begin{figure}
   \subsubsection*{Diagrama de Caso de Uso}
-    \begin{landscape}
   	\input{./usecases/processing.tikz}
+  	\end{figure}
  	\end{landscape}
  
   
   % descricao do fluxo principal de eventos
   \begin{mainflow}
-    \item Decodificar o indicador operação;
-    \item Realizar operação aritmética ou lógica;
-    \item Armazenar o resultado em um registrador;
+    \item Decodificar a instrução;
+    \item Ativar os módulos que serão utilizado na instrução a medida que orem necessários.
   \end{mainflow}
   
   % descricao do fluxo secundário (quando existir)
-  \begin{secondaryflow} 
-    \sfitem{Valor do resultado excede o suportado}
-    \begin{enumerate}
-      \item Habilitar sinal de overflow;
-    \end{enumerate}
-  \end{secondaryflow} 
+%  \begin{secondaryflow} 
+%    \sfitem{o}
+%    \begin{enumerate}
+%      \item ;
+%    \end{enumerate}
+%  \end{secondaryflow} 

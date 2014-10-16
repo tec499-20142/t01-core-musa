@@ -1,0 +1,128 @@
+%
+% Portuguese-BR vertion
+% 
+\documentclass{report}
+
+\usepackage{ipprocess}
+% Use longtable if you want big tables to split over multiple pages.
+\usepackage{longtable}
+\usepackage[utf8]{inputenc} 
+\usepackage[brazil]{babel} % Uncomment for portuguese
+\usepackage{pdflscape} % set ladscape/portrait pdf pages
+\usepackage{tikz}
+\usepackage{tikz-uml}
+
+\sloppy
+
+\graphicspath{{./pictures/}} % Pictures dir
+\makeindex
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Building front cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DocumentTitle{Documento de Arquitetura}
+\Project{Unidade de Operações Aritméticas}
+\Organization{Universidade Estadual de Feira de Santana}
+\Version{Compilação 1.0}
+% Make front cover
+\capa
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Revision History
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Histórico de Revisões}
+  \vspace*{1cm}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}[pos]{|m{2cm} | m{8cm} | m{4cm}|} 
+      \hline
+      \cellcolor[gray]{0.9}
+      \textbf{Date} & \cellcolor[gray]{0.9}\textbf{Descrição} & \cellcolor[gray]{0.9}\textbf{Autor(s)}\\
+      \hline
+      25/06/2014 &  Concepção do documento & joaocarlos \\ \hline
+      15/10/2014 &  Adição da subseção de acesso à memória & Weverson Gomes \\ \hline
+      16/10/2014 &  Adição da subseção de acesso à memória & Weverson Gomes \\ \hline
+    \end{tabular}
+  \end{table}
+
+% TOC instantiation
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document main content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introdução}
+  
+	\input{introducao}
+
+\chapter{Visão Geral da Arquitetura}
+
+	\input{restricoes}
+	
+	\input{codificacao}
+	
+	\input{componentes}
+
+  \section{Diagrama de Classe (Interface)}
+  \begin{figure}[H]
+    \centering
+    \input{./classes/interface.tikz}
+  \end{figure}
+
+  \section{Definições de Entrada e Saída}
+  \FloatBarrier
+    \begin{center}
+      \begin{longtable}[pos]{| l | c | c | m{7cm} |} \hline         
+        \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Nome}} & 
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Tamanho}} & 
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Direção}} &
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+        \endfirsthead
+        \hline
+        \multicolumn{4}{|l|}%
+        {{\bfseries continuação da página anterior}} \\
+        \hline
+        \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Nome}} & 
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Tamanho}} & 
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Direção}} &
+        \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+        \endhead
+
+        \multicolumn{4}{|r|}{{continua na próxima página}} \\ \hline
+        \endfoot
+
+        \hline
+        \endlastfoot
+
+        clock\_in                & 1   & entrada   & Clock principal do sistema.    \\ \hline
+        reset\_in                & 1   & entrada   & Sinal de reset geral do sistema.    \\ \hline
+        rx\_in                   & 1   & entrada   & Dado serial da RS232. \\ \hline
+        % tx\_out                  & 1   & saída     & Dado serial RS232 a ser transmitido. \\ \hline
+        result\_data\_out        & 8   & saída     & Representação do resultado da operação. \\ \hline
+        overflow\_out            & 1   & saída     & Sinal indicador de overflow aritmético. \\
+      \end{longtable}
+    \end{center} 
+  \section{Datapath Interno}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{datapath/ip_datapath.eps}
+    \end{figure}
+
+% inicio das descrições de arquitetura para cada componente do sistema
+\chapter{Descrição da Arquitetura}
+
+	\input{uc}
+	
+	\input{step4}
+
+	\input{interface}
+
+% Optional bibliography section
+% To use bibliograpy, first provide the ipprocess.bib file on the root folder.
+% \bibliographystyle{ieeetr}
+% \bibliography{ipprocess}
+
+\end{document}
