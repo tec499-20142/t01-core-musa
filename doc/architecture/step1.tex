@@ -1,0 +1,37 @@
+\section{Leitura da Instrução}
+	\subsection{Diagrama de Classe}
+		\begin{center}
+			\begin{tikzpicture}
+			\umlclass[x=0,y=0]{Instruction Fetch}
+			{
+				+ clock : input bit \\
+				+ pcInput : input bit[TBD] \\ 
+				+ pcWrite : input bit \\
+				+ pcOutput : output bit[TBD] \\
+				+ instruction : output bit[32] \\
+			}			
+			{
+			
+			}
+			\end{tikzpicture}
+		\end{center}
+		
+		\subsection{Definições de entrada e saída}
+		
+	\begin{center}
+		\begin{longtable}[pos]{| l | c | c | m{7cm} |} \hline
+			\multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Nome}} & 
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Tamanho}} & 
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Direção}} &
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+			\endhead
+			\hline
+			\endlastfoot
+			
+			pcInput & TBD & entrada & Valor do PC atual.\\ \hline
+			pcWrite & 1 & entrada & Sinal proveniente da UC que habilita a modificação do valor de PC. \\ \hline
+			pcOutput & TBD & saída & Valor do PC atual. \\ \hline
+			instruction & 32 & saída & Instrução a ser executada. \\ \hline
+			
+		\end{longtable}
+	\end{center}

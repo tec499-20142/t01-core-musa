@@ -1,14 +1,14 @@
 \section{Acesso à memória}
-
 	\subsection{Diagrama de Classe}
-
-	\begin{tikzpicture}
-	\umlclass[x=0,y=0]{MemoryExecute}{
-		+ zero : input bit \\ + address : input bit \\ + writeData : input bit[TBD] \\ + memRead : input bit \\ + 				memWrite : input bit
-		}{
-		+ readData() \\ + writeToRegister()
-	}
-	\end{tikzpicture}
+		\begin{center}
+			\begin{tikzpicture}
+			\umlclass[x=0,y=0]{MemoryExecute}{
+				+ zero : input bit \\ + address : input bit \\ + writeData : input bit[TBD] \\ + memRead : input bit \\ + 				memWrite : input bit
+			}{
+			+ readData() \\ + writeToRegister()
+		}
+		\end{tikzpicture}
+	\end{center}
 
 \subsection{Definições de entrada e saída}
 
