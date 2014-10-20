@@ -1,7 +1,52 @@
 \section{Codificação das instruções}
-	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	 
-  	\\Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump.
-  	\\O formato R está relacionado as instruções lógicas e aritméticas.
+	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump.\\
+	
+\begin{center}
+\centering
+\begin{longtable}[pos]{| l | c | c | m{7cm} |} \hline    
+          \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da instrução}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+          \endfirsthead
+          \hline
+          \multicolumn{3}{|l|}%
+          {{\bfseries continuação da página anterior}} \\
+          \hline
+          \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da Instrução}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
+          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+          \endhead
+
+          \multicolumn{3}{|r|}{{continua na próxima página}} \\ \hline
+          \endfoot
+
+          \hline
+          \endlastfoot    
+			\multirow{8}{*}{R-type} & ADD & Soma dois valores \\ \cline{2-3}	
+	& SUB & Subtrai dois valores \\ \cline{2-3}	
+	& MUL & Multiplica dois valores \\ \cline{2-3}	
+	& DIV & Divide dois valores \\ \cline{2-3}
+	& AND & AND lógico \\ \cline{2-3}
+	& OR & OR lógico  \\ \cline{2-3}
+	& CMP & Compara dois valores \\ \cline{2-3}
+	& NOT & NOT lógico \\ \hline 
+	\multirow{4}{*}{I-type} & ADDI & Soma dois valores,um destes imediato. \\ \cline{2-3}
+	& SUBI & Subtrai dois valores, um destes imediato. \\ \cline{2-3}
+	& ANDI & AND lógico de dois valores, um destes imediato. \\ \cline{2-3}
+	& ORI & OR lógico de dois valores, um destes imediato. \\ \hline
+	\multirow{2}{*}{Load/Store} & LW & Leitura de um dado da memória de dados \\ \cline{2-3}
+	& SW & Armazena um dado na memória de dados \\ \hline
+	\multirow{6}{*}{Jump} & JP & Desvia para um destino \\ \cline{2-3}
+	& JPC & Desvia para um destino relativo ao PC \\ \cline{2-3}
+	& BRFL & Desvia para um destino se RF==CST \\ \cline{2-3}
+	& CALL & Chamada de subrotina \\ \cline{2-3}
+	& RET & Retorno de Subrotina \\ \cline{2-3}
+	& HALT & Parada do sistema \\ \hline
+	- & NOPE & • \\ \hline
+\end{longtable}
+\end{center}
+
+	O formato R está relacionado as instruções lógicas e aritméticas.
 	\begin{figure}[H]
     	\centering
     	\includegraphics{r-format}
@@ -16,8 +61,9 @@
 	\item \textbf{RD} - Registrador destino.
 	\item \textbf{SHAMT} - \textit{Shift amount}; Quantidade de deslocamento.
 	\item \textbf{FUNCT} - Função; Esse campo seleciona a variante específica da operação no campo opcode, e as vezes, é chamado de código de função.
-\end{itemize}	  	
-  	Um segundo tipo de formato de instrução é chamado de formato I, utilizado pelas instruções imediatas e de transferência de dados.
+\end{itemize}	
+  	
+	 Um segundo tipo de formato de instrução é chamado de formato I, utilizado pelas instruções imediatas e de transferência de dados.
 	\begin{figure}[H]
     	\centering
     	\includegraphics{i-format}
@@ -29,21 +75,34 @@ Seus respectivos campos são:
 	\item \textbf{OPCODE} - Código da operação básica da instrução.
 	\item \textbf{RS} - Registrador do operando de origem.
 	\item \textbf{RT} - Registrador destino.
-	\item \textbf{ADDRESS} - Endereço de memória ou constante numérica.
+	\item \textbf{ADDRESS OR IMMEDIATE} - Endereço de memória ou constante numérica.
 \end{itemize}	  	
-  	
+	
+ O terceiro formato de instrução são para instruções de leitura e escrita de dados na memória de dados.  	
   	\begin{figure}[H]
     	\centering
     	\includegraphics{load-store}
     	\caption{Formato Load/Store}
 		\label{loadstore}
-  	\end{figure}
-  	
+  	\end{figure}  	
+Seus respectivos campos são:
+	\begin{itemize}
+	\item \textbf{OPCODE} - Código da operação básica da instrução.
+	\item \textbf{RS} - Registrador onde está o dado.
+	\item \textbf{ADDRESS} - Endereço da memória de dados.
+\end{itemize}
+
+ O formato Jump servem para as instruções de desvio incondicional.  	
    	\begin{figure}[H]
     	\centering
     	\includegraphics{jump}
     	\caption{Formato Jump}
 		\label{jump}
   	\end{figure}
+Seus respectivos campos são:
+	\begin{itemize}
+	\item \textbf{OPCODE} - Código da operação básica da instrução.
+	\item \textbf{ADDRESS} - Endereço de memória ou constante numérica.
+\end{itemize}
   	
  

@@ -1,20 +1,8 @@
 \section{Leitura da Instrução}
 	\subsection{Diagrama de Classe}
-		\begin{center}
-			\begin{tikzpicture}
-			\umlclass[x=0,y=0]{Instruction Fetch}
-			{
-				+ clock : input bit \\
-				+ pcInput : input bit[32] \\ 
-				+ pcWrite : input bit \\
-				+ pcOutput : output bit[32] \\
-				+ instruction : output bit[32] \\
-			}			
-			{
-			
-			}
-			\end{tikzpicture}
-		\end{center}
+  \begin{figure}[H]
+    \input{./classes/step1.tikz}
+  \end{figure}
 		
 		\subsection{Definições de entrada e saída}
 		
