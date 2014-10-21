@@ -1,9 +1,9 @@
 \section{Codificação das instruções}
-	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump.\\
-	
+	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump. Os OPCODES são os códigos de operação da instrução, neste documento ele é representação em números hexadecimais.\\
+\begin{table}[H]
+\centering	
 \begin{center}
-\centering
-\begin{longtable}[pos]{| l | c | c | m{7cm} |} \hline    
+\begin{longtable}[pos]{| c | c | c | m{7cm} |} \hline    
           \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
@@ -41,10 +41,12 @@
 	& BRFL & Desvia para um destino se RF==CST \\ \cline{2-3}
 	& CALL & Chamada de subrotina \\ \cline{2-3}
 	& RET & Retorno de Subrotina \\ \cline{2-3}
-	& HALT & Parada do sistema \\ \hline
-	- & NOPE & • \\ \hline
+	& HALT & Parada do sistema \\ \cline{2-3}
+	& NOPE & Refresh no módulo \\ \hline
 \end{longtable}
+\caption{Tabela de descrição das instruções}
 \end{center}
+\end{table}
 
 	O formato R está relacionado as instruções lógicas e aritméticas.
 	\begin{figure}[H]
@@ -62,6 +64,33 @@
 	\item \textbf{SHAMT} - \textit{Shift amount}; Quantidade de deslocamento.
 	\item \textbf{FUNCT} - Função; Esse campo seleciona a variante específica da operação no campo opcode, e as vezes, é chamado de código de função.
 \end{itemize}	
+
+\begin{table}[H]
+\centering
+	\begin{tabular}{|c|c|c|}
+  	\hline 
+  	\textbf{OPCODE} & \textbf{INSTRUCTION} & \textbf{FUNCTION} \\ 
+  	\hline 
+  	01 & ADD & 00 \\ 
+  	\hline 
+  	01 & SUB & 01 \\ 
+  	\hline 
+  	01 & MUL & 02 \\ 
+  	\hline 
+  	01 & DIV & 03 \\ 
+  	\hline 
+  	02 & AND & 04 \\ 
+  	\hline 
+  	02 & OR & 05 \\ 
+  	\hline 
+  	02 & CMP & 06 \\ 
+  	\hline 
+  	02 & NOT & 07 \\ 
+  	\hline 
+  	\end{tabular} 
+  	\caption{Definição dos OPCODES do formato R}
+  \end{table} 
+  	 	
   	
 	 Um segundo tipo de formato de instrução é chamado de formato I, utilizado pelas instruções imediatas e de transferência de dados.
 	\begin{figure}[H]
@@ -77,6 +106,24 @@ Seus respectivos campos são:
 	\item \textbf{RT} - Registrador destino.
 	\item \textbf{ADDRESS OR IMMEDIATE} - Endereço de memória ou constante numérica.
 \end{itemize}	  	
+
+\begin{table}[H]
+\centering	
+\begin{tabular}{|c|c|}
+	\hline 
+	OPCODE & INSTRUCTION \\ 
+	\hline 
+	03 & ADDI \\ 
+	\hline 
+	04 & SUBI \\ 
+	\hline 
+	05 & ANDI \\ 
+	\hline 
+	06 & ORI \\ 
+	\hline 
+	\end{tabular} 
+	  	\caption{Definição dos OPCODES do formato I}	
+\end{table}	
 	
  O terceiro formato de instrução são para instruções de leitura e escrita de dados na memória de dados.  	
   	\begin{figure}[H]
@@ -92,6 +139,20 @@ Seus respectivos campos são:
 	\item \textbf{ADDRESS} - Endereço da memória de dados.
 \end{itemize}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+OPCODE & INSTRUCTION \\ 
+\hline 
+07 & LW \\ 
+\hline 
+08 & SW \\ 
+\hline 
+\end{tabular} 
+  	\caption{Definição dos OPCODES do formato Load/Store}
+\end{table}
+
  O formato Jump servem para as instruções de desvio incondicional.  	
    	\begin{figure}[H]
     	\centering
@@ -104,5 +165,28 @@ Seus respectivos campos são:
 	\item \textbf{OPCODE} - Código da operação básica da instrução.
 	\item \textbf{ADDRESS} - Endereço de memória ou constante numérica.
 \end{itemize}
-  	
+ 
+\begin{table}[H]
+\centering 	
+  	\begin{tabular}{|c|c|}
+  	\hline 
+  	OPCODE & INSTRUCTION \\ 
+  	\hline 
+  	09 & JP \\ 
+  	\hline 
+  	0A & JPC \\ 
+  	\hline 
+  	0B & BRFL \\ 
+  	\hline 
+  	0C & CALL \\ 
+  	\hline 
+  	0D & RET \\ 
+  	\hline 
+  	0E & HALT \\ 
+  	\hline 
+  	00 & NOPE \\ 
+  	\hline 
+  	\end{tabular} 
+  	  	\caption{Definição dos OPCODES do formato Jump}
+\end{table}
  

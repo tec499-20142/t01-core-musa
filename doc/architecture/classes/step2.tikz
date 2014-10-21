@@ -1,11 +1,11 @@
 \begin{center}
 	\begin{tikzpicture}
-	\umlclass[x=0,y=0]{Instruction Fetch}{
+	\umlclass[x=0,y=0]{Instruction Decode}{
 	+ clock : input bit \\
 	+ pcInput : input bit[32] \\ 
 	+ pcWrite : input bit \\
 	+ pcOutput : output bit[32] \\
-	+ instruction : output bit[32] }			
+	+ instruction : output bit[32] \\}			
 	{}
 	\end{tikzpicture}
 \end{center}
