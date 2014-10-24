@@ -1,8 +1,8 @@
 \flushleft
   \begin{tikzpicture}
   
-      \umlactor[x=-4]{Controle} 
-      \umlactor[x=5.5,y=-5]{Controle ULA} 
+      \umlactor[x=-4]{UC} 
+      \umlactor[x=5.5,y=-5]{ULA} 
        
     \begin{umlsystem}[x=0, fill=red!10]{Unidade de Controle} 
       \umlusecase[width=1.5cm, name=decod]{Decodifica as instruções} 
@@ -24,7 +24,7 @@
     \end{umlsystem}  
     
               
-    \begin{umlsystem}[x=9.5,y=-5, fill=red!10]{ULA}            
+    \begin{umlsystem}[x=9.5,y=-5, fill=red!10]{Unidade Lógica Aritmética}            
       \umlusecase[name=operacao]{Efetuar OLA} 
       \umlusecase[x=3,y=1.5, width=1.5cm, name=processa]{Processar resultado}   
       \umlusecase[x=3,y=-1.5, fill=green!20,width=1cm, name=flags]{Definir flags}   
@@ -35,8 +35,8 @@
       \umlusecase[x=4, name=singext]{Sign Extend}      
     \end{umlsystem} 
     
-      \umlassoc{Controle}{decod}
-      \umlassoc{Controle ULA}{operacao}
+      \umlassoc{UC}{decod}
+      \umlassoc{ULA}{operacao}
       \umlinclude{busca}{decod}
       \umlassoc{decod}{sinais}
       \umlassoc{sinais}{readregs}
