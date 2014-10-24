@@ -1,7 +1,6 @@
-  \usecase{Unidade de Controle}
+\usecase{Unidade de Controle}
  
-    A \textbf{Unidade de Controle} é responsável por definir a partir de uma instrução decodificada o comportamento de outros módulos, 
-    por exemplo: ULA. 
+    A \textbf{Unidade de Controle} é responsável por definir, a partir de uma instrução decodificada, o comportamento de outros módulos.
   
   \actors
     \begin{description}
@@ -10,9 +9,8 @@
   
   \preconditions 
     \begin{itemize}
-     \item Atender aos requisitos funcionais [FR20-24], [FR32-33];
-     \item Identificação das unidades sequenciais e combinacionais;
-     \item Busca da instrução.
+     \item Atender ao requisito funcional [FR23];
+     \item Receber opcode da instrução.
     \end{itemize}
 
   \postconditions
@@ -32,13 +30,14 @@
   % descricao do fluxo principal de eventos
   \begin{mainflow}
     \item Decodificar a instrução;
-    \item Ativar os módulos que serão utilizado na instrução a medida que orem necessários.
   \end{mainflow}
   
   % descricao do fluxo secundário (quando existir)
-%  \begin{secondaryflow} 
+  \begin{secondaryflow} 
 %    \sfitem{o}
-%    \begin{enumerate}
-%      \item ;
+%   \begin{enumerate}
+     \item Ativar sinais de controle para instruções do tipo R.
+     \item Ativar sinais de controle para instruções do tipo I.
+     \item Ativar sinais de controle para instruções do tipo J.
 %    \end{enumerate}
-%  \end{secondaryflow} 
+ \end{secondaryflow}
