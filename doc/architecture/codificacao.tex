@@ -33,8 +33,8 @@
 	\multirow{4}{*}{I-type} & ADDI & Soma dois valores,um destes imediato. \\ \cline{2-3}
 	& SUBI & Subtrai dois valores, um destes imediato. \\ \cline{2-3}
 	& ANDI & AND lógico de dois valores, um destes imediato. \\ \cline{2-3}
-	& ORI & OR lógico de dois valores, um destes imediato. \\ \hline
-	\multirow{2}{*}{Load/Store} & LW & Leitura de um dado da memória de dados \\ \cline{2-3}
+	& ORI & OR lógico de dois valores, um destes imediato. \\ \cline{2-3}
+	& LW & Leitura de um dado da memória de dados \\ \cline{2-3}
 	& SW & Armazena um dado na memória de dados \\ \hline
 	\multirow{6}{*}{Jump} & JP & Desvia para um destino \\ \cline{2-3}
 	& JPC & Desvia para um destino relativo ao PC \\ \cline{2-3}
@@ -121,38 +121,14 @@ Seus respectivos campos são:
 	\hline 
 	06 & ORI \\ 
 	\hline 
+	07 & LW \\ 
+	\hline 
+	08 & SW \\ 
+	\hline 
 	\end{tabular} 
 	  	\caption{Definição dos OPCODES do formato I}	
 \end{table}	
 	
- O terceiro formato de instrução são para instruções de leitura e escrita de dados na memória de dados.  	
-  	\begin{figure}[H]
-    	\centering
-    	\includegraphics{load-store}
-    	\caption{Formato Load/Store}
-		\label{loadstore}
-  	\end{figure}  	
-Seus respectivos campos são:
-	\begin{itemize}
-	\item \textbf{OPCODE} - Código da operação básica da instrução.
-	\item \textbf{RS} - Registrador onde está o dado.
-	\item \textbf{ADDRESS} - Endereço da memória de dados.
-\end{itemize}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-OPCODE & INSTRUCTION \\ 
-\hline 
-07 & LW \\ 
-\hline 
-08 & SW \\ 
-\hline 
-\end{tabular} 
-  	\caption{Definição dos OPCODES do formato Load/Store}
-\end{table}
-
  O formato Jump servem para as instruções de desvio incondicional.  	
    	\begin{figure}[H]
     	\centering
