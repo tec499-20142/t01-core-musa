@@ -2,10 +2,30 @@
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{Instruction Decode}{
 	+ clock : input bit \\
-	+ pcInput : input bit[32] \\ 
-	+ pcWrite : input bit \\
-	+ pcOutput : output bit[32] \\
-	+ instruction : output bit[32] \\}			
-	{}
+	+ instruction : input bit[32] \\ 
+	+ regDst : input bit \\
+	+ writeData : input bit \\
+	+ writeRegister : input bit \\
+	+ word : input bit[16] \\
+	+ regDst : output bit \\
+	+ branch : output bit \\
+	+ memRead : output bit \\
+	+ memToReg : output bit \\
+	+ aluOp : output bit \\
+	+ memWrite : output bit \\
+	+ aluSrc : output bit \\
+	+ regWrite : output bit \\
+	+ jump : output bit \\
+	+ readData1 : output bit[32] \\
+	+ readData2 : output bit [32] \\
+	+ outputWord : output bit [32] \\
+	+ registers : reg bit[32] \\}			
+	{ % procedures
+          - \underline{<<comb>> opcode\_decoder()} \\
+          - <<comb>> search\_register() \\
+          - <<comb>> set\_write\_register() \\
+          - <<sequ>> sign\_extend() \\
+          - <<sequ>> zero\_extend()
+        }
 	\end{tikzpicture}
 \end{center}
