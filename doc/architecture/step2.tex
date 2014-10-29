@@ -16,11 +16,18 @@
 			\hline
 			\endlastfoot
 			
-			pcInput & 32 & entrada & Valor do PC atual.\\ \hline
-			pcWrite & 1 & entrada & Sinal proveniente da UC que habilita a modificação do valor de PC. \\ \hline
-			pcOutput & 32 & saída & Valor do PC atual. \\ \hline
-			instruction & 32 & saída & Instrução a ser executada. \\ \hline
-			
+			instruction & 1 & entrada & Instrução a ser executada. \\ \hline
+			writeData & 32 & entrada & Sinal de controle para escrita no registrador. \\ \hline
+			writeRegister & 32 & entrada & Endereço do registrador de destino do writeData. \\ \hline
+			word & 32 & entrada & é uma instrução. \\ \hline
+			branch & 32 & saída & Sinal que informa ao circuito se a instrução é de branch. \\ \hline
+			memRead & 32 & saída & Sinal de controle para realizar leitura da memória. \\ \hline
+			memToReg & 32 & saída & Sinal de controle que define se o dado deve vir da ULA ou da memória \\ \hline
+			aluOp & 32 & saída & Sinal de controle que define se o código funct da instrução deve ser levado em consideração ou não. \\ \hline
+			memWrite & 32 & saída & Sinal de controle para realizar escrita na memória. \\ \hline
+			aluSrc & 32 & saída & Sinal de controle que define qual entrada a ULA deve utilizar para realizar a operação. \\ \hline
+			regWrite & 32 & saída & Sinal de controle para realizar escrita no registrador. \\ \hline
+			jump & 32 & saída & Sinal que informa ao circuito se a operação é de jump. \\ \hline
 		\end{longtable}
 	\end{center}
 	
