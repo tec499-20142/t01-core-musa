@@ -8,8 +8,8 @@ O \textbf{Extensor de Bit} é responsável por transformar um valor em outro de 
   
 \preconditions 
 	\begin{itemize}
-	\item Atender o requisito funcional [FR31];
-	\item Receber dados menores que 32 bits;
+	\item Atender o requisito funcional [FR25];
+	\item Receber dados de 16 bits;
 	\end{itemize}
 
 \postconditions
@@ -20,7 +20,7 @@ O \textbf{Extensor de Bit} é responsável por transformar um valor em outro de 
   
 %descricao do fluxo principal de eventos
 \begin{mainflow}
-\item Identificar se o dado de entrada a ser tratado é com sinal ou não;
+\item Identificar se o dado de entrada a ser tratado possui sinal ou não;
 \item Realizar a extensão dos bits;
 \item Devolve o dado alterado;
 \end{mainflow}
