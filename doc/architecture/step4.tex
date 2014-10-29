@@ -1,4 +1,4 @@
-\section{Acesso à memória}
+\section{Acesso à memória e write back"}
 	\subsection{Diagrama de Classe}
   \begin{figure}[H]
     \input{./classes/step4.tikz}
@@ -20,8 +20,8 @@
           address                  & TBD & entrada   & Endereço no qual o dado deve ser escrito.    \\ \hline
           memRead                  & 1   & entrada   & Sinal proveniente da UC que habilita leitura.    \\ \hline
           memWrite                 & 1   & entrada   & Sinal proveniente da UC que habilita escrita.    \\ \hline
-          writeData      		   & 1   & entrada   & O dado a ser escrito na memória. \\ \hline
-          readData	               & TBD & saída     & Dado a ser utilizado pelo MUX do "Write Back".    \\ \hline
+          writeData      		   & 1   & entrada   & Dado a ser escrito na memória. \\ \hline
+          writeBack	               & TBD & saída     & Dado proveniente da ALU que será escrito no bloco de registradores\\ \hline
           writeToRegister          & TBD & saída     & Dado do segundo operando.    \\
         \end{longtable}
       \end{center}
