@@ -2,7 +2,8 @@
   A unidade de processamento a ser desenvolvida é composta a partir dos seguintes componentes:
 
   \begin{itemize}
-    \item \textbf{Serial Controller --} Controlador para comunicação com módulo de transmissão serial através do protocolo RS232.
-    \item \textbf{Interface Control --} Interface de controle, responsável por fazer a leitura correta das informações da serial e transmiti-las para a unidade de processamento.
-    \item \textbf{Processing Unit --} Unidade responsável pela realização das operações e armazenamento do resultado.
+    \item \textbf{Instruction Fetch --} Módulo responsavel pela busca da instrução na memória de instrução.
+    \item \textbf{Instruction Decode e Register Read --} Módulo responsável pela decodificação das instruções e leitura do banco de registradores.
+    \item \textbf{Execute Operation or Calculate Address --} Módulo responsável pela execução as operações de caractér lógico/aritmético ou cálculos endereços.
+     \item \textbf{Memory Acess e Write Back --} Módulo responsável pelo acesso a memória de dados e escrita no banco de registradores.
   \end{itemize}
