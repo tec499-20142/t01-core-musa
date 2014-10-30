@@ -3,9 +3,11 @@
 	\umlclass[x=0,y=0]{MemoryExecute}{
 	+ zero : input bit \\ 
 	+ address : input bit \\ 
-	+ writeData : input bit[TBD] \\ 
+	+ writeData : input bit[13] \\ 
 	+ memRead : input bit \\ 
-	+ memWrite : input bit}
+	+ memWrite : input bit\\ 
+	- writeBack : output bit[14]\\ 
+	- writeToRegister : output bit[14]}
 	{}
 	\end{tikzpicture}
 \end{center}
