@@ -16,26 +16,63 @@
 			\hline
 			\endlastfoot
 			
-			instruction & 1 & entrada & Instrução a ser executada. \\ \hline
-			writeData & 32 & entrada & Sinal de controle para escrita no registrador. \\ \hline
-			writeRegister & 32 & entrada & Endereço do registrador de destino do writeData. \\ \hline
-			word & 32 & entrada & é uma instrução. \\ \hline
-			branch & 32 & saída & Sinal que informa ao circuito se a instrução é de branch. \\ \hline
-			memRead & 32 & saída & Sinal de controle para realizar leitura da memória. \\ \hline
-			memToReg & 32 & saída & Sinal de controle que define se o dado deve vir da ULA ou da memória \\ \hline
-			aluOp & 32 & saída & Sinal de controle que define se o código funct da instrução deve ser levado em consideração ou não. \\ \hline
-			memWrite & 32 & saída & Sinal de controle para realizar escrita na memória. \\ \hline
-			aluSrc & 32 & saída & Sinal de controle que define qual entrada a ULA deve utilizar para realizar a operação. \\ \hline
-			regWrite & 32 & saída & Sinal de controle para realizar escrita no registrador. \\ \hline
-			jump & 32 & saída & Sinal que informa ao circuito se a operação é de jump. \\ \hline
+			instruction & 32 & entrada & Instrução a ser executada. \\ \hline
+			writeData & 1 & entrada & Sinal de controle para escrita no registrador. \\ \hline
+			writeRegister & 1 & entrada & Endereço do registrador de destino do writeData. \\ \hline
+			word & 16 & entrada & é uma instrução. \\ \hline
+			branch & 1 & saída & Sinal que informa ao circuito se a instrução é de branch. \\ \hline
+			memRead & 1 & saída & Sinal de controle para realizar leitura da memória. \\ \hline
+			memToReg & 1 & saída & Sinal de controle que define se o dado deve vir da ULA ou da memória \\ \hline
+			aluOp & 2 & saída & Sinal de controle que define se o código funct da instrução deve ser levado em consideração ou não. \\ \hline
+			memWrite & 1 & saída & Sinal de controle para realizar escrita na memória. \\ \hline
+			aluSrc & 1 & saída & Sinal de controle que define qual entrada a ULA deve utilizar para realizar a operação. \\ \hline
+			regWrite & 1 & saída & Sinal de controle para realizar escrita no registrador. \\ \hline
+			jump & 1 & saída & Sinal que informa ao circuito se a operação é de jump. \\ \hline
 		\end{longtable}
 	\end{center}
+    
+    		\subsection{Tabela de microinstruções}
+		
+	\begin{center}
+		\begin{longtable}[pos]{| c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c |} \hline
+			\multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Tipo}} & 
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{01}} & 
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{02}} &
+			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{03}} &
+            			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{04}} &
+                        			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{05}} &
+                                    			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{06}} &
+                                                						\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{07}} &
+                                                                        			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{08}} &
+                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{09}} &
+                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{0A}} &
+                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{0B}} &
+                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{0C}} &
+                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{0D}} &
+                                                                                                    \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{0E}} &
+                                                                                                                     \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{00}} \\ \hline
+			\endhead
+			\hline
+			\endlastfoot
+			
+			regDst & 1 & 1 & 0 & 0 & 0 & 0 & 1 & x & x & x & x & x&x &x&0\\ \hline
+            branch & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & x & x & 1 & x&x&x&0\\ \hline
+            memRead & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & x & x & 0 & x&x&x&0\\ \hline
+            memToReg & 0 & 0 & 1 & 1 & 1 & 1 & 1 & x & x & x & x & x&x&x&0\\ \hline
+            aluOp & 10 & 10 & 10 & 10 & 10 & 10 & 00 & 00 & xx & xx & 01& xx&xx&xx&00 \\ \hline
+            memWrite & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & x & x & 0& x&x&x&0\\ \hline
+            aluSrc & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & x & x & 0&x&x&x&0\\ \hline
+            regWrite & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & x & x & 0&x&x&x&0\\ \hline
+            jump & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0&1&1&x&0\\ \hline
+		\end{longtable}
+	\end{center}
+    
 	
 	\subsection{Datapath Interno}
 	
-%	\begin{figure}[ht]
-%		\begin{center}
-%		\includegraphics{./datapath/step1.jpg}
-%		\caption*{Datapath preliminar}
-%		\end{center}
-%	\end{figure}
+	\begin{figure}[ht]
+		\begin{center}
+		\includegraphics{./datapath/step2.png}
+		\caption*{Datapath do estágio 2.}
+		\end{center}
+	\end{figure}
