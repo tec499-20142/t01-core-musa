@@ -1,4 +1,4 @@
-\section{Cálculos}
+\section{Estágio de execução}
 	\subsection{Diagrama de Classe}
   \begin{figure}[h]
     \input{./classes/step3.tikz}
@@ -16,10 +16,18 @@
 			\hline
 			\endlastfoot
 			
-			pcInput & 32 & entrada & Valor do PC atual.\\ \hline
-			pcWrite & 1 & entrada & Sinal proveniente da UC que habilita a modificação do valor de PC. \\ \hline
-			pcOutput & 32 & saída & Valor do PC atual. \\ \hline
-			instruction & 32 & saída & Instrução a ser executada. \\ \hline
+			clock & 1 & Entrada & Clock de principal do sistema.\\ \hline
+			data_a & 32 & Entrada & Dado do primeiro operando. \\ \hline
+			data_b & 32 & Entrada & Dado do segundo operando. \\ \hline
+			pc_in & 32 & Entrada & Valor do PC atual. \\ \hline
+			rt_data_mem & 5 & Entrada & Dado vindo da memoria. \\ \hline
+			opcode & 5 & Entrada & Código da operação.\\ \hline
+			control_signal & TBD & Entrada & Sinal de comando da unidade de controle. \\ \hline
+			alu_result & 32 & Saída & Representação do resultado da operação. \\ \hline
+			pc_out & 32 & Saída & Valor do PC atual. \\ \hline
+			write_reg_mem & 5 & Saída & Sinal proveniente da UC que habilita a escrita no registrador. \\ \hline
+			memory_address & 32 & Saída & Endereço da memória. \\ \hline
+			memory_write_enable & TBD & Saída & Sinal proveniente da UC que habilita a escrita na memória.
 			
 		\end{longtable}
 	\end{center}

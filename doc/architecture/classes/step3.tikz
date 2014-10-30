@@ -1,11 +1,16 @@
 \begin{center}
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{EX}{
-	+ clock : input bit \\
-	+ pcInput : input bit[32] \\ 
-	+ pcWrite : input bit \\
-	+ pcOutput : output bit[32] \\
-	+ instruction : output bit[32] \\}			
-	{}
+	+ data_a : input bit[32] \\
+	+ data_b : input bit[32] \\ 
+	+ pc_in : input bit[32] \\ 
+	+ orig_pc: input bit [2] \\
+	+ op_alu : input bit[5] \\
+	+ origin_aalu : input bit[1]\\
+	+ origin_balu : input bit[2] \\
+	+ instruction : output bit[32] \\
+	+ offset_inst : input [32] \\}			
+	{+<<comb>> calc_next_pc() \\
+	+ <<comb>> cal_al_operation() \\}
 	\end{tikzpicture}
 \end{center}
