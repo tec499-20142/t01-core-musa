@@ -1,16 +1,16 @@
 \begin{center}
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{EX}{
-	+ data_a : input bit[32] \\
-	+ data_b : input bit[32] \\ 
-	+ pc_in : input bit[32] \\ 
-	+ orig_pc: input bit [2] \\
-	+ op_alu : input bit[5] \\
-	+ origin_aalu : input bit[1]\\
-	+ origin_balu : input bit[2] \\
+	+ data\_a : input bit[32] \\
+	+ data\_b : input bit[32] \\ 
+	+ pc\_in : input bit[32] \\ 
+	+ orig\_pc: input bit [2] \\
+	+ op\_alu : input bit[5] \\
+	+ origin\_aalu : input bit[1]\\
+	+ origin\_balu : input bit[2] \\
 	+ instruction : output bit[32] \\
-	+ offset_inst : input [32] \\}			
-	{+<<comb>> calc_next_pc() \\
-	+ <<comb>> cal_al_operation() \\}
+	+ offset\_inst : input [32] \\}			
+	{+<<comb>> calc\_next\_pc() \\
+	+ <<comb>> cal\_al\_operation() \\}
 	\end{tikzpicture}
 \end{center}
