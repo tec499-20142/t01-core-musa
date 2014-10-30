@@ -8,7 +8,7 @@
 	+ pcOutput : output bit[32] \\
 	+ instruction : output bit[32] }			
 	{
-	- <<comb>> search\_Instruction() \\
+	- \underline{<<comb>> search\_Instruction()} \\
 	- <<comb>> next\_PC() 
 	}
 	\end{tikzpicture}
