@@ -2,10 +2,14 @@
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{Instruction Fetch}{
 	+ clock : input bit \\
+	+ reset : input bit \\
 	+ pcInput : input bit[32] \\ 
 	+ pcWrite : input bit \\
 	+ pcOutput : output bit[32] \\
 	+ instruction : output bit[32] }			
-	{}
+	{
+	- <<comb>> search\_Instruction() \\
+	- <<comb>> next\_PC() 
+	}
 	\end{tikzpicture}
 \end{center}
