@@ -1,15 +1,15 @@
 \section{Codificação das instruções}
 	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump. Os OPCODES são os códigos de operação da instrução, neste documento ele é representação em números hexadecimais.\\
-\begin{table}[H]
-\centering	
-\begin{center}
+	
+  \FloatBarrier
+    \begin{center}
 \begin{longtable}[pos]{| c | c | c | m{7cm} |} \hline    
           \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
           \endfirsthead
           \hline
-          \multicolumn{3}{|l|}%
+          \multicolumn{3}{|l|}
           {{\bfseries continuação da página anterior}} \\
           \hline
           \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da Instrução}} & 
@@ -21,7 +21,8 @@
           \endfoot
 
           \hline
-          \endlastfoot    
+          \endlastfoot 
+           
 			\multirow{8}{*}{R-type} & ADD & Soma dois valores \\ \cline{2-3}	
 	& SUB & Subtrai dois valores \\ \cline{2-3}	
 	& MUL & Multiplica dois valores \\ \cline{2-3}	
@@ -44,9 +45,8 @@
 	& HALT & Parada do sistema \\ \cline{2-3}
 	& NOPE & Refresh no módulo \\ \hline
 \end{longtable}
-\caption{Tabela de descrição das instruções}
 \end{center}
-\end{table}
+
 
 	O formato R está relacionado as instruções lógicas e aritméticas.
 	\begin{figure}[H]
@@ -69,7 +69,7 @@
 \centering
 	\begin{tabular}{|c|c|c|}
   	\hline 
-  	\textbf{OPCODE} & \textbf{INSTRUCTION} & \textbf{FUNCTION} \\ 
+  	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} & \cellcolor[gray]{0.9}\textbf{FUNCTION} \\ 
   	\hline 
   	01 & ADD & 00 \\ 
   	\hline 
@@ -111,7 +111,7 @@ Seus respectivos campos são:
 \centering	
 \begin{tabular}{|c|c|}
 	\hline 
-	OPCODE & INSTRUCTION \\ 
+  	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} \\ 
 	\hline 
 	03 & ADDI \\ 
 	\hline 
@@ -146,7 +146,7 @@ Seus respectivos campos são:
 \centering 	
   	\begin{tabular}{|c|c|}
   	\hline 
-  	OPCODE & INSTRUCTION \\ 
+  	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} \\ 
   	\hline 
   	09 & JP \\ 
   	\hline 
