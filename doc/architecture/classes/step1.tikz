@@ -1,6 +1,6 @@
 \begin{center}
 	\begin{tikzpicture}
-	\umlclass[type = control]{Instruction Fetch}{
+	\umlclass{Instruction Fetch}{
 	+ clock : input bit \\
 	+ reset : input bit \\
 	+ pcInput : input bit[14] \\ 
