@@ -12,6 +12,7 @@
 \usepackage{tikz}
 \usepackage{tikz-uml}
 \usepackage{multirow}
+\usepackage{graphicx}
 
 \sloppy
 
@@ -54,6 +55,8 @@
       30/10/2014 & Adição do Datapath (Instruction Fetch) & santana22 e gabri14el \\ \hline
       30/10/2014 & Alterações na subseção de acesso à memória com definições de número de bits & weversongomes \\ \hline
       03/11/2014 & Correções na subseção "Leitura da Instrução" & weversongomes \\ \hline
+      05/11/2014 & Modificação dos datapaths internos & tarleswalker \\ \hline
+      05/11/2014 & Alteração nos opcodes & manuellemacedo \\ \hline
     \end{tabular}
   \end{table}
 
@@ -85,6 +88,13 @@
 	\input{step3}	
 	\newpage
 	\input{step4}
+	\newpage
+	\begin{landscape}
+	\section{Datapath Externo}
+	\begin{figure}[H]
+    	\input{./pictures/datapath.eps}
+  	\end{figure}
+  	\end{landscape}
 
 % Optional bibliography section
 % To use bibliograpy, first provide the ipprocess.bib file on the root folder.
