@@ -2,6 +2,7 @@
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{Instruction Decode}{
 	+ clock : input bit \\
+	+ reset : input bit \\
 	+ instruction : input bit[32] \\ 
 	+ regDst : input bit \\
 	+ writeData : input bit \\

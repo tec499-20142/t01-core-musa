@@ -71,21 +71,21 @@
   	\hline 
   	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} & \cellcolor[gray]{0.9}\textbf{FUNCTION} \\ 
   	\hline 
-  	01 & ADD & 00 \\ 
+  	0x00 & ADD & 0x20 \\ 
   	\hline 
-  	01 & SUB & 01 \\ 
+  	0x00 & SUB & 0x20 \\ 
   	\hline 
-  	01 & MUL & 02 \\ 
+  	0x00 & MUL & 0x18 \\ 
   	\hline 
-  	01 & DIV & 03 \\ 
+  	0x00 & DIV & 0x1A \\ 
   	\hline 
-  	02 & AND & 04 \\ 
+  	0x00 & AND & 0x24 \\ 
   	\hline 
-  	02 & OR & 05 \\ 
+  	0x00 & OR & 0x25 \\ 
   	\hline 
-  	02 & CMP & 06 \\ 
+  	0x00 & CMP & 0x1C \\ 
   	\hline 
-  	02 & NOT & 07 \\ 
+  	0x00 & NOT & 0x1D \\ 
   	\hline 
   	\end{tabular} 
   	\caption{Definição dos OPCODES do formato R}
@@ -113,17 +113,20 @@ Seus respectivos campos são:
 	\hline 
   	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} \\ 
 	\hline 
-	03 & ADDI \\ 
+	0x08 & ADDI \\ %
 	\hline 
-	04 & SUBI \\ 
+	0x10 & SUBI \\ %
 	\hline 
-	05 & ANDI \\ 
+	0x0c & ANDI \\ %
 	\hline 
-	06 & ORI \\ 
+	0x13 & ORI \\ %
 	\hline 
-	07 & LW \\ 
+	0x23 & LW \\ %
 	\hline 
-	08 & SW \\ 
+	0x2b & SW \\ %	
+%	0x2a
+%0x04
+%0x04
 	\hline 
 	\end{tabular} 
 	  	\caption{Definição dos OPCODES do formato I}	
@@ -152,7 +155,7 @@ Seus respectivos campos são:
   	\hline 
   	0A & JPC \\ 
   	\hline 
-  	0B & BRFL \\ 
+  	0x09 & BRFL \\ 
   	\hline 
   	0C & CALL \\ 
   	\hline 
