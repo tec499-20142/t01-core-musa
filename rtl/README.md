@@ -1,6 +1,6 @@
 Diretório de Arquivos RTL
 ==================================
-Este diretório destina-se ao armazenamento dos módulos RTL sintetizáveis dos estágios do projeto MUSA.
+Este diretório destina-se ao armazenamento dos módulos RTL sintetizáveis do projeto MUSA.
 
 Organização de Subdiretórios
 ----------------------------
