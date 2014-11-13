@@ -1,9 +1,29 @@
+// +UEFSHDR----------------------------------------------------------------------
+// 2014 UEFS Universidade Estadual de Feira de Santana
+// TEC499-Sistemas Digitais
+// ------------------------------------------------------------------------------
+// TEAM: <P01>
+// ------------------------------------------------------------------------------
+// PROJECT: <MUSA>
+// ------------------------------------------------------------------------------
+// FILE NAME  : {InstructionMem.v}
+// KEYWORDS 	: {Memory, Instruction, IF}
+// -----------------------------------------------------------------------------
+// PURPOSE: {TBD}
+// -----------------------------------------------------------------------------
+// REUSE ISSUES
+//   Reset Strategy      : <None>
+//   Clock Domains       : <TBD>
+//   Instantiations      : <None>
+//   Synthesizable (y/n) : <y>
+// -UEFSHDR----------------------------------------------------------------------
+
 module InstructionMem(address, data, clk);
   
 input wire clk; 
 input wire [12:0] address;
 output reg [31:0] data; 
-reg [31:0] mem [2047:0];  
+reg [2047:0] mem [31:0];  
 
 initial begin
     //$readmemb("example.bin",mem); 

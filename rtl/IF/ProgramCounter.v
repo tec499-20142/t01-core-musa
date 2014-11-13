@@ -1,3 +1,23 @@
+// +UEFSHDR----------------------------------------------------------------------
+// 2014 UEFS Universidade Estadual de Feira de Santana
+// TEC499-Sistemas Digitais
+// ------------------------------------------------------------------------------
+// TEAM: <P01>
+// ------------------------------------------------------------------------------
+// PROJECT: <MUSA>
+// ------------------------------------------------------------------------------
+// FILE NAME  : {ProgramCounter.v}
+// KEYWORDS 	: {PC, IF}
+// -----------------------------------------------------------------------------
+// PURPOSE: {TDB}
+// -----------------------------------------------------------------------------
+// REUSE ISSUES
+//   Reset Strategy      : <asychronous, active in low level reset>
+//   Clock Domains       : <TBD>
+//   Instantiations      : <None>
+//   Synthesizable (y/n) : <y>
+// -UEFSHDR----------------------------------------------------------------------
+
 module ProgramCounter(clk, reset, pcWrite, pcInput);
 
 input clk;

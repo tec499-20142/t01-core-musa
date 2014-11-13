@@ -1,3 +1,23 @@
+// +UEFSHDR----------------------------------------------------------------------
+// 2014 UEFS Universidade Estadual de Feira de Santana
+// TEC499-Sistemas Digitais
+// ------------------------------------------------------------------------------
+// TEAM: <P01>
+// ------------------------------------------------------------------------------
+// PROJECT: <MUSA>
+// ------------------------------------------------------------------------------
+// FILE NAME  : {Stack.v}
+// KEYWORDS 	: {PC, Stack, UC}
+// -----------------------------------------------------------------------------
+// PURPOSE: {TBD}
+// -----------------------------------------------------------------------------
+// REUSE ISSUES
+//   Reset Strategy      : <asychronous, active in low level reset>
+//   Clock Domains       : <TBD>
+//   Instantiations      : <None>
+//   Synthesizable (y/n) : <y>
+// -UEFSHDR----------------------------------------------------------------------
+
 module Stack(clk, reset, readStack, writeStack, pc, stackOut, stackOverflow);
 
 input clk;
@@ -7,7 +27,7 @@ input writeStack;
 input [12:0] pc;
 output reg [12:0] stackOut;
 reg [3:0] stackLevel;
-reg [7:0] regStack [12:0];
+reg [12:0] regStack [7:0];
 output reg stackOverflow;
 
 initial begin 
