@@ -32,7 +32,7 @@ initial begin
   end
 
   always @(posedge clk) begin
-				data= mem[address];
+				data <= mem[address];
 		end
 
  endmodule
