@@ -20,11 +20,11 @@
 
 module ProgramCounter(clk, reset, pcWrite, pcInput);
 
-input clk;
-input reset;
-input pcWrite;
-input wire [31:0] pcInput;
-output reg [12:0] pcOutput;
+	input clk;
+	input reset;
+	input pcWrite;
+	input wire [31:0] pcInput;
+	output reg [12:0] pcOutput;
 
 initial begin
 pcOutput = 13'b0;

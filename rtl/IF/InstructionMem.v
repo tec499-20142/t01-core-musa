@@ -26,8 +26,8 @@ output reg [31:0] data;
 reg [2047:0] mem [31:0];  
 
 initial begin
-    //$readmemb("example.bin",mem); 
-    $readmemh("example.hex",mem); 
+    $readmemb("example.txt",mem); 
+    //$readmemh("example.hex",mem); 
     data = mem[address];
   end
 
