@@ -34,18 +34,51 @@ always @(alu_control, data_a, data_b, reset)
 			begin 
 				case(alu_control)
 					ADD: begin 
-						result = data_a + data_b;
+						result_checker = data_a + data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
 					end 
-					ADDI: result = data_a + data_b;
-					SUB: result = data_a - data_b; 
-					SUBI: result = data_a - data_b;
-					MUL: result = data_a * data_b; // isso talvez nao seja sintetizavel 
-					DIV: result = data_a / data_b;
-					AND: result = data_a & data_b; 
-					ANDI: result = data_a & data_b; 
-					OR: result = data_a | data_b; 
-					ORI: result = data_a | data_b;
-					NOT : result = ~data_a; //considerando que o registrador de destino e data_a
+					ADDI: begin 
+						result_checker = data_a + data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
+					end 
+					SUB: begin 
+						result_checker = data_a - data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
+					end 
+					SUBI: begin 
+						result_checker = data_a - data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
+					end
+					MUL: begin 
+					//Aqui ainda precisa ser refeito. Temos que pegar o mais significativos
+						result_checker = data_a * data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
+					end 
+					DIV: begin 
+						result_checker = data_a / data_b; 
+						result = result_checker[31:0];
+						overflow = result_checker[32];
+					end 
+					AND: begin 
+						result = data_a & data_b; 
+					end
+					ANDI: begin 
+						result = data_a & data_b; 
+					end 
+					OR: begin 
+						result = data_a | data_b; 
+					end 
+					ORI: begin 
+						result = data_a | data_b;
+					end 
+					NOT : begin 
+						result = ~data_a; //considerando que o registrador de destino e data_a
+					end 
 					CMP : begin //isso daqui eu tenho duvida
 						if(data_a == data_b)begin 
 							result = 1;
