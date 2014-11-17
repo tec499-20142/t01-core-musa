@@ -66,22 +66,32 @@ always @(alu_control, data_a, data_b, reset)
 					end 
 					AND: begin 
 						result = data_a & data_b; 
+						overflow = 0; 
+						underflow = 0;
 					end
 					ANDI: begin 
-						result = data_a & data_b; 
+						result = data_a & data_b;
+						overflow = 0; 
+						underflow = 0;
 					end 
 					OR: begin 
-						result = data_a | data_b; 
+						result = data_a | data_b;
+						overflow = 0;
+						underflow = 0;
 					end 
 					ORI: begin 
 						result = data_a | data_b;
+						overflow = 0;
+						underflow = 0;
 					end 
 					NOT : begin 
 						result = ~data_a; //considerando que o registrador de destino e data_a
+						overflow = 0;
+						underflow = 0;
 					end 
 					CMP : begin //isso daqui eu tenho duvida
 						if(data_a == data_b)begin 
-							result = 1;
+							flag = 4'b0000;
 						end
 					end 
 				endcase
