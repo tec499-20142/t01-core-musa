@@ -1,0 +1,59 @@
+\section{Opcode das instruções que serão usados no MARS e como serão utilizados} 
+
+Para a instrução CMP e SUBI serão usadas 2 instruções em ordem:\\
+\begin{tabular}{clr}
+\hline
+Instrução & Opcode & Operação \\
+\hline
+beq & 000100 & \$s == \$t\\
+slt &101010 & \$d = (\$s < \$t)\\
+addi & 001000 & \$t = \$s + I \\
+sub & 100010 & \$d = \$s - \$t\\
+\hline
+\end{tabular}\newline
+
+  
+Instruções de Desvio: JP, JPC e BRFL: \\
+\begin{tabular}{clr}
+\hline
+Instrução & Opcode & Operação \\
+\hline
+j & 000010 & pc += i $<<$ 2\\
+jal & 000011 & \$31 = pc; pc += i $<<$ 2\\
+beq &000100 & if (\$s == \$t) pc += i << 2\\
+\hline
+\end{tabular}\newline
+
+
+Instruções de Rotina de controle: CALL, RET e NOPE\\
+Para a instrução HALT será usado um salto para o Fim do programa.\\
+\begin{tabular}{clr}
+\hline
+Instrução & Opcode & Operação \\
+\hline
+jal & 000011 & \$31 = pc; pc += i $<<$ 2\\
+jr & 001000 & \$d = \$s + I \\
+nop &000000 & nop\\
+\hline
+\end{tabular}\newline
+
+
+Para as demais instruções do tipo R e I:\\
+\begin{tabular}{clr}
+\hline
+Instrução & Opcode & Operação \\
+\hline
+add & 100000 & \$d = \$s + \$t\\
+addi & 001000 & \$d = \$s + I \\
+sub &100010 & \$d = \$s - \$t\\
+mult & 011000 & hi:lo = \$s * \$t \\
+div & 011010 & lo = \$s / \$t; hi = \$s \% \$t \\
+and & 100100 & \$d = \$s \& \$t \\
+andi & 001100 & \$t = \$s \& I \\
+or & 100101 & \$d = \$s | \$t\\
+ori & 001101 & \$t = \$s | I\\
+not & 100111 & \$d = ~(\$s | \$t)\\
+lw & 100011 & \$t = MEM [\$s + I]:1\\
+sw & 101011 & MEM [\$s + I]:1 = \$t\\
+\hline
+\end{tabular}\newline
