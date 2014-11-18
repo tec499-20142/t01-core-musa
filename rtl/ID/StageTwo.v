@@ -23,7 +23,7 @@ wire [4:0] out_destination;
 input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
 
-always (*)
+always@ (*)
 begin
 	if(MemToReg)
 		out_Mux_Write_Data = mem_Data;
@@ -31,7 +31,7 @@ begin
 		out_Mux_Write_Data = AluOut;
 end
 
-always (*)
+always@ (*)
 begin
 	if(regDst)
 		out_destination = destination;
