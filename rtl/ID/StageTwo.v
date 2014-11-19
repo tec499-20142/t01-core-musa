@@ -2,7 +2,7 @@ module stagetwo(
 instruction, clk, rst,  
 branch, memRead, memToReg, memWrite, aluSrc, regWrite, jump, PCWrite, 
 aluOp,
-word,
+word, out_jump,
 readData1, readData2, readData3, outputWord);
 
 input [31:0] instruction;
@@ -12,6 +12,7 @@ output  branch, memRead, memWrite, aluSrc, jump, PCWrite;
 output  [1:0] aluOp;
 output  [15:0] word;
 output [31:0] readData1, readData2, readData3, outputWord;
+output [25:0] out_jump = instruction[25:0];
 wire [5:0] opcode = instruction[31:26]; 
 wire [4:0] ReadRegister1 = instruction[25:21];
 wire [4:0] ReadRegister2 = instruction[20:16];
@@ -22,6 +23,7 @@ wire [31:0] out_Mux_Write_Data;
 wire [4:0] out_destination;
 input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
+
 
 always@ (*)
 begin
