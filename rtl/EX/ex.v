@@ -24,7 +24,9 @@ output reg [31:0] next_address);
 		.flag(flag));
 
 	cal_next_address cal_next_address0(
-		.pc_in(pc_in), 
+		.pc_in(pc_in),
+		.data_a(data_a),
+		.data_b(data_b),	
 		.jump_address(jump_address), 
 		.branch_address(branch_address), 
 		.branch(branch), 

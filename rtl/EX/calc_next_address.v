@@ -1,5 +1,7 @@
 module cal_next_address(
-	input [31:0] pc_in, 
+	input [31:0] pc_in,
+	input[31:0] data_a,
+	input [31:0] data_b,	
 	input [31:0] jump_address, 
 	input [31:0] branch_address, 
 	input branch, 
@@ -35,6 +37,9 @@ always @(*) begin
 		end 
 		else begin 
 			next_address = next_temp;
+		end
+		if(alu_flag == data_a) begin
+			next_address = data_b;
 		end
 	end
 end 	
