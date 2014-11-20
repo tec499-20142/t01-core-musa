@@ -1,13 +1,18 @@
 module alu(
 input[31:0] data_a, 
 input [31:0] data_b,
-input [4:0] alu_control, 
+input [4:0] alu_control,
+input [4:0] func, 
 input reset, 
-output reg[31:0] result,
-output reg overflow, 
-output reg underflow, 
-output reg [3:0] flag);
+output reg[31:0] result, 
+output reg [2:0] flag);
 
+	parameter ARITHMETIC_R = 0; 
+	parameter LOGIC_R = 1; 
+	parameter ARITHMETIC_I = 2; 
+	parameter LOGIC_I = 3; 
+	
+	
 	parameter ADD = 0;
 	parameter ADDI = 1;
 	parameter SUB = 2;
@@ -20,74 +25,57 @@ output reg [3:0] flag);
 	parameter ORI = 9;
 	parameter NOT = 10; 
 	parameter CMP = 11;
+	parameter BRFL = 12;
 	
 	reg [32:0] result_checker; 
+	reg [64:0] result_muld;
 
 //ainda falta colocar algumas das funçoes aqui na alu. 
-always @(alu_control, data_a, data_b, reset)
-	begin
-		if(reset)
-			begin
+always @(alu_control, func, data_a, data_b, reset) begin
+		if(reset) begin
 				result = 32'b0;
 			end
-		else 
-			begin 
-				case(alu_control)
-					ADD: begin 
-						result_checker = data_a + data_b; 
-						result = result_checker[31:0];
-						overflow = result_checker[32];
-					end 
-					ADDI: begin 
-						result_checker = data_a + data_b; 
-						result = result_checker[31:0];
-						overflow = result_checker[32];
-					end 
-					SUB: begin 
-						result_checker = data_a - data_b; 
-						result = result_checker[31:0];
-						overflow = result_checker[32];
-					end 
-					SUBI: begin 
-						result_checker = data_a - data_b; 
-						result = result_checker[31:0];
-						overflow = result_checker[32];
-					end
+		else 	begin 
+			case(alu_control)	
+				ARITHMETIC_R: begin 	
+					case(func) 			
+						ADD: begin 
+							result_checker = data_a + data_b; 		
+						end	
+						SUB: begin 
+							result_checker = data_a - data_b; 
+						end 
+							result = result_checker[31:0];
+							overflow = result_checker[32];
+					endcase
+				end 
 					MUL: begin 
-					//Aqui ainda precisa ser refeito. Temos que pegar o mais significativos
-						result_checker = data_a * data_b; 
-						result = result_checker[31:0];
-						overflow = result_checker[32];
+						//Aqui ainda precisa ser refeito. Temos que pegar o mais significativos
+						result_muld = data_a * data_b; 
+						result = result_muld[63:32];
+						overflow = result_checker[64];
 					end 
+					
 					DIV: begin 
 						result_checker = data_a / data_b; 
 						result = result_checker[31:0];
 						overflow = result_checker[32];
-					end 
+					end
+							
 					AND: begin 
 						result = data_a & data_b; 
-						overflow = 0; 
-						underflow = 0;
 					end
 					ANDI: begin 
 						result = data_a & data_b;
-						overflow = 0; 
-						underflow = 0;
 					end 
 					OR: begin 
 						result = data_a | data_b;
-						overflow = 0;
-						underflow = 0;
 					end 
 					ORI: begin 
 						result = data_a | data_b;
-						overflow = 0;
-						underflow = 0;
 					end 
 					NOT : begin 
 						result = ~data_a; //considerando que o registrador de destino e data_a
-						overflow = 0;
-						underflow = 0;
 					end 
 					CMP : begin //isso daqui eu tenho duvida
 						if(data_a == data_b)begin 
