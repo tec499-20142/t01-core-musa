@@ -1,4 +1,4 @@
-Instrução	  Opcode		Function
+Instrução	    Opcode		Function
 
 ADD		      000000		100000
 SUB		      000000		100010
