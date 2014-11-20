@@ -1,4 +1,4 @@
-Instrução	    Opcode		Function
+Instrução	      Opcode		Function
 
 ADD		      000000		100000
 SUB		      000000		100010
@@ -9,16 +9,16 @@ OR		      000000		100101
 CMP		      000000		101010
 NOT		      000000		100111
 
-ADDI		    001000		001010
-SUBI		    001000		000100
-ANDI		    001100		000110
+ADDI		      001000		001010
+SUBI		      001000		000100
+ANDI		      001100		000110
 ORI		      001101		000110
 LW		      100011		000000
 SW		      101011		000000	
 
 JPC		      000010			  	  //Instrução: j
-BRFL		    000100				    //Instrução: beq
-CALL		    000011				    //Instrução: jal
+BRFL		      000100				    //Instrução: beq
+CALL		      000011				    //Instrução: jal
 RET		      000000				    //Instrução: jr
-HALT		    000010				    //Instrução: j. A diferença ta no endereço 
-NOPE		    000000		000000  //Tudo 0	
+HALT		      000010				    //Instrução: j. A diferença ta no endereço 
+NOPE		      000000		000000  //Tudo 0	
