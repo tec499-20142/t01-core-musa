@@ -1,59 +1,24 @@
-\section{Opcode das instruções que serão usados no MARS e como serão utilizados} 
+Instrução	  Opcode		Function
 
-Para a instrução CMP e SUBI serão usadas 2 instruções em ordem:\\
-\begin{tabular}{clr}
-\hline
-Instrução & Opcode & Operação \\
-\hline
-beq & 000100 & \$s == \$t\\
-slt &101010 & \$d = (\$s < \$t)\\
-addi & 001000 & \$t = \$s + I \\
-sub & 100010 & \$d = \$s - \$t\\
-\hline
-\end{tabular}\newline
+ADD		      000000		100000
+SUB		      000000		100010
+MUL		      011100		000010
+DIV		      000101		000001
+AND		      000000		100100
+OR		      000000		100101
+CMP		      000000		101010
+NOT		      000000		100111
 
-  
-Instruções de Desvio: JP, JPC e BRFL: \\
-\begin{tabular}{clr}
-\hline
-Instrução & Opcode & Operação \\
-\hline
-j & 000010 & pc += i $<<$ 2\\
-jal & 000011 & \$31 = pc; pc += i $<<$ 2\\
-beq &000100 & if (\$s == \$t) pc += i << 2\\
-\hline
-\end{tabular}\newline
+ADDI		    001000		001010
+SUBI		    001000		000100
+ANDI		    001100		000110
+ORI		      001101		000110
+LW		      100011		000000
+SW		      101011		000000	
 
-
-Instruções de Rotina de controle: CALL, RET e NOPE\\
-Para a instrução HALT será usado um salto para o Fim do programa.\\
-\begin{tabular}{clr}
-\hline
-Instrução & Opcode & Operação \\
-\hline
-jal & 000011 & \$31 = pc; pc += i $<<$ 2\\
-jr & 001000 & \$d = \$s + I \\
-nop &000000 & nop\\
-\hline
-\end{tabular}\newline
-
-
-Para as demais instruções do tipo R e I:\\
-\begin{tabular}{clr}
-\hline
-Instrução & Opcode & Operação \\
-\hline
-add & 100000 & \$d = \$s + \$t\\
-addi & 001000 & \$d = \$s + I \\
-sub &100010 & \$d = \$s - \$t\\
-mult & 011000 & hi:lo = \$s * \$t \\
-div & 011010 & lo = \$s / \$t; hi = \$s \% \$t \\
-and & 100100 & \$d = \$s \& \$t \\
-andi & 001100 & \$t = \$s \& I \\
-or & 100101 & \$d = \$s | \$t\\
-ori & 001101 & \$t = \$s | I\\
-not & 100111 & \$d = ~(\$s | \$t)\\
-lw & 100011 & \$t = MEM [\$s + I]:1\\
-sw & 101011 & MEM [\$s + I]:1 = \$t\\
-\hline
-\end{tabular}\newline
+JPC		      000010			  	  //Instrução: j
+BRFL		    000100				    //Instrução: beq
+CALL		    000011				    //Instrução: jal
+RET		      000000				    //Instrução: jr
+HALT		    000010				    //Instrução: j. A diferença ta no endereço 
+NOPE		    000000		000000  //Tudo 0	
