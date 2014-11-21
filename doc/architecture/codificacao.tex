@@ -1,5 +1,5 @@
 \section{Codificação das instruções}
-	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 4 formatos de instruções: R (R-type), I (I-type), Load/Store e Jump. Os OPCODES são os códigos de operação da instrução, neste documento ele é representação em números hexadecimais.\\
+	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 3 formatos de instruções: R (R-type), I (I-type) e Jump. Os OPCODES são os códigos de operação da instrução, neste documento ele é representação em números hexadecimais.\\
 	
   \FloatBarrier
     \begin{center}
@@ -75,17 +75,19 @@
   	\hline 
   	0x00 & SUB & 0x22 \\ 
   	\hline 
-  	0x00 & MUL & 0x18 \\ 
+  	0x1C & MUL & 0x02 \\ 
   	\hline 
-  	0x00 & DIV & 0x1A \\ 
+  	0x05 & DIV & 0x01 \\ 
   	\hline 
   	0x00 & AND & 0x24 \\ 
   	\hline 
   	0x00 & OR & 0x25 \\ 
   	\hline 
-  	0x00 & CMP & 0x1C \\ 
+  	0x00 & CMP & 0x2A \\ 
   	\hline 
-  	0x00 & NOT & 0x1D \\ 
+  	0x00 & NOT & 0x27 \\ 
+  	\hline
+  	0x00 & NOP & 0x00 \\
   	\hline 
   	\end{tabular} 
   	\caption{Definição dos OPCODES do formato R}
@@ -113,20 +115,17 @@ Seus respectivos campos são:
 	\hline 
   	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} \\ 
 	\hline 
-	0x08 & ADDI \\ %
+	0x08 & ADDI \\ 
 	\hline 
-	0x10 & SUBI \\ %
+	0x09 & SUBI \\ 
 	\hline 
-	0x0c & ANDI \\ %
+	0x0C & ANDI \\ 
 	\hline 
-	0x13 & ORI \\ %
+	0x0D & ORI \\ 
+	\hline
+	0x23 & LW \\ 
 	\hline 
-	0x23 & LW \\ %
-	\hline 
-	0x2b & SW \\ %	
-%	0x2a
-%0x04
-%0x04
+	0x2B & SW \\ 
 	\hline 
 	\end{tabular} 
 	  	\caption{Definição dos OPCODES do formato I}	
@@ -151,19 +150,17 @@ Seus respectivos campos são:
   	\hline 
   	\cellcolor[gray]{0.9}\textbf{OPCODE} & \cellcolor[gray]{0.9}\textbf{INSTRUCTION} \\ 
   	\hline 
-  	- & JP \\ 
+  	0x11 & JR \\ 
   	\hline 
-  	- & JPC \\ 
+  	0x02 & JPC \\ 
   	\hline 
-  	0x09 & BRFL \\ 
+  	0x04 & BRFL \\ 
   	\hline 
-  	- & CALL \\ 
+  	0x03 & CALL \\ 
   	\hline 
-  	- & RET \\ 
+  	0x01 & RET \\ 
   	\hline 
-  	- & HALT \\ 
-  	\hline 
-  	- & NOPE \\ 
+  	0x02 & HALT \\ 
   	\hline 
   	\end{tabular} 
   	  	\caption{Definição dos OPCODES do formato Jump}
