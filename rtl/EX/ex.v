@@ -28,7 +28,6 @@ output reg [31:0] next_address);
 		.data_a(data_a),
 		.data_b(data_b),	
 		.jump_address(jump_address), 
-		.branch_address(branch_address), 
 		.branch(branch), 
 		.jump_sel(jump_sel),
 		.alu_flag(flag),

@@ -1,9 +1,8 @@
 module cal_next_address(
 	input [31:0] pc_in,
 	input[31:0] data_a,
-	input [31:0] data_b,	
-	input [31:0] jump_address, 
-	input [31:0] branch_address, 
+	input[31:0] data_b,
+	input [31:0] jump_address,
 	input branch, 
 	input jump_sel,
 	input [3:0] alu_flag,
@@ -14,34 +13,35 @@ module cal_next_address(
 reg[31:0] next_temp;
 
 always @(*)begin 
-		if(reset) begin  
+		// se for reset, zera o reg temporário
+		if(reset) begin
 			next_temp = 0;
 		end 
-		else begin  
-			if(branch && alu_flag)begin 
-				next_temp = branch_address; 
+		else begin
+			// se for brfl o endereço q vem em data_a é associado ao reg temporário
+			if(branch && alu_flag==data_b)begin
+				next_temp = data_a; 
 			end 
-			else begin 
-				next_temp = pc_in + 1; //talvez eu peço para mudar do if. 
+			else begin
+				// se for jump, coloca endereço do jump no reg temporário
+				if(jump_sel) begin
+					next_temp = jump_address; 
+				end
+				// normal, próximo pc, ou seja pc + 1 
+				else begin	
+					next_temp = pc_in + 1;
+				end
 			end 
-		end 
-	end
+		end
 
 always @(*) begin
-	if(reset) begin 
+	// se for reset, zera o pc
+	if(reset) begin
 		next_address = 0;
 	end
-	else begin 
-		if(jump_sel) begin 
-			next_address = jump_address; 
-		end 
-		else begin 
-			next_address = next_temp;
-		end
-		if(alu_flag == data_a) begin
-			next_address = data_b;
-		end
+	// se não coloca o prox valor se pc na saída
+	else begin  
+		next_address = next_temp;
 	end
 end 	
 endmodule 
-
