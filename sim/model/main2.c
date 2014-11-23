@@ -19,10 +19,10 @@ char identify_instruction_type(int instruction_opcode){
 		result = 'i';
 	}
 	else if (instruction_opcode == 0x00 || instruction_opcode == 0x1c || instruction_opcode == 0x05){
-		result = 'r';	
+		result = 'r';
 	}
 	else if (instruction_opcode == 0x11 || instruction_opcode == 0x02 || instruction_opcode == 0x04 || instruction_opcode == 0x03 || instruction_opcode == 0x01){
-		result = 'j';	
+		result = 'j';
 	}
 	else{
 		result = 'e';
@@ -34,16 +34,16 @@ char identify_instruction_type(int instruction_opcode){
 //Function responsible to reproduce the results of the i-type instructions
 void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	int rd, rs1, imm;
-	
+
 	//Define the fields of the instructions
 	rs1 = ((instruction >> 21) & 0x1F);
-	rd = ((instruction >> 16) & 0x1F);		
+	rd = ((instruction >> 16) & 0x1F);
 	imm = (instruction & 0xFFFF );
 	printf("RS1: %x RD: %x IMM: %x\n", rs1, rd, imm);
-	
+
 	//Load Instruction - lw RD = mem
 	if(instruction_opcode == 0x23){
-		registers[rd] = mem[registers[rs1] + imm];		
+		registers[rd] = mem[registers[rs1] + imm];
 	}
 	//Store Instruction - sw mem = RD
 	else if(instruction_opcode == 0x2b){
@@ -93,7 +93,7 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	//	}
 	//	printf("BNEZ - Valor de PC : %x\n", pc);
 	//}
-	
+
 }
 
 //Function responsible to reproduce the results of the r-type instructions
@@ -102,9 +102,9 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	//Define the fields of the instructions
 	rs1 = ((instruction >> 21) & 0x1F);
 	rs2 = ((instruction >> 16) & 0x1F);
-	rd = ((instruction >> 11) & 0x1F);	
+	rd = ((instruction >> 11) & 0x1F);
 	function = (instruction & 0x3F);
-	
+
 	printf("RS1: %x RS2: %x RD: %x Function: %x\n", rs1, rs2, rd, function);
 	//add - RD = RS1 + RS2
 	if(function == 0x20){
@@ -145,7 +145,7 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(function == 0x27){
 		registers[rd] = ~registers[rs2];
 	}
-	//nop 
+	//nop
 	else if(function == 0x00){
 		#5
 		printf("Nope");
@@ -155,22 +155,26 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 //Function responsible to reproduce the results of the j-type instructions
 void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	int pc_offset;
-	
+
 	pc_offset = (instruction & 0x3FFFFFF);
-	
+
 	//JR - ADDR
 	if(instruction_opcode == 0x11){
-		
+            pc = pc_offset - 1;// -1 because the increment of for.
 	}
 	//JPC e HALT
 	else if(instruction_opcode == 0x02){
+            pc += pc_offset;
 	}
 	//CALL
 	else if(instruction_opcode == 0x03){
+            pc = pc_offset;
 	}
 	//RET
 	else if(instruction_opcode == 0x01){
+            pc = pc_offset;
 	}
+
 }
 
 //Function responsible to write in a file the values stored in registers and data memory.
@@ -180,17 +184,17 @@ void write_results(void){
 	FILE *arq_registers, *arq_mem;
 	arq_registers = fopen("registers.hex", "wt");
 	arq_mem = fopen("mem.hex", "wt");
-	
+
 	for(j=0;j<32;j++){
 		fprintf(arq_registers, "%x\n", registers[j]);
 	}
-	
+
 	for(j=0;j<1000;j++){
 		fprintf(arq_mem, "%x\n", mem[j]);
 	}
-	
-	
-	fclose(arq_registers);	
+
+
+	fclose(arq_registers);
 	fclose(arq_mem);
 
 }
@@ -206,12 +210,12 @@ void main (int argc, char *argv[]){
 	int  size_instruction,i;
 	printf("Parametro: %s\n", argv[1]);
 	instruction = malloc( 1048576 );
-	
+
 	//#include "execute_instructions.c"
 //	registers[1] = 2;
 //	registers[2] = 2;
-	
-	//Read the file that contains the instructions	
+
+	//Read the file that contains the instructions
 	arq_instructions = fopen(argv[1], "rt");
 	if (arq_instructions == NULL)
 	{
@@ -219,27 +223,27 @@ void main (int argc, char *argv[]){
     	return;
 	}
 	//Read all the instructions and storage in 'instruction' char vector
-	//while(!feof(arq_instructions)){	
+	//while(!feof(arq_instructions)){
 	for(size_instruction=0; (!feof(arq_instructions)); size_instruction++){
-		//reading_result_opcode = fgets(instruction_opcode, 3, arq_instructions);  
-		//reading_result = fgets(instruction, 8, arq_instructions);  
+		//reading_result_opcode = fgets(instruction_opcode, 3, arq_instructions);
+		//reading_result = fgets(instruction, 8, arq_instructions);
 
-		reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]); 
+		reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]);
 
 	}
 	printf("size_instruction %d\n", size_instruction);
 	fclose(arq_instructions);
-	
+
 	for(pc=0;pc<size_instruction;pc++){
-		
+
 		printf("Instruction : %x\n", instruction[pc]);
-		instruction_opcode = ((instruction[pc] >> 26) & 0x3F);	
+		instruction_opcode = ((instruction[pc] >> 26) & 0x3F);
 		printf("Instruction Opcode: %x\n", instruction_opcode);
-		
+
 		instruction_type = identify_instruction_type(instruction_opcode);
-		
+
 		printf("Instruction Type: %c\n", instruction_type);
-		
+
 		if(instruction_type == 'i'){
 			decode_i_type(instruction_opcode, instruction[pc]);
 		}
@@ -251,7 +255,7 @@ void main (int argc, char *argv[]){
 		}
 		printf("Valor de PC: %x\n\n\n", pc);
 	}
-	
+
 	write_results();
 
    free( instruction);
