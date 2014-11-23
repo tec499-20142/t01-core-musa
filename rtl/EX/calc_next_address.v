@@ -19,7 +19,7 @@ always @(*)begin
 		end 
 		else begin
 			// se for brfl o endereço q vem em data_a é associado ao reg temporário
-			if(branch && alu_flag==data_b)begin
+			if(branch && alu_flag == data_b)begin
 				next_temp = data_a; 
 			end 
 			else begin
