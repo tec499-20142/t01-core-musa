@@ -1,17 +1,21 @@
 module stagetwo(
 instruction, clk, rst,  
-branch, memRead, memToReg, memWrite, aluSrc, regWrite, jump, PCWrite, 
+pcSrc, memRead, memWrite, aluSrc, push, pop, PCWrite, 
 aluOp,
-word, out_jump,
+word,
+AluOut,
+out_jump, mem_Data,
 readData1, readData2, readData3, outputWord);
 
 input [31:0] instruction;
 input clk, rst;
 input [31:0] AluOut;
-output  branch, memRead, memWrite, aluSrc, jump, PCWrite;
+output  push, pop, memRead, memWrite, aluSrc, PCWrite;
+output [2:0] pcSrc;
 output  [1:0] aluOp;
 output  [15:0] word;
-output [31:0] readData1, readData2, readData3, outputWord;
+output reg [31:0] readData1, readData2, readData3, outputWord;
+wire [31:0] read_data_1_rf, read_data_2_rf;
 output [25:0] out_jump = instruction[25:0];
 wire [5:0] opcode = instruction[31:26]; 
 wire [4:0] ReadRegister1 = instruction[25:21];
@@ -19,11 +23,18 @@ wire [4:0] ReadRegister2 = instruction[20:16];
 wire MemToReg;
 wire regDst;
 wire _regWrite;
-wire [31:0] out_Mux_Write_Data;
-wire [4:0] out_destination;
+reg [31:0] out_Mux_Write_Data;
+reg [4:0] out_destination;
 input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
 
+
+
+always@ (posedge clk)
+begin
+	readData1 <= read_data_1_rf;
+	readData2 <= read_data_2_rf;
+end
 
 always@ (*)
 begin
@@ -48,25 +59,30 @@ RegisterFile BLOCO1 (
   .ReadRegister2 (ReadRegister2),
   .WriteData (out_Mux_Write_Data),
   .WriteRegister(out_destination),
-  .ReadData1(readData1),
-  .ReadData2(readData2),
+  .ReadData1(read_data_1_rf),
+  .ReadData2(read_data_2_rf),
   .RegWrite (_regWrite)
   );
   
  unit_control BLOCO2 (
   .opcode (ReadRegister1),
   .clk (clk),
+  .pcSrc (pcSrc),
   .reset (rst),
-  .branch (branch),
+  .push (push),
   .memRead (memRead),
-  .memToReg(memToReg),
   .memWrite(memWrite),
   .aluSrc(aluSrc),
   .RegWrite (_regWrite),
-  .jump (jump),
+  .pop (pop),
   .RegDst (regDst),
   .PCWrite (PCWrite),
   .aluOp (aluOp)
+  );
+  
+  sign_extend BLOCO3 (
+  .inst (word),
+  .inst_out (outputWord)
   );
 
  endmodule
