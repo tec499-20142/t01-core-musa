@@ -13,13 +13,13 @@ module alu(
 	
 	
 	//functions das operaçoes logicas e aritmeticas (instruçoes do tipo R)
-	parameter ADD = 0;
-	parameter SUB = 2;
-	parameter MUL = 4; 
-	parameter DIV = 5;
-	parameter AND = 6;
-	parameter OR = 8;
-	parameter NOT = 10;
+	parameter ADD = 100000;
+	parameter SUB = 100010;
+	parameter MUL = 000010; 
+	parameter DIV = 000001;
+	parameter AND = 100100;
+	parameter OR = 100101;
+	parameter NOT = 100111;
 	
 	//Opcode das instrucoes 
 	parameter ADDI = 000;
@@ -27,8 +27,8 @@ module alu(
 	parameter ANDI = 011;
 	parameter ORI = 100;
 	
-	parameter CMP = 11;
-	parameter BRFL = 12;
+	parameter CMP = 101010;
+	parameter BRFL = 000100;
 	
 	reg [2:0] reg_flag;//registrador de flag
 	reg [32:0] result_checker; 
