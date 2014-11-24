@@ -1,4 +1,4 @@
-// +UEFSHDR----------------------------------------------------------------------
+  // +UEFSHDR----------------------------------------------------------------------
 // 2014 UEFS Universidade Estadual de Feira de Santana
 // TEC499-Sistemas Digitais
 // ------------------------------------------------------------------------------
@@ -18,25 +18,24 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module ProgramCounter(clk, reset, pcWrite, pcInput);
+module mux_PC(pcSrc, pilha, ready_data1, relative_pc, pc_sequency, result);
+input [31:0] pc_pilha, pc_ready_data1, relative_pc, pc_sequency;
+output [31:0] result;
+input [1:0] pcSrc;
 
-	input clk;
-	input reset;
-	input pcWrite;
-	input wire [31:0] pcInput;
-	output reg [12:0] pcOutput;
+parameter PILHA = 00;
+parameter REGISTERS = 01;
+parameter SEQUENCY = 00;
 
-initial begin
-pcOutput = 13'b0;
+always@(*)
+begin
+    if(pcSrc == PILHA)
+    result = pc_pilha;
+    else if (pcSrc == REGISTERS)
+    result = pc_ready_data1;
+    else if(pcSrc == SEQUENCY)
+    result = pc_sequency;
+    else
+    result = relative_pc;
 end
-
-always @(posedge clk) begin
-if(reset == 0) begin
-	pcOutput <= 13'b0;
-	end
-
-else if	(pcWrite == 1) begin
-	pcOutput = pcInput;
-	end
-end
-endmodule 
+endmodule
