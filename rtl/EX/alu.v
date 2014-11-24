@@ -41,7 +41,7 @@ module alu(
 	reg [64:0] result_muld;
 
 //ainda falta colocar algumas das funçoes aqui na alu. 
-always @(alu_control, func, data_a, data_b, reset) 
+	always @(alu_control, func, data_a, data_b, reset) 
 		if(reset) begin
 			result = 0;
 		end
@@ -49,30 +49,45 @@ always @(alu_control, func, data_a, data_b, reset)
 			case (alu_control)
 				ADDI: begin
 					result_checker = data_a + data_b;
+					result = result_checker[31:0];
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
+					result = result_checker[31:0];
 				end 
 				TYPE_R: begin 
 					case(func)
 						ADD: begin 
 							result_checker = data_a + data_b;
+							result = result_checker[31:0];
 						end 
 						SUB: begin 
 							result_checker = data_a - data_b;
+							result = result_checker[31:0];
 						end
 						MUL: begin 
 							result_muld = data_a * data_b;
+							result = result_muld[63:32];
 						end 
 						DIV: begin 
 							result_muld = data_a / data_b;
+							result = result_muld[63:32];
+						end 
+						AND: begin 
+							result = data_a & data_b; 
+						end 
+						OR: begin 
+							result = data_a | data_b;
+						end 
+						NOT: begin
+							result = ~data_b;
 						end 
 						CMP: begin 
 							if(data_a == data_b) begin 
-								flag = FLAG_EQUAL;
+								reg_flag = FLAG_EQUAL;
 							end else begin
 								if(data_a > data_b) begin 
-									flag = FLAG_ABOVE;
+									reg_flag = FLAG_ABOVE;
 								end 
 							end 
 						end
@@ -85,5 +100,45 @@ always @(alu_control, func, data_a, data_b, reset)
 					result = data_a | data_b;
 				end 
 			endcase
-		end 	
+			
+		end
+ 	always @(*)
+		if(reset) begin 
+			reg_flag = FLAG_NOT_ACTIVED; 
+		end 
+		else begin
+			case ({result_checker[32], result_checker[31]}) 
+				2'b00: begin 
+					reg_flag = FLAG_NOT_ACTIVED;
+				end 
+				2'b01: begin 
+					reg_flag = FLAG_OVERFLOW;
+				end 
+				2'b10: begin
+					reg_flag = FLAG_UNDERFLOW;
+				end 
+				2'b11: begin
+					reg_flag = FLAG_OVERFLOW;
+				end 
+		end
+
+	always @(*)
+		if(reset) begin 
+			reg_flag = FLAG_NOT_ACTIVED; 
+		end 
+		else begin
+			case ({result_muld[64], result_muld[63]}) 
+				2'b00: begin 
+					reg_flag = FLAG_NOT_ACTIVED;
+				end 
+				2'b01: begin 
+					reg_flag = FLAG_OVERFLOW;
+				end 
+				2'b10: begin
+					reg_flag = FLAG_UNDERFLOW;
+				end 
+				2'b11: begin
+					reg_flag = FLAG_OVERFLOW;
+				end 
+		end 
 endmodule 
