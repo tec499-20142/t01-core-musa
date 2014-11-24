@@ -25,6 +25,7 @@ input [31:0] _pcInput;
 output reg [12:0] _pcOutput;
 output reg [31:0] instruction;
 
+
 ProgramCounter programCouter(.clk(_clk), 
 .reset(_reset), 
 .pcWrite(_pcWrite), 
