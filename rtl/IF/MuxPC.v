@@ -18,23 +18,24 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module mux_PC(pcSrc, pilha, ready_data1, relative_pc, result);
-
-input [31:0] pc_pilha, pc_ready_data1, relative_pc;
+module mux_PC(pcSrc, pilha, ready_data1, relative_pc, pc_sequency, result);
+input [31:0] pc_pilha, pc_ready_data1, relative_pc, pc_sequency;
 output [31:0] result;
 input [1:0] pcSrc;
 
 parameter PILHA = 00;
 parameter REGISTERS = 01;
+parameter SEQUENCY = 00;
 
 always@(*)
 begin
     if(pcSrc == PILHA)
-        result = pc_pilha;
+    result = pc_pilha;
     else if (pcSrc == REGISTERS)
-        result = pc_ready_data1;
+    result = pc_ready_data1;
+    else if(pcSrc == SEQUENCY)
+    result = pc_sequency;
     else
-        result = relative_pc;
+    result = relative_pc;
 end
-
 endmodule
