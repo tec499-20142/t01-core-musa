@@ -6,32 +6,34 @@
 // ------------------------------------------------------------------------------
 // PROJECT: <MUSA>
 // ------------------------------------------------------------------------------
-// FILE NAME  : {InstructionMem.v}
-// KEYWORDS 	: {Memory, Instruction, IF}
+// FILE NAME  : {StageOne.v}
+// KEYWORDS 	: {IF, PC, Instruction Memory}
 // -----------------------------------------------------------------------------
-// PURPOSE: {TBD}
+// PURPOSE: {Represents the stage IF of MUSA}
 // -----------------------------------------------------------------------------
 // REUSE ISSUES
-//   Reset Strategy      : <None>
+//   Reset Strategy      : <sychronous, active in low level reset>
 //   Clock Domains       : <TBD>
-//   Instantiations      : <None>
+//   Instantiations      : <ProgramCounter, pcAdder & InstructionMem>
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module InstructionMem(address, data, clk);
-  
-input wire clk; 
-input wire [12:0] address;
-output reg [31:0] data; 
-reg [2047:0] mem [31:0];  
+module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, instruction);
 
-initial begin
-    $readmemb("example.txt",mem); 
-    //$readmemh("example.hex",mem); 
-    data = mem[address];
-  end
+input _clk, _reset, _pcWrite;
+input [31:0] _pcInput;
+output reg [12:0] _pcOutput;
+output reg [31:0] instruction;
 
-  always @(posedge clk) begin
-		data <= mem[address];
-	end
- endmodule
+ProgramCounter programCouter(.clk(_clk), 
+.reset(_reset), 
+.pcWrite(_pcWrite), 
+.pcInput(_pcInput),
+.pcOutput(_pcOutput));
+
+PCAdder pcAdder(.pcOld(_pcInput), .pcNew(_pcOutput));
+
+InstructionMem instructionMem(.clk(_clk), 
+.reset(_reset), .address(_pcOutput), .data(instruction));
+
+endmodule

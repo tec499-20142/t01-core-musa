@@ -31,12 +31,12 @@ pcOutput = 13'b0;
 end
 
 always @(posedge clk) begin
-if(reset == 1) begin
+if(reset == 0) begin
 	pcOutput <= 13'b0;
 	end
 
 else if	(pcWrite == 1) begin
-	pcOutput <= pcInput;
+	pcOutput = pcInput;
 	end
 end
 endmodule 
