@@ -5,7 +5,7 @@ aluOp,
 word,
 AluOut,
 out_jump, mem_Data,
-readData1, readData2, readData3, outputWord);
+readData1, readData2, outputWord);
 
 input [31:0] instruction;
 input clk, rst;
@@ -14,8 +14,8 @@ output  push, pop, memRead, memWrite, aluSrc, PCWrite;
 output [2:0] pcSrc;
 output  [1:0] aluOp;
 output  [15:0] word;
-output reg [31:0] readData1, readData2, readData3, outputWord;
-wire [31:0] read_data_1_rf, read_data_2_rf;
+output reg [31:0] readData1, readData2, outputWord;
+wire [31:0] read_data_1_rf, read_data_2_rf, word_sign;
 output [25:0] out_jump = instruction[25:0];
 wire [5:0] opcode = instruction[31:26]; 
 wire [4:0] ReadRegister1 = instruction[25:21];
@@ -34,6 +34,7 @@ always@ (posedge clk)
 begin
 	readData1 <= read_data_1_rf;
 	readData2 <= read_data_2_rf;
+	outputWord <= word_sign;
 end
 
 always@ (*)
@@ -64,25 +65,25 @@ RegisterFile BLOCO1 (
   .RegWrite (_regWrite)
   );
   
- unit_control BLOCO2 (
-  .opcode (ReadRegister1),
+ unit_Control BLOCO2 (
+  .opcode (opcode),
   .clk (clk),
   .pcSrc (pcSrc),
-  .reset (rst),
   .push (push),
   .memRead (memRead),
   .memWrite(memWrite),
+  .memToReg(memToReg),
   .aluSrc(aluSrc),
-  .RegWrite (_regWrite),
+  .regWrite (_regWrite),
   .pop (pop),
-  .RegDst (regDst),
+  .regDst (regDst),
   .PCWrite (PCWrite),
   .aluOp (aluOp)
   );
   
   sign_extend BLOCO3 (
   .inst (word),
-  .inst_out (outputWord)
+  .inst_out (word_sign)
   );
 
  endmodule
