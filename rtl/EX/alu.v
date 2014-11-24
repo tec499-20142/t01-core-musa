@@ -26,6 +26,7 @@ module alu(
 	parameter ANDI = 011;
 	parameter ORI = 100;
 	
+	//Eu nao sei como colocar o BRFL, pois ele 
 	parameter BRFL = 000100;
 	
 	//flags 
@@ -85,9 +86,11 @@ module alu(
 						CMP: begin 
 							if(data_a == data_b) begin 
 								reg_flag = FLAG_EQUAL;
+								flag = reg_flag;
 							end else begin
 								if(data_a > data_b) begin 
 									reg_flag = FLAG_ABOVE;
+									flag = reg_flag;
 								end 
 							end 
 						end
@@ -101,44 +104,43 @@ module alu(
 				end 
 			endcase
 			
-		end
- 	always @(*)
-		if(reset) begin 
-			reg_flag = FLAG_NOT_ACTIVED; 
-		end 
-		else begin
-			case ({result_checker[32], result_checker[31]}) 
-				2'b00: begin 
-					reg_flag = FLAG_NOT_ACTIVED;
-				end 
-				2'b01: begin 
-					reg_flag = FLAG_OVERFLOW;
-				end 
-				2'b10: begin
-					reg_flag = FLAG_UNDERFLOW;
-				end 
-				2'b11: begin
-					reg_flag = FLAG_OVERFLOW;
-				end 
-		end
-
-	always @(*)
-		if(reset) begin 
-			reg_flag = FLAG_NOT_ACTIVED; 
-		end 
-		else begin
 			case ({result_muld[64], result_muld[63]}) 
 				2'b00: begin 
 					reg_flag = FLAG_NOT_ACTIVED;
+					flag = reg_flag;
 				end 
 				2'b01: begin 
 					reg_flag = FLAG_OVERFLOW;
+					flag = reg_flag;
 				end 
 				2'b10: begin
 					reg_flag = FLAG_UNDERFLOW;
+					flag = reg_flag;
 				end 
 				2'b11: begin
 					reg_flag = FLAG_OVERFLOW;
+					flag = reg_flag;
 				end 
-		end 
+			endcase
+			
+			case ({result_checker[32], result_checker[31]}) 
+				2'b00: begin 
+					reg_flag = FLAG_NOT_ACTIVED;
+					flag = reg_flag;
+				end 
+				2'b01: begin 
+					reg_flag = FLAG_OVERFLOW;
+					flag = reg_flag;
+				end 
+				2'b10: begin
+					reg_flag = FLAG_UNDERFLOW;
+					flag = reg_flag;
+				end 
+				2'b11: begin
+					reg_flag = FLAG_OVERFLOW;
+					flag = reg_flag;
+				end
+			endcase
+			
+		end
 endmodule 

@@ -1,6 +1,5 @@
 module cal_next_address(
 	input [31:0] pc_in,
-	input[31:0] data_a,
 	input[31:0] data_b,
 	input [31:0] jump_address,
 	input branch, 

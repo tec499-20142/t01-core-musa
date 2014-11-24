@@ -1,17 +1,16 @@
-module ex_stage(input[31:0] data_a, 
+module ex_stage(
+input[31:0] data_a, 
 input [31:0] data_b,
 input [4:0] alu_control, 
 input reset, 
 input [31:0] pc_in, 
-input [31:0] jump_address, 
+input [26:0] jump_address, 
 input branch, 
 input jump_sel,
-input reset,
-output reg[31:0] result,
-output reg overflow, 
-output reg underflow, 
-output reg [3:0] flag,
+output reg[31:0] result, 
+output reg [2:0] flag,
 output reg [31:0] next_address); 
+
 
 	alu alu0 (
 		.data_a(data_a), 
