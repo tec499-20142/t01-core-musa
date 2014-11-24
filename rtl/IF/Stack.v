@@ -12,7 +12,7 @@
 // PURPOSE: {TBD}
 // -----------------------------------------------------------------------------
 // REUSE ISSUES
-//   Reset Strategy      : <asychronous, active in low level reset>
+//   Reset Strategy      : <sychronous, active in low level reset>
 //   Clock Domains       : <TBD>
 //   Instantiations      : <None>
 //   Synthesizable (y/n) : <y>
@@ -78,7 +78,7 @@ begin
     			 4'b1 : begin regStack [stackLevel] <= pc;
     			              stackLevel <= stackLevel + 1'd1;
 			         end
-    			 4'b10 : begin regStack [stackLevel <= pc;
+    			 4'b10 : begin regStack [stackLevel] <= pc;
     			              stackLevel <= stackLevel + 1'd1;
 			         end
     			 4'b11 : begin regStack [stackLevel] <= pc;

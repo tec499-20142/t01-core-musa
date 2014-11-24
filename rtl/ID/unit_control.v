@@ -6,9 +6,10 @@ aluOp);
 
 input [5:0] opcode;
 input clk;
-output reg memRead, memToReg, memWrite, aluSrc, regWrite, regDst,PCWrite, push, pop;
+output reg memRead, memToReg, memWrite, regWrite, regDst,PCWrite, push, pop;
 reg [2:0]stage;
 output reg [1:0] pcSrc;
+output reg [1:0] aluSrc;
 output reg [2:0] aluOp;
 
 
