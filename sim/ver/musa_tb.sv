@@ -1,14 +1,14 @@
 // +----------------------------------------------------------------------------
-// Universidade Federal da Bahia
+// Universidade Estadual de Feira de Santana
 //------------------------------------------------------------------------------
-// PROJECT: UDLX Processor
+// PROJECT: MUSA Processor
 //------------------------------------------------------------------------------
-// FILE NAME: udlx_tb.v
+// FILE NAME: musa_tb.v
 // -----------------------------------------------------------------------------
-// PURPOSE: Testbench for UDLX Processor.
+// PURPOSE: Testbench for MUSA Processor.
 // -----------------------------------------------------------------------------
 `include "../../fpga/rtl/dlx_de2_115_defines.v"
-module udlx_tb;
+module musa_tb;
 
 `include "../tb/udlx_monitor.sv"
 `include "../tb/defines.sv"
