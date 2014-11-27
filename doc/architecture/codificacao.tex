@@ -1,12 +1,12 @@
 \section{Codificação das instruções}
-	Instrução é uma palavra da linguagem de máquina, sua codificação é de fundamental importância para o processamento das operações.	Todas as instruções contém 32 bits. Exitem 3 formatos de instruções: R (R-type), I (I-type) e Jump. Os OPCODES são os códigos de operação da instrução, neste documento ele é representação em números hexadecimais.\\
+	Todas as instruções contém 32 bits. Exitem três formatos de instruções: R (R-type), I (I-type) e Jump. Neste documento os OPCODES são representados em seus respectivos códigos hexadecimais.\\
 	
   \FloatBarrier
     \begin{center}
-\begin{longtable}[pos]{| c | c | c | m{7cm} |} \hline    
+\begin{longtable}[pos]{| c | c | l | m{7cm} |} \hline    
           \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
-          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+          \multicolumn{1}{l|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
           \endfirsthead
           \hline
           \multicolumn{3}{|l|}
@@ -14,7 +14,7 @@
           \hline
           \multicolumn{1}{|c|}{\cellcolor[gray]{0.9}\textbf{Formato da Instrução}} & 
           \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Instrução}} & 
-          \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
+          \multicolumn{1}{l|}{\cellcolor[gray]{0.9}\textbf{Descrição}} \\ \hline
           \endhead
 
           \multicolumn{3}{|r|}{{continua na próxima página}} \\ \hline
@@ -43,27 +43,36 @@
 	& CALL & Chamada de subrotina \\ \cline{2-3}
 	& RET & Retorno de Subrotina \\ \cline{2-3}
 	& HALT & Parada do sistema \\ \cline{2-3}
-	& NOPE & Refresh no módulo \\ \hline
+	& NOP & Refresh no módulo \\ \hline
 \end{longtable}
 \end{center}
-
 
 	O formato R está relacionado as instruções lógicas e aritméticas.
 	\begin{figure}[H]
     	\centering
     	\includegraphics{r-format}
-    	\caption{Formato R}
-		\label{r_format}
 	\end{figure}
-	Seus respectivos campos são:
-	\begin{itemize}
-	\item \textbf{OPCODE} - Código da operação básica da instrução.
-	\item \textbf{RS} - Registrador do primeiro operando de origem.
-	\item \textbf{RT} - Registrador do segundo operando de origem.
-	\item \textbf{RD} - Registrador destino.
-	\item \textbf{SHAMT} - \textit{Shift amount}; Quantidade de deslocamento.
-	\item \textbf{FUNCT} - Função; Esse campo seleciona a variante específica da operação no campo opcode, e as vezes, é chamado de código de função.
-\end{itemize}	
+	
+\begin{table}[H]
+\centering	
+\begin{tabular}{|c|l|}
+	\hline 
+	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
+	\hline 
+	OPCODE & Código da operação básica da instrução. \\ 
+	\hline 
+	RS & Registrador do primeiro operando de origem. \\ 
+	\hline 
+	RT & Registrador do segundo operando de origem. \\ 
+	\hline 
+	RD & Registrador de destino. \\ 
+	\hline 
+	DON'T CARE & Não importa. \\ 
+	\hline 
+	FUNCT & Variante específica da operação. \\ 
+	\hline 
+	\end{tabular} 
+	\end{table}	
 
 \begin{table}[H]
 \centering
@@ -90,7 +99,6 @@
   	0x00 & NOP & 0x00 \\
   	\hline 
   	\end{tabular} 
-  	\caption{Definição dos OPCODES do formato R}
   \end{table} 
   	 	
   	
@@ -98,17 +106,25 @@
 	\begin{figure}[H]
     	\centering
     	\includegraphics{i-format}
-    	\caption{Formato I}
-		\label{i_format}
   	\end{figure}
-Seus respectivos campos são:
-	\begin{itemize}
-	\item \textbf{OPCODE} - Código da operação básica da instrução.
-	\item \textbf{RS} - Registrador do operando de origem.
-	\item \textbf{RT} - Registrador destino.
-	\item \textbf{ADDRESS OR IMMEDIATE} - Endereço de memória ou constante numérica.
-\end{itemize}	  	
-
+  	
+  	\begin{table}[H]
+\centering	
+\begin{tabular}{|c|l|}
+	\hline 
+	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
+	\hline 
+	OPCODE & Código da operação básica da instrução. \\ 
+	\hline 
+	RS & Registrador do primeiro operando de origem. \\ 
+	\hline 
+	RT & Registrador de destino. \\ 
+	\hline 
+	IMMEDIATE & Constante numérica. \\ 
+	\hline 
+	\end{tabular} 
+	\end{table}
+	
 \begin{table}[H]
 \centering	
 \begin{tabular}{|c|c|}
@@ -130,21 +146,27 @@ Seus respectivos campos são:
 	0x04 & BRFL \\ 
   	\hline 
 	\end{tabular} 
-	  	\caption{Definição dos OPCODES do formato I}	
 \end{table}	
 	
  O formato Jump servem para as instruções de desvio incondicional.  	
    	\begin{figure}[H]
     	\centering
     	\includegraphics{jump}
-    	\caption{Formato Jump}
 		\label{jump}
   	\end{figure}
-Seus respectivos campos são:
-	\begin{itemize}
-	\item \textbf{OPCODE} - Código da operação básica da instrução.
-	\item \textbf{ADDRESS} - Endereço de memória ou constante numérica.
-\end{itemize}
+  	
+\begin{table}[H]
+\centering	
+\begin{tabular}{|c|l|}
+	\hline 
+	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
+	\hline 
+	OPCODE & Código da operação básica da instrução. \\ 
+	\hline 
+	IMMEDIATE & Constante numérica. \\ 
+	\hline 
+	\end{tabular} 
+	\end{table}
  
 \begin{table}[H]
 \centering 	
@@ -163,5 +185,4 @@ Seus respectivos campos são:
   	0x02 & HALT \\ 
   	\hline 
   	\end{tabular} 
-  	  	\caption{Definição dos OPCODES do formato Jump}
 \end{table}
