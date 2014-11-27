@@ -23,13 +23,7 @@ module InstructionMem(address, data, clk);
 input wire clk; 
 input wire [12:0] address;
 output reg [31:0] data; 
-reg [2047:0] mem [31:0];  
-
-initial begin
-    $readmemb("example.txt",mem); 
-    //$readmemh("example.hex",mem); 
-    data = mem[address];
-  end
+reg [2047:0] mem [31:0] = $readmemb("example.txt", mem);  
 
   always @(posedge clk) begin
 		data <= mem[address];
