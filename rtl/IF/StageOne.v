@@ -22,7 +22,7 @@ module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, instruction);
 
 input _clk, _reset, _pcWrite;
 input [31:0] _pcInput;
-output reg [12:0] _pcOutput;
+output reg [31:0] _pcOutput;
 output reg [31:0] instruction;
 
 
