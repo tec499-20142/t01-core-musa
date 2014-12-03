@@ -9,6 +9,7 @@ input branch,
 input jump_sel,
 output reg[31:0] result, 
 output reg [2:0] flag,
+output reg [31:0] out_data_b,
 output reg [31:0] next_address); 
 
 
