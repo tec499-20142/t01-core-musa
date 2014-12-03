@@ -24,10 +24,10 @@ input clk;
 input reset;
 input readStack;
 input writeStack;
-input [12:0] pc;
-output reg [12:0] stackOut;
+input [31:0] pc;
+output reg [31:0] stackOut;
 reg [3:0] stackLevel;
-reg [12:0] regStack [7:0];
+reg [31:0] regStack [7:0];
 output reg stackOverflow;
 
 initial begin 

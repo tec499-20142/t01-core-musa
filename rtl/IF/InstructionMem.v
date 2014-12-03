@@ -21,11 +21,11 @@
 module InstructionMem(address, data, clk);
   
 input wire clk; 
-input wire [12:0] address;
+input wire [31:0] address;
 output reg [31:0] data; 
 reg [2047:0] mem [31:0] = $readmemb("example.txt", mem);  
 
   always @(posedge clk) begin
 		data <= mem[address];
 	end
- endmodule
+endmodule

@@ -24,11 +24,11 @@ module ProgramCounter(clk, reset, pcWrite, pcInput);
  input reset; 
  input pcWrite; 
  input wire [31:0] pcInput; 
- output reg [12:0] pcOutput = 13'b0; 
+ output reg [31:0] pcOutput = 32'b0; 
  
  always @(posedge clk) begin 
  if(reset == 1) begin 
- 	pcOutput <= 13'b0; 
+ 	pcOutput <= 32'b0; 
  	end  
  
  else if (pcWrite == 1) begin 
