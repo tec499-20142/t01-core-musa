@@ -3,9 +3,9 @@
 	\umlclass{Instruction Fetch}{
 	+ clock : input bit \\
 	+ reset : input bit \\
-	+ pcInput : input bit[14] \\ 
+	+ pcInput : input bit[32] \\ 
 	+ pcWrite : input bit \\
-	+ pcOutput : output bit[14] \\
+	+ pcOutput : output bit[32] \\
 	+ instruction : output bit[32] }			
 	{
 	- \underline{<<comb>> search\_Instruction()} \\

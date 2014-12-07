@@ -1,4 +1,4 @@
-  // +UEFSHDR----------------------------------------------------------------------
+// +UEFSHDR----------------------------------------------------------------------
 // 2014 UEFS Universidade Estadual de Feira de Santana
 // TEC499-Sistemas Digitais
 // ------------------------------------------------------------------------------
@@ -18,16 +18,16 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module ProgramCounter(clk, reset, pcWrite, pcInput);  
+module ProgramCounter(clock, reset, pcWrite, pcInput);  
  
- input clk; 
+ input clock; 
  input reset; 
  input pcWrite; 
  input wire [31:0] pcInput; 
  output reg [31:0] pcOutput = 32'b0; 
  
- always @(posedge clk) begin 
- if(reset == 1) begin 
+ always @(posedge clock) begin 
+ if (reset == 1) begin 
  	pcOutput <= 32'b0; 
  	end  
  
