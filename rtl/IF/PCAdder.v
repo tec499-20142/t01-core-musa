@@ -6,33 +6,24 @@
 // ------------------------------------------------------------------------------
 // PROJECT: <MUSA>
 // ------------------------------------------------------------------------------
-// FILE NAME  : {ProgramCounter.v}
-// KEYWORDS 	: {PC, IF}
+// FILE NAME  : {PCAdder.v}
+// KEYWORDS 	: {PC, Add, IF}
 // -----------------------------------------------------------------------------
 // PURPOSE: {TDB}
 // -----------------------------------------------------------------------------
 // REUSE ISSUES
-//   Reset Strategy      : <asychronous, active in low level reset>
-//   Clock Domains       : <TBD>
+//   Reset Strategy      : <None>
+//   Clock Domains       : <None>
 //   Instantiations      : <None>
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module ProgramCounter(clock, reset, pcWrite, pcInput, pcOutput);  
- 
- input clock; 
- input reset; 
- input pcWrite; 
- input wire [31:0] pcInput; 
- output reg [31:0] pcOutput = 32'b0; 
- 
- always @(posedge clock) begin 
- if (reset == 1) begin 
- 	pcOutput <= 32'b0; 
- 	end  
- 
- else if (pcWrite == 1) begin 
- 	pcOutput <= pcInput; 
- 	end
-end
+module PCAdder(pcOld, pcNew);  
+
+input [31:0] pcOld;
+output reg[31:0] pcNew;
+
+  always @(*) begin
+    pcNew = pcOld + 1'b1;
+    end
 endmodule

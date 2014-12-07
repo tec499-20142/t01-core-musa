@@ -18,9 +18,9 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module Stack(clk, reset, readStack, writeStack, pc, stackOut, stackOverflow);
+module Stack(clock, reset, readStack, writeStack, pc, stackOut, stackOverflow);
 
-input clk;
+input clock;
 input reset;
 input readStack;
 input writeStack;
@@ -34,7 +34,7 @@ initial begin
   stackLevel = 4'b0;
   stackOverflow = 1'b0;
 end
-always @(posedge clk)
+always @(posedge clock)
 begin
 
   if (reset == 1) begin
