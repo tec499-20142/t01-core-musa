@@ -18,20 +18,14 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module InstructionMem(address, data, clk);
+module InstructionMem(address, data, clock);
   
-input wire clk; 
-input wire [12:0] address;
+input wire clock; 
+input wire [31:0] address;
 output reg [31:0] data; 
-reg [2047:0] mem [31:0];  
+reg [2047:0] mem [31:0] = $readmemb("example.txt", mem);  
 
-initial begin
-    $readmemb("example.txt",mem); 
-    //$readmemh("example.hex",mem); 
-    data = mem[address];
-  end
-
-  always @(posedge clk) begin
+  always @(posedge clock) begin
 		data <= mem[address];
 	end
- endmodule
+endmodule

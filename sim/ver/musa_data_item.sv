@@ -1,13 +1,13 @@
 // +----------------------------------------------------------------------------
-// Universidade Federal da Bahia
+// Universidade Estadual de Feira de Santana
 //------------------------------------------------------------------------------
-// PROJECT: UDLX Processor
+// PROJECT: MUSA
 //------------------------------------------------------------------------------
-// FILE NAME: udlx_data_item.v
+// FILE NAME: musa_data_item.v
 // -----------------------------------------------------------------------------
-// PURPOSE: Data item of the DLX Processor.
+// PURPOSE: Data item of the MUSA Processor.
 // -----------------------------------------------------------------------------
-class udlx_data_item;
+class musa_data_item;
 
     `include "../tb/defines.sv"
 

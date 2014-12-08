@@ -6,33 +6,26 @@
 // ------------------------------------------------------------------------------
 // PROJECT: <MUSA>
 // ------------------------------------------------------------------------------
-// FILE NAME  : {ProgramCounter.v}
-// KEYWORDS 	: {PC, IF}
+// FILE NAME  : {InstructionMem.v}
+// KEYWORDS 	: {Memory, Instruction, IF}
 // -----------------------------------------------------------------------------
-// PURPOSE: {TDB}
+// PURPOSE: {TBD}
 // -----------------------------------------------------------------------------
 // REUSE ISSUES
-//   Reset Strategy      : <asychronous, active in low level reset>
+//   Reset Strategy      : <None>
 //   Clock Domains       : <TBD>
 //   Instantiations      : <None>
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module ProgramCounter(clock, reset, pcWrite, pcInput, pcOutput);  
- 
- input clock; 
- input reset; 
- input pcWrite; 
- input wire [31:0] pcInput; 
- output reg [31:0] pcOutput = 32'b0; 
- 
- always @(posedge clock) begin 
- if (reset == 1) begin 
- 	pcOutput <= 32'b0; 
- 	end  
- 
- else if (pcWrite == 1) begin 
- 	pcOutput <= pcInput; 
- 	end
-end
+module InstructionMem(address, data, clk);
+  
+input wire clk; 
+input wire [31:0] address;
+output reg [31:0] data; 
+reg [2047:0] mem [31:0] = $readmemb("example.txt", mem);  
+
+  always @(posedge clk) begin
+		data <= mem[address];
+	end
 endmodule

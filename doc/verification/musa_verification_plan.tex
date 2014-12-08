@@ -45,6 +45,7 @@
       \textbf{Data} & \cellcolor[gray]{0.9}\textbf{Descrição} & \cellcolor[gray]{0.9}\textbf{Autor(es)}\\ \hline
       \hline
       \small 23/10/2014 & \small Criação do documento. & \small Terseu Hunter \\ \hline 
+      \small 24/11/2014 & \small Refatoração do documento & \small Anderson Queiroz e Manuelle Macedo \\ \hline 
     \end{longtable}
   \end{center}
 
@@ -61,7 +62,7 @@
   \section{Introdução}
 
 	\subsection{Propósito do Documento}
-	O objetivo deste documento é definir o plano de verificação da implementação MUSA. Este documento inclui o ambiente de verificação utilizado para realizar a verificação do processador, ao lado das principais características do design, a lista de testes, lista de afirmações e outros.
+	O objetivo deste documento é definir o plano de verificação da implementação MUSA. Este documento inclui o ambiente de verificação utilizado para realizar a verificação do processador, ao lado das principais características do design, a lista de testes, lista de \textit{assertions} e outros.
 	
 	\subsection{Stakeholders}
   \FloatBarrier  
@@ -95,7 +96,23 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\newpage
 	\section{Visão Geral do DUT}
+\begin{itemize}
+\item Implementação de um plano de verificação.
+\item Implementação de todos os testbenches necessários para o DUT completo e os DUTs
+resultantes de hierarquização.
+\item Implementação do DUT. Essa implementação é seguida pela simulação do DUV, juntamente
+com o testbench.
+\item Captação dos dados de simulação através da coleta dos itens de cobertura e dos logs
+da simulação.
+\item Análise da cobertura funcional, que pode levar a uma mudança de estímulos no
+testbench e a uma nova simulação.
+\end{itemize}
 
+	
+	\begin{figure}[H]
+    	\centering
+    	\includegraphics[width=.7\linewidth]{pictures/dutgeral.png}
+  	\end{figure}
   	
 	\newpage
 	\section{Ambiente de Verificação}
@@ -119,12 +136,12 @@
 	
   O \textit{checker} é responsável por executar o modelo de referência com o mesmo programa usado pelo DUT e comparar os dados armazenados na memória de dados e no banco de registradores. Se qualquer mal funcionamento for identificado, o \textit{checker} deve reportar uma mensagem de erro.
 
-  Quando a execução do programa chega ao fim, o monitor deve invocar o \textit{checker}. O \textit{monitor} identifica o final da execução do programa a partir de uma sequência de seis instruções \texttt{NOP} consecutivas.
+  Quando a execução do programa chega ao fim, o monitor deve invocar o \textit{checker}. O \textit{monitor} identifica o final da execução do programa a partir da instrução HALT.
 
-	O teste que será executado no modelo de referência deve ser definido no arquivo \texttt{sim/tb/defines.sv}. Para executar o teste no DUT, o procedimento deve ser realizado no arquivo de memória de instruções \textcolor{red}{A SER DEFINIDO}, a partir da alteração do caminho especificado na funcão \texttt{read\_memh}.
+	O teste que será executado no modelo de referência deve ser definido no arquivo \texttt{sim/tb/defines.sv}. Para executar o teste no DUT, o procedimento deve ser realizado no arquivo de memória de instruções \texttt{sim/tests/instrucoesMars.asm}, a partir da alteração do caminho especificado na funcão \texttt{read\_memh}.
 
 	\subsection{Modelo de Referência}
-  Tendo em vista garantir que o processador executará as instruções corretamente, foi desenvolvido um modelo de referência, capaz de simular o comportamento do processador MUSA. Este modelo é capaz de executar todas as instruções suportadas pelo MUSA. O arquivo do modelo de referência está localizado no diretório \texttt{sim/model/}.
+  Tendo em vista garantir que o processador executará as instruções corretamente, foi desenvolvido um modelo de referência, capaz de simular o comportamento do processador MUSA. Este modelo é capaz de executar todas as instruções suportadas pelo MUSA. O arquivo do modelo de referência está localizado no diretório \texttt{sim/model/main2.c}.
 	
 	\subsection{Especificações de Projeto do Ambiente de Verificação}
   \FloatBarrier
@@ -232,15 +249,15 @@
 
         \hline
         \endlastfoot
-      	MUSA\_T1      & Execução de todas as instruções da categoria aritmética.          &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & TBD & 0\% \\ \hline   
-      	MUSA\_T2      & Execução de todas as instruções de transferência de dados.        &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & TBD & 0\% \\ \hline   
-      	MUSA\_T3      & Execução de todas as instruções da categoria lógica.              &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & TBD & 0\% \\ \hline  
-      	MUSA\_T4      & Execução de todas as instruções da categoria salto condicional.   &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & TBD & 0\% \\ \hline 
-      	MUSA\_T5      & Execução de todas as instruções da categoria salto incondicional. &	Sim       & Unit & MUSA\_F1, MUSA\_F2 & 5 & TBD & 0\% \\ \hline 
-	      MUSA\_T6      & Acesso à memória de declarados                                    &	Assertion & Unit & MUSA\_F3           & 7 & TBD & 0\% \\ \hline        
-	      MUSA\_T7      & Acesso à memória de instruções                                    &	Assertion & Unit & MUSA\_F4           & 9 & TBD & 0\% \\ \hline        
-	      MUSA\_T8      & Execução de programas completos sob a arquitetura.                &	Sim       & Unit & MUSA\_F3, MUSA\_F4 & 8 & TBD & 0\% \\ \hline        
-	      MUSA\_T9      & Teste de todos os protocolos de interface.                        & Assertion & Unit & MUSA\_F5           & 8 & TBD & 0\% \\ \hline        
+      	MUSA\_T1      & Execução de todas as instruções da categoria aritmética.          &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 70\% \\ \hline   
+      	MUSA\_T2      & Execução de todas as instruções de transferência de dados.        &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 70\% \\ \hline   
+      	MUSA\_T3      & Execução de todas as instruções da categoria lógica.              &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 70\% \\ \hline  
+      	MUSA\_T4      & Execução de todas as instruções da categoria salto condicional.   &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 70\% \\ \hline 
+      	MUSA\_T5      & Execução de todas as instruções da categoria salto incondicional. &	Sim       & Unit & MUSA\_F1, MUSA\_F2 & 5 & Anderson & 70\% \\ \hline 
+	      MUSA\_T6      & Acesso à memória de declarados                                    &	Assertion & Unit & MUSA\_F3           & 7 & Manuelle e Weverson & 80\% \\ \hline        
+	      MUSA\_T7      & Acesso à memória de instruções                                    &	Assertion & Unit & MUSA\_F4           & 9 & Manuelle e Weverson & 80\% \\ \hline        
+	      MUSA\_T8      & Execução de programas completos sob a arquitetura.                &	Sim       & Unit & MUSA\_F3, MUSA\_F4 & 8 & Anderson, Manuelle e Weverson & 0\% \\ \hline        
+	      MUSA\_T9      & Teste de todos os protocolos de interface.                        & Assertion & Unit & MUSA\_F5           & 8 & Anderson, Manuelle e Weverson & 0\% \\ \hline        
 
       \end{longtable}
     \end{center}		
@@ -282,7 +299,7 @@
     \end{center}		
   
   \newpage
-	\section{RecursosRequirements}
+	\section{Recursos Requirements}
   \FloatBarrier
     \begin{center}
 			\rowcolors{4}{gray!25}{white} 
@@ -312,14 +329,14 @@
         \endlastfoot
         \rowcolor{gray}
 				\textbf{Recursos de Engenharia}     & 		&										 	& 		 			&  \\ \hline   	
-      	Engenheiro de Verificação  					& N.A.&	N.A                	& -- 	      & N.A. \\ \hline   
+      	Engenheiro de Verificação  					& 3 &	Alunos                	& 10/11 	      & 15 dias \\ \hline   
       	\rowcolor{gray}
 				\textbf{Recursos Computacionais}     			& 		&										 	& 		 			&  \\ \hline   
-				Computador 														& N.A.&	N.A                	& -- 	      & N.A. \\ \hline   
+				Computador 														& 3 &	Intel i5                	& N.A. 	      & N.A. \\ \hline   
       	\rowcolor{gray}
 				\textbf{Recursos de Software} 				& 		&										 	& 		 			&  \\ \hline   
-				ALTERA Quartus 											& 1		& WEB Edition					& TBD	      & TBD dias \\ \hline 				
-				ALTERA ModelSIM		 									& 1		& ALTERA WEB Edition	& TBD	      & TBD dias \\ \hline 
+				ALTERA Quartus 											& 1		& WEB Edition					& 10/11	      & 21 dias \\ \hline 				
+				ALTERA ModelSIM		 									& 1		& ALTERA WEB Edition	& 	  14/11    & 21 dias \\ \hline 
       \end{longtable}
     \end{center}		
   

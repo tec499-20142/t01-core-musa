@@ -21,9 +21,9 @@
 module PCAdder(pcOld, pcNew);  
 
 input [31:0] pcOld;
-output reg [31:0] pcNew;
+output reg[31:0] pcNew;
 
-  always @* begin
+  always @(*) begin
     pcNew = pcOld + 1'b1;
     end
 endmodule

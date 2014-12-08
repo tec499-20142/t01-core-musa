@@ -1,14 +1,14 @@
 // +----------------------------------------------------------------------------
-// Universidade Federal da Bahia
+// Universidade Estadual de Feira de Santana
 //------------------------------------------------------------------------------
-// PROJECT: UDLX Processor
+// PROJECT: MUSA Processor
 //------------------------------------------------------------------------------
-// FILE NAME: udlx_monitor.v
+// FILE NAME: musa_monitor.v
 // -----------------------------------------------------------------------------
 // PURPOSE: Observes and Check data from DUT.
 // -----------------------------------------------------------------------------
 
-class udlx_monitor;
+class musa_monitor;
 
   `include "../tb/udlx_data_item.sv"
   `include "../../rtl/common/opcodes.v"
