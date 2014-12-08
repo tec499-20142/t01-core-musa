@@ -1,9 +1,9 @@
 module alu(
-	input[31:0] data_a, 
-	input [31:0] data_b,
-	input [2:0] alu_control,
-	input [4:0] func, 
 	input reset, 
+	input[31:0] data_a, 
+	input[31:0] data_b,
+	input[2:0] alu_control,
+	input[5:0] func,  
 	output reg[31:0] result, 
 	output reg [2:0] flag);
 
@@ -87,7 +87,8 @@ module alu(
 							if(data_a == data_b) begin 
 								reg_flag = FLAG_EQUAL;
 								flag = reg_flag;
-							end else begin
+							end 
+							else begin
 								if(data_a > data_b) begin 
 									reg_flag = FLAG_ABOVE;
 									flag = reg_flag;

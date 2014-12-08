@@ -1,5 +1,4 @@
 module ex_stage(
-
 	input reset,
 	input[31:0] data_a, 
 	input[31:0] data_b,
