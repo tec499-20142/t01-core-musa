@@ -6,29 +6,35 @@ module ex_stage(
 	input[31:0] pc_1, 
 	input[31:0] jump_address,
 	input[31:0] immediate,
+	input[31:0] immediate_div_4,
 	input[31:0] stack, 
-	input data_a_select; 
-	input data_b_select; 
+	input[1:0] data_a_select,
+	input[1:0] data_b_select, 
 	input[2:0] pc_select,
 	input[2:0] alu_control,
 	input[5:0] func,
 	output reg[31:0] result, 
 	output reg[2:0] flag,
-	output reg[31:0] next_pc, 
+	output reg[31:0] next_pc 
 	); 
 
 	reg data_a_temp;
 	reg data_b_temp;
 	
 	mux m_data_a(
-	.data_a(pc_1),
-	.data_b(data_a), 
+	.data_0(pc_1),
+	.data_1(pc_1),
+	.data_2(data_a),
+	.data_3(0),  
 	.sel(data_a_select), 
 	.data(data_a_temp));
 	
+	
 	mux m_data_b(
-	.data_a(data_b),
-	.data_b(immediate), 
+	.data_0(immediate),
+	.data_1(data_b),
+	.data_2(immediate_div_4), 
+	.data_3(0), 
 	.sel(data_b_select), 
 	.data(data_b_temp));
 	
