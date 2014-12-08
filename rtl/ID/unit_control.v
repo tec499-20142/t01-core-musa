@@ -32,14 +32,14 @@ parameter JPC	=	6'b000010;			  	  //Instrução: j
 parameter BRFL	=	6'b000100;				    //Instrução: beq
 parameter CALL		=      6'b000011;				    //Instrução: jal
 parameter RET		=      6'b000001;
-parameter HALT = 0; //FALTA O OPCODE DO HALT
+parameter HALT = 6'b111111; //FALTA O OPCODE DO HALT
 
 always@ (*)
 begin
   case(opcode)
     LOGICAS :
       begin
-      				regDst = 1'b1;
+      			regDst = 1'b1;
 		      memRead = 1'b0;
 		      memToReg = 1'b0;
 		      aluOp = 3'b010;
