@@ -37,7 +37,7 @@
 	& ORI & OR lógico de dois valores, um destes imediato. \\ \cline{2-3}
 	& LW & Leitura de um dado da memória de dados \\ \cline{2-3}
 	& SW & Armazena um dado na memória de dados \\ \hline
-	\multirow{6}{*}{Jump} & JP & Desvia para um destino \\ \cline{2-3}
+	\multirow{6}{*}{Jump} & JR & Desvia para um destino \\ \cline{2-3}
 	& JPC & Desvia para um destino relativo ao PC \\ \cline{2-3}
 	& BRFL & Desvia para um destino se RF==CST \\ \cline{2-3}
 	& CALL & Chamada de subrotina \\ \cline{2-3}
@@ -182,7 +182,7 @@
   	\hline 
   	0x01 & RET \\ 
   	\hline 
-  	0x02 & HALT \\ 
+  	0x3F & HALT \\ 
   	\hline 
   	\end{tabular} 
 \end{table}

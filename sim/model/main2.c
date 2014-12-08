@@ -6,7 +6,7 @@
 //pc: Program Counter
 //registers[]: represent register bank
 //mem[]: Represent the data memory
-int  pc=0, registers[32], mem[1000];
+int  pc=0, registers[32], mem[1000], stack[8];
 
 
 //Fuction to identify the instruction type:
@@ -15,13 +15,13 @@ int  pc=0, registers[32], mem[1000];
 // j - J-type Instruction
 char identify_instruction_type(int instruction_opcode){
 	char result;
-	if(instruction_opcode == 0x08 || instruction_opcode == 0x09 || instruction_opcode == 0x0c || instruction_opcode == 0x0d || instruction_opcode == 0x23 || instruction_opcode == 0x2b){
+	if(instruction_opcode == 0x08 || instruction_opcode == 0x09 || instruction_opcode == 0x0c || instruction_opcode == 0x0d || instruction_opcode == 0x23 || instruction_opcode == 0x2b || instruction_opcode == 0x04){
 		result = 'i';
 	}
 	else if (instruction_opcode == 0x00 || instruction_opcode == 0x1c || instruction_opcode == 0x05){
 		result = 'r';
 	}
-	else if (instruction_opcode == 0x11 || instruction_opcode == 0x02 || instruction_opcode == 0x04 || instruction_opcode == 0x03 || instruction_opcode == 0x01){
+	else if (instruction_opcode == 0x11 || instruction_opcode == 0x02 || instruction_opcode == 0x03 || instruction_opcode == 0x01 || instruction_opcode == 0x3f){
 		result = 'j';
 	}
 	else{
@@ -43,16 +43,16 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 
 	//Load Instruction - lw RD = mem
 	if(instruction_opcode == 0x23){
-		registers[rd] = mem[registers[rs1] + imm];
+		registers[rd] = mem[registers[rs1]];
 	}
 	//Store Instruction - sw mem = RD
 	else if(instruction_opcode == 0x2b){
-		mem[registers[rs1] + imm] = registers[rd];
+		mem[registers[rs1]] = registers[rd];
 	}
 	//brfl - beqz
-	else if(instruction_opcode == 0x04){
-		printf("TBD");
-	}
+	//else if(instruction_opcode == 0x04){
+	//	printf("TBD");
+	//}
 	//addi - RD = RS1 + Sext(imm)
 	else if(instruction_opcode == 0x08){
 		registers[rd] = registers[rs1] + imm;
@@ -116,7 +116,7 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(function == 0x22){
 		registers[rd] = registers[rs1] - registers[rs2];
 	}
-	//and - RD = RS1 ^ RS2
+	//and - RD = RS1 & RS2
 	else if(function == 0x24){
 		registers[rd] = registers[rs1] & registers[rs2];
 	}
@@ -147,22 +147,19 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//nop
 	else if(function == 0x00){
-		#5
-		printf("Nope");
 	}
 }
 
 //Function responsible to reproduce the results of the j-type instructions
 void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	int pc_offset;
-
 	pc_offset = (instruction & 0x3FFFFFF);
 
 	//JR - ADDR
 	if(instruction_opcode == 0x11){
             pc = pc_offset - 1;// -1 because the increment of for.
 	}
-	//JPC e HALT
+	//JPC
 	else if(instruction_opcode == 0x02){
             pc += pc_offset;
 	}
@@ -258,7 +255,7 @@ void main (int argc, char *argv[]){
 
 	write_results();
 
-   free( instruction);
+   free(instruction);
 }
 
 
