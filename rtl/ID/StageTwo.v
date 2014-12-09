@@ -73,7 +73,6 @@ RegisterFile BLOCO1 (
   .memRead (memRead),
   .memWrite(memWrite),
   .memToReg(memToReg),
-  .aluSrc(aluSrc),
   .regWrite (_regWrite),
   .pop (pop),
   .regDst (regDst),
