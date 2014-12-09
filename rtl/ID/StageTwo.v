@@ -1,11 +1,11 @@
 module stagetwo(
-instruction, clk, rst,  
-pcSrc, memRead, memWrite, aluSrc, push, pop, PCWrite, 
-aluOp,
-word,
-AluOut,
-out_jump, mem_Data,
-readData1, readData2, outputWord);
+	instruction, clk, rst,  
+	pcSrc, memRead, memWrite, aluSrc, push, pop, PCWrite, 
+	aluOp,
+	word,
+	AluOut,
+	out_jump, mem_Data,
+	readData1, readData2, outputWord);
 
 input [31:0] instruction;
 input clk, rst;
