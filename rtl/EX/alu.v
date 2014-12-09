@@ -5,7 +5,8 @@ module alu(
 	input[2:0] alu_control,
 	input[5:0] func,  
 	output reg[31:0] result, 
-	output reg [2:0] flag);
+	output reg [2:0] flag, 
+	output reg branch);
 
 	//Valores do aluOp 
 	parameter TYPE_R = 010; 
@@ -25,7 +26,6 @@ module alu(
 	parameter SUBI = 001;
 	parameter ANDI = 011;
 	parameter ORI = 100;
-	
 	//Eu nao sei como colocar o BRFL, pois ele 
 	parameter BRFL = 000100;
 	
@@ -37,13 +37,13 @@ module alu(
 	parameter FLAG_UNDERFLOW = 100;
 	parameter FLAG_ABOVE = 101;
 	
-	reg [2:0] reg_flag;//registrador de flag
+	reg [31:0] reg_flag;//registrador de flag
 	reg [32:0] result_checker; 
 	reg [64:0] result_muld;
 
 //ainda falta colocar algumas das funçoes aqui na alu. 
 	always @(alu_control, func, data_a, data_b, reset) 
-		if(reset) begin
+		if(~reset) begin
 			result = 0;
 		end
 		else	begin 
@@ -102,6 +102,15 @@ module alu(
 				end 
 				ORI: begin 
 					result = data_a | data_b;
+				end 
+				BRFL: begin 
+					result = data_a;
+					if(reg_flag == data_b) begin 	
+						branch = 0;
+					end 
+					else begin
+						branch = 1;
+					end 
 				end 
 			endcase
 			

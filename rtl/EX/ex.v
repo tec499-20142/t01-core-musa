@@ -20,9 +20,11 @@ module ex_stage(
 
 	reg data_a_temp;
 	reg data_b_temp;
+	reg branch_temp;
+	wire branch;	
 	
 	mux m_data_a(
-	.data_0(pc_1),
+	.data_0(pc),
 	.data_1(pc_1),
 	.data_2(data_a),
 	.data_3(0),  
@@ -45,14 +47,23 @@ module ex_stage(
 	.alu_control(alu_control),
 	.func(func),  
 	.result(result), 
-	.flag(flag));
-
+	.flag(flag),
+	.branch(branch));
+	
+	mux m_branch(
+	.data_0(result),
+	.data_1(pc_1),
+	.data_2(0), 
+	.data_3(0), 
+	.sel(branch), 
+	.data(branch_temp));
+	
 	cal_next_address calc(
 	.reset(reset),
 	.pc(pc),
 	.pc_1(pc_1), 
 	.jump_address(jump_address), 
-	.branch_address(result), 
+	.branch_address(branch_temp), 
 	.stack(stack), 
 	.jr(data_a),
 	.pc_select(pc_select),
