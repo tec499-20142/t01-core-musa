@@ -18,23 +18,32 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, instruction);
+module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, pcNew, instruction);
 
 input _clk, _reset, _pcWrite;
 input [31:0] _pcInput;
-output reg [31:0] _pcOutput;
-output reg [31:0] instruction;
+output wire [31:0] _pcOutput;
+output wire [31:0] instruction;
+output wire [31:0] pcNew;
 
 
-ProgramCounter programCouter(.clk(_clk), 
+ProgramCounter programCouter(
+.clock(_clk), 
 .reset(_reset), 
 .pcWrite(_pcWrite), 
 .pcInput(_pcInput),
-.pcOutput(_pcOutput));
+.pcOutput(_pcOutput)
+);
 
-PCAdder pcAdder(.pcOld(_pcInput), .pcNew(_pcOutput));
+PCAdder pcAdder(
+.pcOld(_pcOutput),
+.pcNew(pcNew)
+);
 
-InstructionMem instructionMem(.clk(_clk), 
-.reset(_reset), .address(_pcOutput), .data(instruction));
+InstructionMem instructionMem(
+.clock(_clk), 
+.address(_pcOutput), 
+.data(instruction)
+);
 
 endmodule

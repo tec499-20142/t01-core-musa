@@ -23,7 +23,7 @@ module InstructionMem(address, data, clock);
 input wire clock; 
 input wire [31:0] address;
 output reg [31:0] data; 
-reg [2047:0] mem [31:0] = $readmemb("example.txt", mem);  
+reg [2047:0] mem [31:0];  
 
   always @(posedge clock) begin
 		data <= mem[address];

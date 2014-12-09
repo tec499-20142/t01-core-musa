@@ -52,6 +52,7 @@ begin
 		MUL :
 		begin
 		      regDst = 1'b1;
+				memRead = 1'b0;
 		      memToReg = 1'b0;
 		      aluOp = 3'b010;
 		      memWrite = 1'b0;
@@ -64,6 +65,7 @@ begin
 	  DIV :
 		begin
 		      regDst = 1'b1;
+				memRead = 1'b0;
 		      memToReg = 1'b0;
 		      aluOp = 3'b010;
 		      memWrite = 1'b0;
