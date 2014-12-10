@@ -22,7 +22,7 @@ reg rdy;
 always @(posedge clk) begin
 	if (memRead) begin
 		rdy <= 1 ;
-		data_out = musaRAM [addr];
+		data_out <= musaRAM [addr];
 	end else begin
 		rdy <= 0;
 		data_out = 16'hZZZZ;
