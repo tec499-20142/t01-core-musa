@@ -6,28 +6,25 @@ module alu(
 	input[5:0] func,  
 	output reg[31:0] result, 
 	output reg [2:0] flag, 
-	output reg branch);
-
-	//Valores do aluOp 
-	parameter TYPE_R = 010; 
+	output reg [0:0] branch);
 	
 	//functions das operaçoes logicas e aritmeticas (instruçoes do tipo R)
-	parameter ADD = 100000;
-	parameter SUB = 100010;
-	parameter MUL = 000010; 
-	parameter DIV = 000001;
-	parameter AND = 100100;
-	parameter OR = 100101;
-	parameter NOT = 100111;
-	parameter CMP = 101010;
+	parameter ADD = 6'b100000;
+	parameter SUB = 6'b100010;
+	parameter MUL = 6'b000010; 
+	parameter DIV = 6'b000001;
+	parameter AND = 6'b100100;
+	parameter OR = 6'b100101;
+	parameter NOT = 6'b100111;
+	parameter CMP = 6'b101010;
 	
 	//Opcode das instrucoes 
-	parameter ADDI = 000;
-	parameter SUBI = 001;
-	parameter ANDI = 011;
-	parameter ORI = 100;
-	//Eu nao sei como colocar o BRFL, pois ele 
-	parameter BRFL = 000100;
+	parameter ADDI = 3'b000;
+	parameter SUBI = 3'b001;
+	parameter TYPE_R = 3'b010; 
+	parameter ANDI = 3'b011;
+	parameter ORI = 3'b100;
+	parameter BRFL = 3'b101;
 	
 	//flags 
 	parameter FLAG_NOT_ACTIVED = 000;
@@ -37,9 +34,8 @@ module alu(
 	parameter FLAG_UNDERFLOW = 100;
 	parameter FLAG_ABOVE = 101;
 	
-	reg [31:0] reg_flag;//registrador de flag
-	reg [32:0] result_checker; 
-	reg [64:0] result_muld;
+	reg [31:0] reg_flag;   //registrador de flag
+	reg [64:0] result_checker; 
 
 //ainda falta colocar algumas das funçoes aqui na alu. 
 	always @(alu_control, func, data_a, data_b, reset) 
@@ -50,29 +46,23 @@ module alu(
 			case (alu_control)
 				ADDI: begin
 					result_checker = data_a + data_b;
-					result = result_checker[31:0];
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
-					result = result_checker[31:0];
 				end 
 				TYPE_R: begin 
 					case(func)
 						ADD: begin 
 							result_checker = data_a + data_b;
-							result = result_checker[31:0];
 						end 
 						SUB: begin 
 							result_checker = data_a - data_b;
-							result = result_checker[31:0];
 						end
 						MUL: begin 
-							result_muld = data_a * data_b;
-							result = result_muld[63:32];
+							result_checker = data_a * data_b;
 						end 
 						DIV: begin 
-							result_muld = data_a / data_b;
-							result = result_muld[63:32];
+							result_checker = data_a / data_b;
 						end 
 						AND: begin 
 							result = data_a & data_b; 
@@ -114,43 +104,38 @@ module alu(
 				end 
 			endcase
 			
-			case ({result_muld[64], result_muld[63]}) 
+			case ({result_checker[64], result_checker[63]}) 
 				2'b00: begin 
 					reg_flag = FLAG_NOT_ACTIVED;
-					flag = reg_flag;
 				end 
 				2'b01: begin 
 					reg_flag = FLAG_OVERFLOW;
-					flag = reg_flag;
 				end 
 				2'b10: begin
 					reg_flag = FLAG_UNDERFLOW;
-					flag = reg_flag;
 				end 
 				2'b11: begin
 					reg_flag = FLAG_OVERFLOW;
-					flag = reg_flag;
 				end 
 			endcase
 			
 			case ({result_checker[32], result_checker[31]}) 
 				2'b00: begin 
 					reg_flag = FLAG_NOT_ACTIVED;
-					flag = reg_flag;
 				end 
 				2'b01: begin 
 					reg_flag = FLAG_OVERFLOW;
-					flag = reg_flag;
 				end 
 				2'b10: begin
 					reg_flag = FLAG_UNDERFLOW;
-					flag = reg_flag;
 				end 
 				2'b11: begin
 					reg_flag = FLAG_OVERFLOW;
 					flag = reg_flag;
 				end
 			endcase
-			
+
+			flag = reg_flag; 
+			result = result_checker[31:0];					
 		end
 endmodule 
