@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//define equals (Olhar na ula)
+
 //Global Variables:
 //pc: Program Counter
 //registers[]: represent register bank
@@ -69,12 +71,17 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 		registers[rd] = registers[rs1] | imm;
 		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
+	//cmp RF == CONST terminar
+	else if(instruction_opcode == 011101){
+        if (registers[rd] == registers[rs1])
+            registerflag = 1;
+	}
 }
 
 //Function responsible to reproduce the results of the r-type instructions
 void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	int rd, rs1, rs2, function;
-	
+
 	//Define the fields of the instructions
 	rs1 = (instruction >> 21);
 	rs2 = (instruction >> 16);
@@ -82,7 +89,7 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	function = (instruction);
 
 	printf("RS1: %x RS2: %x RD: %x Function: %x\n", rs1, rs2, rd, function);
-	
+
 	//add - RD = RS1 + RS2
 	if(function == 100000){
 		registers[rd] = registers[rs1] + registers[rs2];
@@ -109,6 +116,7 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(function == 000001){
 		registers[rd] = registers[rs1] / registers[rs2];
 	}
+	//not
 	else if(function == 100111){
 		registers[rd] = ~registers[rs2];
 	}
@@ -135,13 +143,13 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
             stack[0] = pc; //ponteiro para um endereço vazio da pilha
 			pc = pc_offset;
 	}
-	//RET - 
+	//RET -
 	else if(instruction_opcode == 000001){
             pc = stack[0]; //fazer ponteiro
 	}
 	//HALT - finish the program
 	else if(instruction_opcode == 111111){
-            pc = pc_offset; 
+            pc = pc_offset;
 	}
 
 }
@@ -169,16 +177,15 @@ void write_results(void){
 }
 
 
-
 void main (int argc, char *argv[]){
 	FILE *arq_instructions;
-	unsigned int *instruction;//[1048576];
+	unsigned int *instruction;//[65536];
 	unsigned int instruction_opcode;
 	char *reading_result, *reading_result_opcode;
 	char instruction_type;
 	int  size_instruction,i;
 	printf("Parametro: %s\n", argv[1]);
-	instruction = malloc( 1048576 ); //alterar tamanho da memória de instruções
+	instruction = malloc(65536); //alterar tamanho da memória de instruções
 
 	//Read the file that contains the instructions
 	arq_instructions = fopen(argv[1], "rt");
@@ -187,9 +194,9 @@ void main (int argc, char *argv[]){
     	printf("Instrunctions File was not opened\n");
     	return;
 	}
-	
+
 	//Read all the instructions and storage in 'instruction' char vector
-	//while(!feof(arq_instructions)){
+	while(!feof(arq_instructions))
 	for(size_instruction=0; (!feof(arq_instructions)); size_instruction++){
 		reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]);
 
