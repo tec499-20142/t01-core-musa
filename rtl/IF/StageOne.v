@@ -18,13 +18,14 @@
 //   Synthesizable (y/n) : <y>
 // -UEFSHDR----------------------------------------------------------------------
 
-module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, pcNew, instruction);
+module StageOne(_clk, _reset, _pcWrite, _pcInput, _pcOutput, pcNew, instruction, push, pop, stack_out);
 
-input _clk, _reset, _pcWrite;
+input _clk, _reset, _pcWrite, push, pop;
 input [31:0] _pcInput;
 output wire [31:0] _pcOutput;
 output wire [31:0] instruction;
 output wire [31:0] pcNew;
+output wire [31:0] stack_out;
 
 
 ProgramCounter programCouter(
@@ -45,5 +46,16 @@ InstructionMem instructionMem(
 .address(_pcOutput), 
 .data(instruction)
 );
+
+Stack pilha(
+.clock(_clk),
+.reset(_reset),
+.readStack(pop),
+.writeStack(push),
+.pc(pcNew),
+.stackOut(stack_out)
+);
+
+
 
 endmodule
