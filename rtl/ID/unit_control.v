@@ -263,8 +263,17 @@ begin
 		end
 		 default :
 		 begin
-		    regDst = 1'b1;
-		    memWrite = 1'b1;
+		      regDst = 1'b0;//nop
+		      memRead = 1'b0;
+		      memToReg = 1'b0;
+		      aluOp = 3'b010;
+		      memWrite = 1'b0;
+		      regWrite = 1'b0;
+		      pcSrc = 3'b010;
+		      data_a_select = 2'b00;
+		      data_b_select = 2'b00;
+				push = 1'b0;
+				pop = 1'b0;
 		 end
 		    
   endcase
