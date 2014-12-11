@@ -147,7 +147,7 @@ begin
 		  	   data_b_select = 2'b00;
 		  	   pcSrc = 3'b010;
 	         memRead = 1'b1;
-	         memToReg = 1'b0;
+	         memToReg = 1'b1;
 	         aluOp = 3'b000;
           	memWrite = 1'b0;
 	         regWrite = 1'b1;
