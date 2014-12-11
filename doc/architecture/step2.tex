@@ -41,21 +41,20 @@
 			\hline
 			\endlastfoot
 			
-	    1 & Lógicas, Aritméticas, NOP e CMP\\ \hline
-            2 & MUL \\ \hline
-            3 & DIV \\ \hline
-            4 & ADDI \\ \hline
-            5 & ANDI \\ \hline
-            6 & SUBI \\ \hline
-            7 & ORI \\ \hline
-            8 & SW \\ \hline
-            9 & LW \\ \hline
-            10 & JR\\ \hline
-            11 & JPC\\ \hline
-            12 & BRFL\\ \hline
-            13 & CALL\\ \hline
-            14 & RET\\ \hline
-            15 & HALT\\ \hline
+	    1 & Lógicas, Aritméticas, MUL, DIV e NOP\\ \hline
+            2 & ADDI \\ \hline
+            3 & ANDI \\ \hline
+            4 & SUBI \\ \hline
+            5 & ORI \\ \hline
+            6 & SW \\ \hline
+            7 & LW \\ \hline
+            8 & JR\\ \hline
+            9 & JPC\\ \hline
+            10 & BRFL\\ \hline
+            11 & CALL\\ \hline
+            12 & RET\\ \hline
+            13 & HALT\\ \hline
+            14 & CMP\\ \hline
 		\end{longtable}
 	\end{center}
 
@@ -75,23 +74,22 @@
 			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{11}} &
 			\multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{12}} &
             \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{13}} &
-            \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{14}} &
-            \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{15}} \\ \hline
+            \multicolumn{1}{c|}{\cellcolor[gray]{0.9}\textbf{14}} \\ \hline
 			\endhead
 			\hline
 			\endlastfoot
 			
-			\small regDst 			& 1   & 1   & 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   \\ \hline
-            \small memRead 			& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   \\ \hline
-            \small memToReg 		& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   \\ \hline
-            \small aluOp 			& \small 010 & \small 010 & \small 010 & \small 000 & \small 011 & \small 001 & \small 100 & \small 000 & \small 000 & \small 000 & \small 000 & \small 101 & \small 000 & \small 000 & \small 000 \\ \hline
-            \small memWrite 		& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0   \\ \hline
-            \small regWrite 		& 1   & 1   & 1   & 1   & 1   & 1   & 1   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   \\ \hline
-            \small data\_a\_s 		& 10  & 10  & 10  & 10  & 10  & 10  & 10  & 10  & 10  & 00  & 00  & 10  & 00  & 00  & 00  \\ \hline
-            \small data\_b\_s 		& 01  & 01  & 01  & 00  & 00  & 00  & 00  & 00  & 00  & 00  & 10  & 00  & 00  & 00  & 00  \\ \hline
-            \small pcSrc 			& \small 010 & \small 010 & \small 010 & \small 010   & \small 010 & \small 010 & \small 010 & \small 010 & \small 010 & \small 001 & \small 100 & \small 001 & \small 001 & \small 000 & \small 110 \\ \hline
-            \small pop 				& X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & 1   & X   \\ \hline
-            \small push 			& X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & 1   & X   & X   \\ \hline
+			\small regDst 			& 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0  &  \\ \hline
+            \small memRead 			& 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  &  \\ \hline
+            \small memToReg 		& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0  &  \\ \hline
+            \small aluOp 			& \small 010 & \small 000 & \small 011 & \small 001 & \small 100 & \small 000 & \small 000 & \small 000 & \small 000 & \small 101 & \small 000 & \small 000 & \small 000 & \\ \hline
+            \small memWrite 		& 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0  &  \\ \hline
+            \small regWrite 		& 1   & 1   & 1   & 1   & 1   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  &  \\ \hline
+            \small data\_a\_s 		& 10  & 10  & 10  & 10  & 10  & 10  & 10  & 00  & 00  & 10  & 00  & 00  & 00 & \\ \hline
+            \small data\_b\_s 		& 01  & 00  & 00  & 00  & 00  & 00  & 00  & 00  & 10  & 00  & 00  & 00  & 00 & \\ \hline
+            \small pcSrc 			& \small 010 & \small 010   & \small 010 & \small 010 & \small 010 & \small 010 & \small 010 & \small 001 & \small 100 & \small 001 & \small 001 & \small 000 & \small 110 & \\ \hline
+            \small pop 				& X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & 1   & X  &  \\ \hline
+            \small push 			& X   & X   & X   & X   & X   & X   & X   & X   & X   & X   & 1   & X   & X  &  \\ \hline
 
 		\end{longtable}
 	\end{center}
