@@ -30,20 +30,21 @@
 	& AND & AND lógico \\ \cline{2-3}
 	& OR & OR lógico  \\ \cline{2-3}
 	& NOT & NOT lógico \\ \cline{2-3}
-	& CMP & Compara dois valores \\ \hline 
+	& NOP & Não realiza operação \\ \hline
 	\multirow{4}{*}{I-type} & ADDI & Soma dois valores, um destes imediato. \\ \cline{2-3}
 	& SUBI & Subtrai dois valores, um destes imediato. \\ \cline{2-3}
 	& ANDI & AND lógico de dois valores, um destes imediato. \\ \cline{2-3}
 	& ORI & OR lógico de dois valores, um destes imediato. \\ \cline{2-3}
 	& LW & Leitura de um dado da memória de dados \\ \cline{2-3}
-	& SW & Armazena um dado na memória de dados \\ \hline
+	& SW & Armazena um dado na memória de dados \\ \cline {2-3}
+	& CMP & Compara dois valores \\ \cline {2-3}
+	& BRFL & Desvia para um destino se $RF==CST$ \\ \hline
 	\multirow{6}{*}{Jump} & JR & Desvia para um destino \\ \cline{2-3}
 	& JPC & Desvia para um destino relativo ao PC \\ \cline{2-3}
-	& BRFL & Desvia para um destino se $RF==CST$ \\ \cline{2-3}
 	& CALL & Chamada de sub-rotina \\ \cline{2-3}
 	& RET & Retorno de sub-rotina \\ \cline{2-3}
-	& HALT & Parada do sistema \\ \cline{2-3}
-	& NOP & Não realiza operação \\ \hline
+	& HALT & Parada do sistema \\ \hline
+
 \end{longtable}
 \end{center}
 
@@ -91,9 +92,7 @@
   	0x00 & AND & 0x24 \\ 
   	\hline 
   	0x00 & OR & 0x25 \\ 
-  	\hline 
-  	0x00 & CMP & 0x2A \\ 
-  	\hline 
+  	\hline  
   	0x00 & NOT & 0x27 \\ 
   	\hline
   	0x00 & NOP & 0x00 \\
@@ -101,7 +100,6 @@
   	\end{tabular} 
   \end{table} 
   	 	
-  	
 	 Um segundo tipo de formato de instrução é chamado de formato \textit{I}, utilizado pelas instruções imediatas e de transferência de dados.
 	\begin{figure}[H]
     	\centering
@@ -145,6 +143,8 @@
 	\hline
 	0x04 & BRFL \\ 
   	\hline 
+  	0x1D & CMP \\ 
+  	\hline
 	\end{tabular} 
 \end{table}	
 	

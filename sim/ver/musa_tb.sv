@@ -7,13 +7,12 @@
 // -----------------------------------------------------------------------------
 // PURPOSE: Testbench for MUSA Processor.
 // -----------------------------------------------------------------------------
-`include "../../fpga/rtl/dlx_de2_115_defines.v"
 module musa_tb;
 
-`include "../tb/udlx_monitor.sv"
-`include "../tb/defines.sv"
+`include "musa_monitor.sv"
+`include "defines.sv"
 
-udlx_monitor monitor_u0;
+musa_monitor monitor_u0;
 
 bit clk;
 
@@ -180,31 +179,31 @@ end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
-   dut_if.instr_rd_en = top_u0.dlx_processor_u0.instr_rd_en;
-   dut_if.instruction = top_u0.dlx_processor_u0.instruction;
-   dut_if.data_rd_en  = top_u0.dlx_processor_u0.data_rd_en;
-   dut_if.data_wr_en  = top_u0.dlx_processor_u0.data_wr_en;
-   dut_if.data_addr   = top_u0.dlx_processor_u0.data_addr;
-   dut_if.data_read   = top_u0.dlx_processor_u0.data_read;
-   dut_if.data_write  = top_u0.dlx_processor_u0.data_write;
+   dut_if.instr_rd_en = top_u0.musa_processor_u0.instr_rd_en;
+   dut_if.instruction = top_u0.musa_processor_u0.instruction;
+   dut_if.data_rd_en  = top_u0.musa_processor_u0.data_rd_en;
+   dut_if.data_wr_en  = top_u0.musa_processor_u0.data_wr_en;
+   dut_if.data_addr   = top_u0.musa_processor_u0.data_addr;
+   dut_if.data_read   = top_u0.musa_processor_u0.data_read;
+   dut_if.data_write  = top_u0.musa_processor_u0.data_write;
    dut_if.boot_mode   = top_u0.bootloader_u0.boot_mode;
-   dut_if.clk_dlx     = top_u0.dlx_processor_u0.clk;
+   dut_if.clk_dlx     = top_u0.musa_processor_u0.clk;
    dut_if.clk_env     = clk;
    for(int i=0;i<NUM_REGS;i++)begin
-    dut_if.regs[i]       = top_u0.dlx_processor_u0.instruction_decode_u0.register_bank_u0.reg_file[i];
+    dut_if.regs[i]       = top_u0.musa_processor_u0.instruction_decode_u0.register_bank_u0.reg_file[i];
    end
-   dut_if.reg_rd_en1_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_rd_en1_out;
-   dut_if.reg_rd_en2_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_rd_en2_out;
-   dut_if.reg_a_wr_en_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_a_wr_en_out;
-   dut_if.reg_b_wr_en_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_b_wr_en_out;
-   dut_if.imm_inst_out   = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.imm_inst_out;
-   dut_if.mem_data_rd_en_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.mem_data_rd_en_out;
-   dut_if.mem_data_wr_en_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.mem_data_wr_en_out;
-   dut_if.write_back_mux_sel_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.write_back_mux_sel_out;
-   dut_if.branch_inst_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.branch_inst_out;
-   dut_if.jump_inst_out   = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.jump_inst_out;
-   dut_if.jump_use_r_out  = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.jump_use_r_out;
-   dut_if.branch_use_r_out = top_u0.dlx_processor_u0.instruction_decode_u0.instruction_decoder_u0.branch_use_r_out;
+   dut_if.reg_rd_en1_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_rd_en1_out;
+   dut_if.reg_rd_en2_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_rd_en2_out;
+   dut_if.reg_a_wr_en_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_a_wr_en_out;
+   dut_if.reg_b_wr_en_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.reg_b_wr_en_out;
+   dut_if.imm_inst_out   = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.imm_inst_out;
+   dut_if.mem_data_rd_en_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.mem_data_rd_en_out;
+   dut_if.mem_data_wr_en_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.mem_data_wr_en_out;
+   dut_if.write_back_mux_sel_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.write_back_mux_sel_out;
+   dut_if.branch_inst_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.branch_inst_out;
+   dut_if.jump_inst_out   = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.jump_inst_out;
+   dut_if.jump_use_r_out  = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.jump_use_r_out;
+   dut_if.branch_use_r_out = top_u0.musa_processor_u0.instruction_decode_u0.instruction_decoder_u0.branch_use_r_out;
    dut_if.clk_dl = clk_dl;
    dut_if.dram_cke = dram_cke;
    dut_if.dram_cs_n = dram_cs_n;
@@ -219,7 +218,7 @@ end
 initial
 begin
    $display("--------------------------------------------------------");
-   $display("---------------- DLX PROCESSOR SIMULATION --------------");
+   $display("---------------- MUSA PROCESSOR SIMULATION --------------");
    $display("--------------------------------------------------------");
    $display("\n");
    monitor_u0 = new(dut_if);
