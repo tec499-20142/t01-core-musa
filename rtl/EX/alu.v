@@ -16,7 +16,6 @@ module alu(
 	parameter AND = 6'b100100;
 	parameter OR = 6'b100101;
 	parameter NOT = 6'b100111;
-	parameter CMP = 6'b101010;
 	
 	//Opcode das instrucoes 
 	parameter ADDI = 3'b000;
