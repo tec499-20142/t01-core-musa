@@ -46,10 +46,38 @@ module alu(
 		else begin 
 			case (alu_control)
 				ADDI: begin
-					result_checker = data_a + data_b;
+					result_checker = data_a + data_b;  
+					case ({result_checker[32], result_checker[31]}) 
+						2'b00: begin 
+							reg_flag = FLAG_NOT_ACTIVED;
+						end 
+						2'b01: begin 
+							reg_flag = FLAG_OVERFLOW;
+						end 
+						2'b10: begin
+							reg_flag = FLAG_UNDERFLOW;
+						end 
+						2'b11: begin
+							reg_flag = FLAG_OVERFLOW;
+						end
+					endcase			
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
+					case ({result_checker[32], result_checker[31]}) 
+						2'b00: begin 
+							reg_flag = FLAG_NOT_ACTIVED;
+						end 
+						2'b01: begin 
+							reg_flag = FLAG_OVERFLOW;
+						end 
+						2'b10: begin
+							reg_flag = FLAG_UNDERFLOW;
+						end 
+						2'b11: begin
+							reg_flag = FLAG_OVERFLOW;
+						end
+					endcase	
 				end 
 				TYPE_R: begin 
 					case(func)
@@ -74,16 +102,7 @@ module alu(
 						NOT: begin
 							result = ~data_b;
 						end 
-						CMP: begin 
-							if(data_a == data_b) begin 
-								reg_flag = FLAG_EQUAL;
-							end 
-							else begin
-								if(data_a > data_b) begin 
-									reg_flag = FLAG_ABOVE;
-								end 
-							end 
-						end
+						
 					endcase
 					//verificação do overflow e underflow 
 					if(func == MUL || func == DIV) begin 
@@ -118,6 +137,16 @@ module alu(
 							end
 						endcase					
 					end 							
+				end
+				CMP: begin 
+					if(data_a == data_b) begin 
+						reg_flag = FLAG_EQUAL;
+					end 
+					else begin
+						if(data_a > data_b) begin 
+							reg_flag = FLAG_ABOVE;
+						end 
+					end 
 				end
 				ANDI: begin 
 					result = data_a & data_b;
