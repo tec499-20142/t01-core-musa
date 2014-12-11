@@ -5,8 +5,8 @@
 //pc: Program Counter
 //registers[]: represent register bank
 //mem[]: Represent the data memory
-int  pc=0, registers[32], mem[1000], registerflag[1],stack[8];
-
+int  pc=0, registers[32], mem[1000], registerflag[1], stack[8], *sp;
+sp=stack;
 
 
 //Fuction to identify the instruction type:
@@ -69,9 +69,6 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 		registers[rd] = registers[rs1] | imm;
 		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
-    //brfl
-	//else if(instruction_opcode == 000100){			
-	//}
 }
 
 //Function responsible to reproduce the results of the r-type instructions
@@ -112,11 +109,6 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(function == 000001){
 		registers[rd] = registers[rs1] / registers[rs2];
 	}
-	//cmp - RD = RS1 cmp RS2
-	//else if(function == 101010){
-	//	registers[rd] = registers[rs1] - registers[rs2];
-	//}
-	//not - RD = ~RS2
 	else if(function == 100111){
 		registers[rd] = ~registers[rs2];
 	}
