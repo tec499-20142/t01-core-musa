@@ -29,7 +29,8 @@ module ex_stage(
 	.data_2(data_a),
 	.data_3(0),  
 	.sel(data_a_select), 
-	.data(data_a_temp));
+	.data(data_a_temp)
+	);
 	
 	
 	mux m_data_b(

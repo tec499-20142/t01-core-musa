@@ -53,7 +53,7 @@ StageTwo BLOCO2(
 .func(func)
 );
 
-ex BLOCO3 (
+ex_stage BLOCO3 (
 .data_a(readData1), 
 .data_b(readData2),
 .reset (rst),

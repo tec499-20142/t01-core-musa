@@ -30,16 +30,12 @@ reg [3:0] stackLevel;
 reg [31:0] regStack [7:0];
 output reg stackOverflow;
 
-initial begin 
-  stackLevel = 4'b0;
-  stackOverflow = 1'b0;
-end
 always @(posedge clock)
 begin
 
   if (reset == 1) begin
-    stackLevel = 4'b0;
-    stackOverflow = 1'b0;
+    stackLevel <= 4'b0;
+    stackOverflow <= 1'b0;
   end
   else if (readStack == 1) begin 
       case (stackLevel)
