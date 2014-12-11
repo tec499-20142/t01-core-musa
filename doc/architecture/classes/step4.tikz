@@ -2,14 +2,12 @@
 	\begin{tikzpicture}
 	\umlclass[x=0,y=0]{Acess Memory}{
 	+ clock : input bit \\
-	+ reset : input bit \\
-	+ zero : input bit \\ 
-	+ address : input bit \\ 
-	+ writeData : input bit[13] \\ 
+	+ reset : input bit \\ 
+	+ address : input bit[11] \\ 
 	+ memRead : input bit \\ 
 	+ memWrite : input bit\\ 
-	- writeBack : output bit[14]\\ 
-	- writeToRegister : output bit[14]}
-	{}
+	- writeData : input bit[32] \\ 
+	- writeBack : output bit[32]\\}
+	{\underline{+<<comb>> accessMem()}}
 	\end{tikzpicture}
 \end{center}
