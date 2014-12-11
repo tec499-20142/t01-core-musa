@@ -104,7 +104,28 @@ module alu(
 						
 					endcase
 					//verificação do overflow e underflow 
-					if(func == MUL || func == DIV) begin 
+					if(func == DIV) begin 
+						if(data_b == 0) begin 
+							reg_flag = FLAG_EXCEPTION;					
+						end 
+						else begin 						
+							case ({result_checker[64], result_checker[63]}) 
+								2'b00: begin 
+									reg_flag = FLAG_NOT_ACTIVED;
+								end 
+								2'b01: begin 
+									reg_flag = FLAG_OVERFLOW;
+								end 
+								2'b10: begin
+									reg_flag = FLAG_UNDERFLOW;
+								end 
+								2'b11: begin
+								reg_flag = FLAG_OVERFLOW;
+								end 
+							endcase
+						end 
+					end 
+					else if(func == MUL) begin
 						case ({result_checker[64], result_checker[63]}) 
 							2'b00: begin 
 								reg_flag = FLAG_NOT_ACTIVED;
@@ -120,7 +141,7 @@ module alu(
 							end 
 						endcase
 					end 
-					else begin 
+					else begin  
 						case ({result_checker[32], result_checker[31]}) 
 							2'b00: begin 
 								reg_flag = FLAG_NOT_ACTIVED;
@@ -135,7 +156,8 @@ module alu(
 								reg_flag = FLAG_OVERFLOW;
 							end
 						endcase					
-					end 							
+					end 			
+					
 				end
 				CMP: begin 
 					if(data_a == data_b) begin 
