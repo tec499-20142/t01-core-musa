@@ -2,10 +2,8 @@ module StageTwo(
 	instruction, clk, rst,  
 	pcSrc, memRead, memWrite, push_out, pop_out, PCWrite, 
 	aluOp,
-	word,
-	AluOut,
-	out_jump, mem_Data,
-	readData1, readData2, outputWord, jump_jpc, data_a_select, data_b_select);
+	AluOut, mem_Data,
+	readData1, readData2, outputWord, jump_jpc, data_a_select, data_b_select, func);
 
 input [31:0] instruction;
 input clk, rst;
@@ -15,14 +13,15 @@ wire pop, push;
 output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
 output  [1:0] aluOp;
-output  [15:0] word;
 output [31:0] jump_jpc;
 output reg [31:0] readData1, readData2, outputWord;
-wire [31:0] read_data_1_rf, read_data_2_rf, word_sign;
-output [25:0] out_jump = instruction[25:0];
+output wire [5:0] func;
+wire [31:0] read_data_1_rf, read_data_2_rf;
+wire [25:0] out_jump = instruction[25:0];
 wire [5:0] opcode = instruction[31:26]; 
 wire [4:0] ReadRegister1 = instruction[25:21];
 wire [4:0] ReadRegister2 = instruction[20:16];
+wire [15:0] word = instruction[15:0];
 wire memToReg;
 wire regDst;
 wire _regWrite;
@@ -32,6 +31,7 @@ input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
 wire aux_push_pop;
 
+assign func = instruction[5:0];
 assign pop_out = aux_push_pop & pop;
 assign push_out = aux_push_pop & push;
 
