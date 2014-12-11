@@ -5,7 +5,7 @@ module StageTwo(
 	word,
 	AluOut,
 	out_jump, mem_Data,
-	readData1, readData2, outputWord, data_a_select, data_b_select);
+	readData1, readData2, outputWord, jump_jpc, data_a_select, data_b_select);
 
 input [31:0] instruction;
 input clk, rst;
@@ -16,6 +16,7 @@ output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
 output  [1:0] aluOp;
 output  [15:0] word;
+output [31:0] jump_jpc;
 output reg [31:0] readData1, readData2, outputWord;
 wire [31:0] read_data_1_rf, read_data_2_rf, word_sign;
 output [25:0] out_jump = instruction[25:0];
@@ -86,6 +87,13 @@ RegisterFile BLOCO1 (
   .PCWrite (PCWrite),
   .aluOp (aluOp)
   );
+  
+  shift_two BLOCO4 (
+  .in (out_jump),
+  .out(jump_jpc)
+  );
+  
+  
   
   sign_extend BLOCO3 (
   .inst (word),
