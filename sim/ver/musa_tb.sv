@@ -179,7 +179,23 @@ end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
-   dut_if.instr_rd_en = top_u0.musa_processor_u0.instr_rd_en;
+   dut_if.reg_dst = top_u0.musa_processor_u0.regDst;
+   dut_if.mem_read = top_u0.musa_processor_u0.memRead;
+   dut_if.mem_to_reg = top_u0.musa_processor_u0.memToReg;
+   dut_if.mem_write = top_u0.musa_processor_u0.memWrite;
+   dut_if.reg_write = top_u0.musa_processor_u0.regWrite;
+   dut_if.data_a_s = top_u0.musa_processor_u0.data_a_s;
+   dut_if.data_b_s = top_u0.musa_processor_u0.data_b_s;
+   dut_if.pc_src = top_u0.musa_processor_u0.pcSrc;
+   dut_if.pop = top_u0.musa_processor_u0.pop;
+   dut_if.push = top_u0.musa_processor_u0.push;
+   dut_if.clk_dlx     = top_u0.musa_processor_u0.clk;
+   dut_if.clk_dl = clk_dl;
+   for(int i=0;i<NUM_REGS;i++)begin
+    dut_if.regs[i]= top_u0.musa_processor_u0.instruction_decode_u0.register_bank_u0.reg_file[i];
+   end
+   
+   /*dut_if.instr_rd_en = top_u0.musa_processor_u0.instr_rd_en;
    dut_if.instruction = top_u0.musa_processor_u0.instruction;
    dut_if.data_rd_en  = top_u0.musa_processor_u0.data_rd_en;
    dut_if.data_wr_en  = top_u0.musa_processor_u0.data_wr_en;
@@ -210,7 +226,7 @@ always@(*)begin
    dut_if.dram_ras_n = dram_ras_n;
    dut_if.dram_cas_n = dram_cas_n;
    dut_if.dram_we_n = dram_we_n;
-   dut_if.dram_addr = dram_addr;
+   dut_if.dram_addr = dram_addr;*/
 end
 //--------------------------------------------------------------------------------------//
 
