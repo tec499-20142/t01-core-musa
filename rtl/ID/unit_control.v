@@ -1,8 +1,8 @@
-module unit_Control(
+module unit_control(
 	opcode, 
 clk, reset, 
 pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite, regDst, PCWrite, 
-aluOp, stage);
+aluOp, stage, aux_push_pop);
 
 input [5:0] opcode;
 input clk;
@@ -12,6 +12,7 @@ output reg [2:0] stage = 3'b000;
 output reg [2:0] pcSrc;
 output reg [1:0] data_a_select, data_b_select; 
 output reg [2:0] aluOp;
+output reg aux_push_pop;
 
 
 parameter nop = 6'b000000;
@@ -48,6 +49,8 @@ begin
 		      pcSrc = 3'b010;
 		      data_a_select = 2'b10;
 		      data_b_select = 2'b01;
+				push = 1'b0;
+				pop = 1'b0;
   		  end
 		MUL :
 		begin
@@ -60,6 +63,8 @@ begin
 		      pcSrc = 3'b010;
 		      data_a_select = 2'b10;
 		      data_b_select = 2'b01;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 	  
 	  DIV :
@@ -73,6 +78,8 @@ begin
 		      pcSrc = 3'b010;
 		      data_a_select = 2'b10;
 		      data_b_select = 2'b01;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 	 ADDI :
@@ -85,6 +92,8 @@ begin
 		      aluOp = 3'b000;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 		ANDI :
@@ -98,6 +107,8 @@ begin
 		      aluOp = 3'b011;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 	SUBI :
 		begin
@@ -110,6 +121,8 @@ begin
 		      aluOp = 3'b001;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 	 ORI :
@@ -123,6 +136,8 @@ begin
 		      aluOp = 3'b100;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 	 LW :
@@ -136,6 +151,8 @@ begin
 	         aluOp = 3'b000;
           	memWrite = 1'b0;
 	         regWrite = 1'b1;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 	 SW :
 		begin
@@ -148,6 +165,8 @@ begin
 	         memToReg = 1'b0;
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
 		      
 		      
 		end
@@ -163,6 +182,8 @@ begin
 	         memToReg = 1'b0;
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 		JPC :
@@ -176,6 +197,8 @@ begin
 	         memToReg = 1'b0;
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 		BRFL :
@@ -189,6 +212,8 @@ begin
 	         memToReg = 1'b0;
 	         aluOp = 3'b101;
 	         regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		
 		CALL :
@@ -203,6 +228,7 @@ begin
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
 				push = 1'b1;
+				pop = 1'b0;
 		end
 		
 		
@@ -218,6 +244,7 @@ begin
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
 				pop = 1'b1;
+				push = 1'b0;
 		end
 			
 	 HALT :
@@ -231,6 +258,8 @@ begin
 	         memToReg = 1'b0;
 	         aluOp = 3'b000;
 	         regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
 		end
 		 default :
 		 begin
@@ -241,17 +270,19 @@ begin
   endcase
 end
 
-always@ (posedge clk)
-begin
-	if(reset)begin
-		stage <= 0;
-	end
-   stage <= stage + 1;
-	if(stage == 3'b100)
-	begin
-		stage <= 3'b000;
-		PCWrite <= 1;
-	end
-	else PCWrite <= 0;
+  always @(posedge clk) begin
+    stage <= stage + 3'b001;
+		if(stage == 3'b100)begin
+			stage <= 3'b000;
+			PCWrite <= 1;
+		end
+		else if(stage == 3'b001)begin
+		  PCWrite <= 0;
+		  aux_push_pop <= 1;
+		end else if(stage == 3'b011)begin
+		  PCWrite <= 0;
+		  aux_push_pop <= 0;
+		  end else PCWrite <= 0;
+		
 	end
 endmodule

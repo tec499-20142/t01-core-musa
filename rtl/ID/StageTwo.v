@@ -1,16 +1,18 @@
-module stagetwo(
+module StageTwo(
 	instruction, clk, rst,  
-	pcSrc, memRead, memWrite, aluSrc, push, pop, PCWrite, 
+	pcSrc, memRead, memWrite, push_out, pop_out, PCWrite, 
 	aluOp,
 	word,
 	AluOut,
 	out_jump, mem_Data,
-	readData1, readData2, outputWord);
+	readData1, readData2, outputWord, data_a_select, data_b_select);
 
 input [31:0] instruction;
 input clk, rst;
 input [31:0] AluOut;
-output  push, pop, memRead, memWrite, aluSrc, PCWrite;
+output memRead, memWrite, PCWrite ,pop_out, push_out;
+wire pop, push;
+output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
 output  [1:0] aluOp;
 output  [15:0] word;
@@ -20,15 +22,17 @@ output [25:0] out_jump = instruction[25:0];
 wire [5:0] opcode = instruction[31:26]; 
 wire [4:0] ReadRegister1 = instruction[25:21];
 wire [4:0] ReadRegister2 = instruction[20:16];
-wire MemToReg;
+wire memToReg;
 wire regDst;
 wire _regWrite;
 reg [31:0] out_Mux_Write_Data;
 reg [4:0] out_destination;
 input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
+wire aux_push_pop;
 
-
+assign pop_out = aux_push_pop & pop;
+assign push_out = aux_push_pop & push;
 
 always@ (posedge clk)
 begin
@@ -39,7 +43,7 @@ end
 
 always@ (*)
 begin
-	if(MemToReg)
+	if(memToReg)
 		out_Mux_Write_Data = mem_Data;
 	else
 		out_Mux_Write_Data = AluOut;
@@ -65,7 +69,7 @@ RegisterFile BLOCO1 (
   .RegWrite (_regWrite)
   );
   
- unit_Control BLOCO2 (
+ unit_control BLOCO2 (
   .opcode (opcode),
   .clk (clk),
   .pcSrc (pcSrc),
@@ -74,6 +78,9 @@ RegisterFile BLOCO1 (
   .memWrite(memWrite),
   .memToReg(memToReg),
   .regWrite (_regWrite),
+  .aux_push_pop (aux_push_pop),
+  .data_a_select(data_a_select),
+  .data_b_select(data_b_select),
   .pop (pop),
   .regDst (regDst),
   .PCWrite (PCWrite),
