@@ -1,4 +1,4 @@
-module dataPathTest(clk, rst, stage, _npc1);
+module dataPathTest(clk, rst, stage, _npc1, aux_push_pop);
 
 
 input clk;
@@ -11,6 +11,7 @@ wire [31:0] _npc5;
 wire _pcWrite;
 output wire [2:0] stage;
 wire [31:0] pc1;
+output wire aux_push_pop;
 
 assign pc1 = _npc1+1;
 
@@ -49,7 +50,8 @@ testStage5 BLOCO5 (
  testProp BLOCO6 (
 .clk(clk),
 .pcWrite(_pcWrite),
-.stage(stage)
+.stage(stage),
+.aux_push_pop(aux_push_pop)
  );
 
 endmodule

@@ -1,5 +1,5 @@
 \section{Codificação das instruções}
-	Todas as instruções contém 32 bits. Exitem três formatos de instruções: R (R-type), I (I-type) e Jump. Neste documento os OPCODES são representados em seus respectivos códigos hexadecimais.\\
+	Todas as instruções contém 32 bits. Exitem três formatos de instruções: \textit{R} (\textit{R-type}), \textit{I} (\textit{I-type)} e \textit{Jump}. Neste documento os \textit{OPCODES} são representados em seus respectivos códigos hexadecimais.\\
 	
   \FloatBarrier
     \begin{center}
@@ -29,9 +29,9 @@
 	& DIV & Divide dois valores \\ \cline{2-3}
 	& AND & AND lógico \\ \cline{2-3}
 	& OR & OR lógico  \\ \cline{2-3}
-	& CMP & Compara dois valores \\ \cline{2-3}
-	& NOT & NOT lógico \\ \hline 
-	\multirow{4}{*}{I-type} & ADDI & Soma dois valores,um destes imediato. \\ \cline{2-3}
+	& NOT & NOT lógico \\ \cline{2-3}
+	& CMP & Compara dois valores \\ \hline 
+	\multirow{4}{*}{I-type} & ADDI & Soma dois valores, um destes imediato. \\ \cline{2-3}
 	& SUBI & Subtrai dois valores, um destes imediato. \\ \cline{2-3}
 	& ANDI & AND lógico de dois valores, um destes imediato. \\ \cline{2-3}
 	& ORI & OR lógico de dois valores, um destes imediato. \\ \cline{2-3}
@@ -39,15 +39,15 @@
 	& SW & Armazena um dado na memória de dados \\ \hline
 	\multirow{6}{*}{Jump} & JR & Desvia para um destino \\ \cline{2-3}
 	& JPC & Desvia para um destino relativo ao PC \\ \cline{2-3}
-	& BRFL & Desvia para um destino se RF==CST \\ \cline{2-3}
-	& CALL & Chamada de subrotina \\ \cline{2-3}
-	& RET & Retorno de Subrotina \\ \cline{2-3}
+	& BRFL & Desvia para um destino se $RF==CST$ \\ \cline{2-3}
+	& CALL & Chamada de sub-rotina \\ \cline{2-3}
+	& RET & Retorno de sub-rotina \\ \cline{2-3}
 	& HALT & Parada do sistema \\ \cline{2-3}
-	& NOP & Refresh no módulo \\ \hline
+	& NOP & Não realiza operação \\ \hline
 \end{longtable}
 \end{center}
 
-	O formato R está relacionado as instruções lógicas e aritméticas.
+	O formato \textit{R} está relacionado as instruções lógicas e aritméticas.
 	\begin{figure}[H]
     	\centering
     	\includegraphics{r-format}
@@ -59,17 +59,17 @@
 	\hline 
 	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
 	\hline 
-	OPCODE & Código da operação básica da instrução. \\ 
+	\textit{OPCODE} & Código da operação básica da instrução. \\ 
 	\hline 
-	RS & Registrador do primeiro operando de origem. \\ 
+	\textit{RS} & Registrador do primeiro operando de origem. \\ 
 	\hline 
-	RT & Registrador do segundo operando de origem. \\ 
+	\textit{RT} & Registrador do segundo operando de origem. \\ 
 	\hline 
-	RD & Registrador de destino. \\ 
+	\textit{RD} & Registrador de destino. \\ 
 	\hline 
-	DON'T CARE & Não importa. \\ 
+	\textit{DON'T CARE} & Não importa. \\ 
 	\hline 
-	FUNCT & Variante específica da operação. \\ 
+	\textit{FUNCT} & Variante específica da operação. \\ 
 	\hline 
 	\end{tabular} 
 	\end{table}	
@@ -102,7 +102,7 @@
   \end{table} 
   	 	
   	
-	 Um segundo tipo de formato de instrução é chamado de formato I, utilizado pelas instruções imediatas e de transferência de dados.
+	 Um segundo tipo de formato de instrução é chamado de formato \textit{I}, utilizado pelas instruções imediatas e de transferência de dados.
 	\begin{figure}[H]
     	\centering
     	\includegraphics{i-format}
@@ -114,13 +114,13 @@
 	\hline 
 	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
 	\hline 
-	OPCODE & Código da operação básica da instrução. \\ 
+	\textit{OPCODE} & Código da operação básica da instrução. \\ 
 	\hline 
-	RS & Registrador do primeiro operando de origem. \\ 
+	\textit{RS} & Registrador do primeiro operando de origem. \\ 
 	\hline 
-	RT & Registrador de destino. \\ 
+	\textit{RT} & Registrador de destino. \\ 
 	\hline 
-	IMMEDIATE & Constante numérica. \\ 
+	\textit{IMMEDIATE} & Constante numérica. \\ 
 	\hline 
 	\end{tabular} 
 	\end{table}
@@ -148,7 +148,8 @@
 	\end{tabular} 
 \end{table}	
 	
- O formato Jump servem para as instruções de desvio incondicional.  	
+ O formato \textit{Jump} serve para as instruções de desvio condicional e incondicional. 
+ 	
    	\begin{figure}[H]
     	\centering
     	\includegraphics{jump}
@@ -161,9 +162,9 @@
 	\hline 
 	\cellcolor[gray]{0.9}\textbf{CAMPO} & \cellcolor[gray]{0.9}\textbf{DESCRIÇÃO} \\ 
 	\hline 
-	OPCODE & Código da operação básica da instrução. \\ 
+	\textit{OPCODE} & Código da operação básica da instrução. \\ 
 	\hline 
-	IMMEDIATE & Constante numérica. \\ 
+	\textit{IMMEDIATE} & Constante numérica. \\ 
 	\hline 
 	\end{tabular} 
 	\end{table}
