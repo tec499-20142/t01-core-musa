@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 class musa_data_item;
 
-    `include "../tb/defines.sv"
+    `include "defines.sv"
 
     logic [DATA_WIDTH-1:0] data_read [0:MAX_LENGTH-1];
     logic [DATA_WIDTH-1:0] data_write [0:MAX_LENGTH-1];

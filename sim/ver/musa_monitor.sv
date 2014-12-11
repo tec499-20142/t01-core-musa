@@ -10,11 +10,11 @@
 
 class musa_monitor;
 
-  `include "../tb/udlx_data_item.sv"
-  `include "../../rtl/common/opcodes.v"
-  `include "../tb/defines.sv"
+  `include "musa_data_item.sv"
+  `include "opcodes.sv"
+  `include "defines.sv"
 
-  udlx_data_item data_collected = new;
+  musa_data_item data_collected = new;
   virtual interface dut_if dut_if;
 
   int cnt_stop;
@@ -48,7 +48,7 @@ class musa_monitor;
     fork
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
-        @(posedge dut_if.clk_dlx);
+        @(posedge dut_if.clk_musa);
         if(dut_if.data_wr_en)
            data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
@@ -59,13 +59,13 @@ class musa_monitor;
     fork
       forever begin
         //$display("-------------- READ INSTRUCTION MONITOR ----------------");
-        @(posedge dut_if.clk_dlx);
+        @(posedge dut_if.clk_musa);
         //$display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
         if(instruction == 'h00) begin
           if(cnt_stop == 5) begin
             cnt_stop = 0;
-            repeat(15)@(negedge dut_if.clk_dlx);
+            repeat(15)@(negedge dut_if.clk_musa);
             check();
           end
           else begin
@@ -89,12 +89,12 @@ class musa_monitor;
       int error_reg;
       int error_mem;
 
-      $sformat (compile_c, "gcc ../model/main.c -o udlx_golden_model.o");
+      $sformat (compile_c, "gcc ../model/mainBin.c -o udlx_golden_model.o");
       $system(compile_c);
       //$sformat (execute_c, "./udlx_golden_model.o ../tests/DLX_T1_1.hex");
       $sformat (execute_c, "./udlx_golden_model.o %s ",DLX_TEST);
       $system(execute_c);
-      $display("DISPLAYYYY: %s",DLX_TEST);
+      $display("DISPLAY: %s",DLX_TEST);
 
       f_path = "./registers.hex";
       fp = $fopen( f_path, "r");
