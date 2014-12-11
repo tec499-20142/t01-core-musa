@@ -10,11 +10,16 @@ output  [2:0] flag);
  
  initial begin
   reset = 0;
-  data_a = 4294967295; 
-  data_b = 0; 
-  alu_control = 2;
-  func = 1;
+  data_a = 20; 
+  data_b = 20; 
+  alu_control = 6;
+  func = 32;
   reset = 1;
+  data_a = 1; 
+  data_b = 1; 
+  alu_control = 5;
+  func = 0; 
+  reset = 1;  
  end  
  
   alu alu_tb(

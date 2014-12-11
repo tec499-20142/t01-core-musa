@@ -37,7 +37,6 @@ module alu(
 	reg [31:0] reg_flag;   //registrador de flag
 	reg [64:0] result_checker; 
 
-//ainda falta colocar algumas das funçoes aqui na alu. 
 	always @(alu_control, func, data_a, data_b, reset) 
 		if(~reset) begin
 			result = 0;
@@ -157,7 +156,6 @@ module alu(
 							end
 						endcase					
 					end 			
-					
 				end
 				CMP: begin 
 					if(data_a == data_b) begin 
@@ -177,7 +175,7 @@ module alu(
 				end 
 				BRFL: begin 
 					result = data_a;
-					if(reg_flag == data_b) begin 	
+					if(reg_flag == data_b[2:0]) begin 	
 						branch = 0;
 					end 
 					else begin
