@@ -1,0 +1,100 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Anderson Queiroz\Desktop\Simulador\ModelSim\work
+vcodigo
+!i10b 1
+!s100 d0Yl`Al<_ch1lbjdoNT]50
+Il0@kIDH8G]_<l5m8B2kj02
+Z1 Vd^nj71cDW;aH0H_;T@imM2
+Z2 dC:\Users\Anderson Queiroz\Desktop\ModelSim
+w1418314621
+Z3 8C:/Users/Anderson Queiroz/Desktop/ModelSim/codigo.v
+Z4 FC:/Users/Anderson Queiroz/Desktop/ModelSim/codigo.v
+L0 3
+Z5 OV;L;10.1e;51
+r1
+!s85 0
+31
+!s108 1418314621.579000
+!s107 C:/Users/Anderson Queiroz/Desktop/ModelSim/codigo.v|
+Z6 !s90 -reportprogress|300|-work|work|C:/Users/Anderson Queiroz/Desktop/ModelSim/codigo.v|
+!s101 -O0
+Z7 o-work work -O0
+vdut_tb
+Z8 I34;:ji_I14<BFiClaLgf]0
+Z9 VZz<?aXeZ5IY@4^lM<[D0A3
+R2
+Z10 w1418314617
+Z11 8C:/Users/Anderson Queiroz/Desktop/ModelSim/dut_tb.v
+Z12 FC:/Users/Anderson Queiroz/Desktop/ModelSim/dut_tb.v
+L0 3
+R5
+r1
+31
+Z13 !s90 -reportprogress|300|-work|work|C:/Users/Anderson Queiroz/Desktop/ModelSim/dut_tb.v|
+R7
+!i10b 1
+Z14 !s100 ZXT^AOdn@60G4TMYAJ2LL3
+!s85 0
+Z15 !s108 1418314620.035000
+Z16 !s107 C:/Users/Anderson Queiroz/Desktop/ModelSim/dut_tb.v|
+!s101 -O0
+vmodelo_dut
+Z17 !s100 DE38E8l;YkaWQW57Gbgz_1
+Z18 ITkBdB0[^j=Y^_=?OTL>SH3
+Z19 V5]7jmS<LM0NE^ECMoYzDH1
+R2
+Z20 w1418313963
+R3
+R4
+L0 3
+R5
+r1
+31
+R6
+R7
+Z21 !s108 1418314030.435000
+Z22 !s107 C:/Users/Anderson Queiroz/Desktop/ModelSim/codigo.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vmodelo_referencia
+Z23 !s100 j;CS[jo`ZH]U4[iB<@RPV0
+Z24 IeC@KcIhF>3]jKA25h?:;>0
+Z25 V^bONd4z8ULL_OCP<zo>W_2
+R2
+Z26 w1418313919
+Z27 8C:/Users/Anderson Queiroz/Desktop/ModelSim/modelo_referencia.v
+Z28 FC:/Users/Anderson Queiroz/Desktop/ModelSim/modelo_referencia.v
+L0 3
+R5
+r1
+31
+Z29 !s90 -reportprogress|300|-work|work|C:/Users/Anderson Queiroz/Desktop/ModelSim/modelo_referencia.v|
+R7
+Z30 !s108 1418314619.801000
+Z31 !s107 C:/Users/Anderson Queiroz/Desktop/ModelSim/modelo_referencia.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vmodelo_tb
+Z32 !s100 RN7jEb>bmNjN4b@zI6]d83
+Z33 Ii^EC`VGmXaeB`A1^QQ?@c2
+Z34 VPi6_3Zg@75V1:GSf5NfFP1
+R2
+Z35 w1418313946
+R11
+R12
+L0 3
+R5
+r1
+31
+R13
+R7
+Z36 !s108 1418314030.201000
+R16
+!i10b 1
+!s85 0
+!s101 -O0
