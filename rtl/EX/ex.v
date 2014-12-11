@@ -13,14 +13,14 @@ module ex_stage(
 	input[2:0] pc_select,
 	input[2:0] alu_control,
 	input[5:0] func,
-	output reg[31:0] result, 
-	output reg[2:0] flag,
-	output reg[31:0] next_pc 
+	output [31:0] result, 
+	output [2:0] flag,
+	output [31:0] next_pc 
 	); 
 
-	reg data_a_temp;
-	reg data_b_temp;
-	reg branch_temp;
+	wire data_a_temp;
+	wire data_b_temp;
+	wire branch_temp;
 	wire branch;	
 	
 	mux m_data_a(

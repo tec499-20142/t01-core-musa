@@ -30,6 +30,7 @@ reg [4:0] out_destination;
 input [31:0] mem_Data;
 wire [4:0] destination = instruction[15:11];
 wire aux_push_pop;
+wire [31:0] word_sign;
 
 assign func = instruction[5:0];
 assign pop_out = aux_push_pop & pop;
