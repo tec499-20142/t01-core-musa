@@ -22,16 +22,16 @@ parameter DIV = 6'b000101;
 parameter CMP= 6'b000000;		
 
 parameter ADDI = 6'b001000;		
-parameter SUBI= 6'b001001; //InstruÃ§Ã£o: addiu		
+parameter SUBI= 6'b001001; //InstruÃƒÂ§ÃƒÂ£o: addiu		
 parameter ANDI = 6'b001100;		
 parameter ORI	= 6'b001101;
 parameter LW	= 6'b100011;
 parameter SW	= 6'b101011;
 
-parameter JR = 6'b010001;            //InstruÃ§Ã£o: bclf
-parameter JPC	=	6'b000010;			  	  //InstruÃ§Ã£o: j
-parameter BRFL	=	6'b000100;				    //InstruÃ§Ã£o: beq
-parameter CALL		=      6'b000011;				    //InstruÃ§Ã£o: jal
+parameter JR = 6'b010001;            //InstruÃƒÂ§ÃƒÂ£o: bclf
+parameter JPC	=	6'b000010;			  	  //InstruÃƒÂ§ÃƒÂ£o: j
+parameter BRFL	=	6'b000100;				    //InstruÃƒÂ§ÃƒÂ£o: beq
+parameter CALL		=      6'b000011;				    //InstruÃƒÂ§ÃƒÂ£o: jal
 parameter RET		=      6'b000001;
 parameter HALT = 6'b111111; //FALTA O OPCODE DO HALT
 
