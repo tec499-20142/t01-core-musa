@@ -2,7 +2,6 @@ module dataPath(clk, rst);
 
 input clk, rst;
 wire [31:0] instruction;
-wire [31:0] AluOut;
 wire  push, pop, memRead, memWrite, aluSrc;
 wire [2:0] pcSrc;
 wire  [2:0] aluOp;
@@ -43,7 +42,7 @@ StageTwo BLOCO2(
 .PCWrite(_pcWrite), 
 .aluOp(aluOp),
 .outputWord(word_sign),
-.AluOut(AluOut),
+.AluOut(result),
 .mem_Data(_mem_Data),
 .readData1(readData1),
 .readData2(readData2), 
@@ -56,6 +55,7 @@ StageTwo BLOCO2(
 ex_stage BLOCO3 (
 .data_a(readData1), 
 .data_b(readData2),
+.clk(clk),
 .reset (rst),
 .pc(_pcOutput), 
 .pc_1(pc_1),
