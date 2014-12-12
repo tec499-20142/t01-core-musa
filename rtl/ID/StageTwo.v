@@ -12,7 +12,7 @@ output memRead, memWrite, PCWrite ,pop_out, push_out;
 wire pop, push;
 output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
-output  [1:0] aluOp;
+output  [2:0] aluOp;
 output [31:0] jump_jpc;
 output reg [31:0] readData1, readData2;
 output reg [31:0] outputWord = 8'h00000000;

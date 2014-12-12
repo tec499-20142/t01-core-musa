@@ -5,7 +5,7 @@ wire [31:0] instruction;
 wire [31:0] AluOut;
 wire  push, pop, memRead, memWrite, aluSrc;
 wire [2:0] pcSrc;
-wire  [1:0] aluOp;
+wire  [2:0] aluOp;
 wire  [31:0] word_sign;
 wire [31:0] result; 
 wire [31:0] readData1, readData2;
