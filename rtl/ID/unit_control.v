@@ -92,8 +92,8 @@ begin
 		      aluOp = 3'b000;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
-				push = 1'b0;
-				pop = 1'b0;
+		      push = 1'b0;
+		      pop = 1'b0;
 		end
 		
 		ANDI :

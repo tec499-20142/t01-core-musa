@@ -19,7 +19,7 @@ output  [2:0] flag);
   data_b = 1; 
   alu_control = 5;
   func = 0; 
-  reset = 1;  
+  reset = 1; 
  end  
  
   alu alu_tb(
