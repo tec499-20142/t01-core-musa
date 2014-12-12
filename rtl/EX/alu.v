@@ -174,7 +174,7 @@ module alu(
 					result = data_a | data_b;
 				end 
 				BRFL: begin 
-					result = data_a;
+					result_checker[31:0] =  data_a;
 					if(reg_flag == data_b[2:0]) begin 	
 						branch = 0;
 					end 

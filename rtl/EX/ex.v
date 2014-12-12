@@ -18,10 +18,10 @@ module ex_stage(
 	output [31:0] next_pc 
 	); 
 
-	wire data_a_temp;
-	wire data_b_temp;
-	wire branch_temp;
-	wire branch;	
+	wire [31:0] data_a_temp;
+	wire [31:0] data_b_temp;
+	wire [0:0] branch_temp;
+	wire [0:0] branch;	
 	
 	mux m_data_a(
 	.data_0(pc),
