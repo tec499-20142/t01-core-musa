@@ -31,9 +31,9 @@ parameter SW	= 6'b101011;
 parameter JR = 6'b010001;            //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: bclf
 parameter JPC	=	6'b000010;			  	  //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: j
 parameter BRFL	=	6'b000100;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: beq
-parameter CALL		=      6'b000011;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: jal
-parameter RET		=      6'b000001;
-parameter HALT = 6'b111111; 
+parameter CALL	=  6'b000011;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: jal
+parameter RET	=  6'b000001;
+parameter HALT = 6'b111111;
 
 always@ (*)
 begin
@@ -289,7 +289,7 @@ end
 		else if(stage == 3'b001)begin
 		  PCWrite <= 0;
 		  aux_push_pop <= 1;
-		end else if(stage == 3'b011)begin
+		end else if(stage == 3'b010)begin
 		  PCWrite <= 0;
 		  aux_push_pop <= 0;
 		  end else PCWrite <= 0;

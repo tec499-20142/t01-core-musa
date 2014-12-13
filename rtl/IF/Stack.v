@@ -26,7 +26,7 @@ input readStack;
 input writeStack;
 input [31:0] pc;
 output reg [31:0] stackOut;
-reg [3:0] stackLevel;
+reg [3:0] stackLevel = 4'b0000;
 reg [31:0] regStack [7:0];
 output reg stackOverflow;
 
@@ -41,28 +41,28 @@ begin
       case (stackLevel)
         4'b0 : stackOverflow = 1'b1;
     			 4'b1 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd0]; 
 			         end
     			 4'b10 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd1]; 
 			         end
     			 4'b11 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd2]; 
 			         end
     			 4'b100 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel];
+  			               stackOut <= regStack [1'd3];
 			         end
     			 4'b101 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd4]; 
 			         end
     			 4'b110 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd5]; 
 			         end
     			 4'b111 : begin stackLevel <= stackLevel - 1'd1;
-  			               stackOut <= regStack [stackLevel]; 
+  			               stackOut <= regStack [1'd6]; 
 			         end
     			 4'b1000 : begin stackLevel <= stackLevel - 1'd1;
-			               stackOut <= regStack [stackLevel];
+			               stackOut <= regStack [1'd7];
 			         end
 			endcase
   end

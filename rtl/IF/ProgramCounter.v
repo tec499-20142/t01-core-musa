@@ -30,7 +30,6 @@ module ProgramCounter(clock, reset, pcWrite, pcInput, pcOutput);
  if (~reset) begin 
  	pcOutput <= 32'b0; 
  	end  
- 
  else if (pcWrite == 1) begin 
  	pcOutput <= pcInput; 
  	end

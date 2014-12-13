@@ -14,7 +14,6 @@ output [31 : 0] data_out;
 input memRead;
 input memWrite;
 
-
 Mem_Data BLOCO4 (
   .addr (addr),
   .clk (clk),
