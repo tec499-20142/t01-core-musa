@@ -33,7 +33,7 @@ parameter JPC	=	6'b000010;			  	  //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o:
 parameter BRFL	=	6'b000100;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: beq
 parameter CALL		=      6'b000011;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: jal
 parameter RET		=      6'b000001;
-parameter HALT = 6'b111111; //FALTA O OPCODE DO HALT
+parameter HALT = 6'b111111; 
 
 always@ (*)
 begin
@@ -192,7 +192,7 @@ begin
 				regDst = 1'b0;
 		      data_a_select = 2'b00;
 		  	   data_b_select = 2'b10;
-		  	   pcSrc = 3'b100;
+		  	   pcSrc = 3'b011;
 				memWrite = 1'b0;
 	         memRead = 1'b0;
 	         memToReg = 1'b0;
