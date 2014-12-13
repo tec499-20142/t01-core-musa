@@ -4,9 +4,10 @@ input [31:0] data_1,
 input [31:0] data_2, 
 input [31:0] data_3, 
 input [1:0] sel, 
-output reg[31:0] data);
+output reg[31:0] data
+);
 
-always @(sel) begin 
+always @(*) begin 
 	case (sel)
 	   2'b00: begin 
 	     data = data_0; 
@@ -19,7 +20,7 @@ always @(sel) begin
 	   end 
 	   2'b11: begin 
 	     data = data_3;
-	   end 
+	   end
 	endcase 
 end 
 endmodule 

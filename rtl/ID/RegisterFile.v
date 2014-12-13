@@ -8,6 +8,7 @@ input [31:0] WriteData;
 output wire [31:0] ReadData1, ReadData2;
 
 reg [31:0] MemoryFile [0:31];
+initial $readmemh("b.b", MemoryFile);
 
 assign ReadData1 = MemoryFile [ReadRegister1];
 assign ReadData2 = MemoryFile [ReadRegister2];

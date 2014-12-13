@@ -5,21 +5,23 @@ module stage_Four_Five(
 	data_out,
 	memRead,
 	rdy,
-	memWrite);
+	memWrite, result_out);
 
 
-input [10 : 0] addr;
+input [31 : 0] addr;
 input clk;
 input [31 : 0] data_in;
 output reg [31 : 0] data_out;
 input memRead;
 output rdy;
 input memWrite;
-wire data;
+output reg [31:0] result_out;
+wire [31:0] data;
 
 always @(posedge clk)
 begin
 	data_out <= data;
+	result_out <= addr;
 end
 
 Mem_Data BLOCO4 (
