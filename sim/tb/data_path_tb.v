@@ -1,7 +1,7 @@
 module musa_tb();
 
 parameter PERIODO_CLK = 20;
-reg clk = 1;
+reg clk = 0;
 reg rst = 1;
 
 initial begin

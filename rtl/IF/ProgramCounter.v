@@ -27,7 +27,7 @@ module ProgramCounter(clock, reset, pcWrite, pcInput, pcOutput);
  output reg [31:0] pcOutput = 32'b0; 
  
  always @(posedge clock) begin 
- if (reset == 1) begin 
+ if (~reset) begin 
  	pcOutput <= 32'b0; 
  	end  
  

@@ -33,7 +33,7 @@ output reg stackOverflow;
 always @(posedge clock)
 begin
 
-  if (reset == 1) begin
+  if (~reset) begin
     stackLevel <= 4'b0;
     stackOverflow <= 1'b0;
   end

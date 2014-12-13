@@ -7,6 +7,7 @@ wire [2:0] pcSrc;
 wire  [2:0] aluOp;
 wire  [31:0] word_sign;
 wire [31:0] result; 
+wire [31:0] result_out; 
 wire [31:0] readData1, readData2;
 wire [31:0] _mem_Data;
 wire _pcWrite;
@@ -42,7 +43,7 @@ StageTwo BLOCO2(
 .PCWrite(_pcWrite), 
 .aluOp(aluOp),
 .outputWord(word_sign),
-.AluOut(result),
+.AluOut(result_out),
 .mem_Data(_mem_Data),
 .readData1(readData1),
 .readData2(readData2), 
@@ -74,6 +75,7 @@ ex_stage BLOCO3 (
 stage_Four_Five BLOCO4 (
   .clk (clk),
   .addr (result),
+  .result_out(result_out),
   .data_in(readData2),
   .data_out(_mem_Data),
  .memRead(memRead),
