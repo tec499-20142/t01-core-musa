@@ -4,7 +4,6 @@ module Mem_Data(
 	data_in,
 	data_out,
 	memRead,
-	rdy,
 	memWrite);
 
 
@@ -13,19 +12,22 @@ input clk;
 input [31 : 0] data_in;
 output [31 : 0] data_out;
 input memRead;
-output rdy;
 input memWrite;
 reg [31:0] data_out;
 reg [31:0] musaRAM [0:2047];
-reg rdy;
+
+integer i;
+
+initial begin
+	for (i=0; i<2047; i=i+1)begin
+		musaRAM[i] <= 0;
+	end
+	musaRAM[1] <= 1'd1;
+end
 
 always @(posedge clk) begin
 	if (memRead) begin
-		rdy <= 1 ;
 		data_out <= musaRAM [addr];
-	end else begin
-		rdy <= 0;
-		data_out = 16'hZZZZ;
 	end
 end
 
