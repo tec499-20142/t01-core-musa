@@ -3,7 +3,7 @@ module StageTwo(
 	pcSrc, memRead, memWrite, push_out, pop_out, PCWrite, 
 	aluOp,
 	AluOut, mem_Data,
-	readData1, readData2, outputWord, jump_jpc, data_a_select, data_b_select, func);
+	readData1, readData2, outputWord, data_a_select, data_b_select, func);
 
 input [31:0] instruction;
 input clk, rst;
@@ -13,7 +13,7 @@ wire pop, push;
 output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
 output reg  [2:0] aluOp;
-output [31:0] jump_jpc;
+
 output reg [31:0] readData1 = 1'd0;
 output reg [31:0] readData2 = 1'd0;
 output reg [31:0] outputWord = 8'h0;
