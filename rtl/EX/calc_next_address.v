@@ -34,7 +34,7 @@ always @(*)begin
 			next_address = pc; 
 		end 
 		default: begin 
-		  next_address = pc_1;
+		  next_address = pc_1; 
 		end 
 	endcase
 end	

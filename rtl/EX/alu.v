@@ -1,4 +1,4 @@
-module alu(
+  module alu(
 	input reset, 
 	input[31:0] data_a, 
 	input[31:0] data_b,
@@ -98,7 +98,7 @@ module alu(
 							result = data_a | data_b;
 						end 
 						NOT: begin
-							result = ~data_a;
+							result = !data_a;
 						end 			
 					endcase
 					//verificação do overflow e underflow 
