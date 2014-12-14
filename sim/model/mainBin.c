@@ -7,9 +7,9 @@
 //pc: Program Counter
 //registers[]: represent register bank
 //mem[]: Represent the data memory
-int  pc=0, registers[32], mem[65536], registerflag[1], stack[8], *sp;
+int  pc=0, registers[32], mem[1000], registerflag[1], stack[8], *sp;
 sp=stack;
-int tam_stack = 0;
+
 
 //Fuction to identify the instruction type:
 // i - I-type Instruction
@@ -17,13 +17,13 @@ int tam_stack = 0;
 // j - J-type Instruction
 char identify_instruction_type(int instruction_opcode){
 	char result;
-	if(instruction_opcode == 001000 || instruction_opcode == 001001 || instruction_opcode == 001100 || instruction_opcode == 001101 || instruction_opcode == 100011 || instruction_opcode == 101011 || instruction_opcode == 011101){
+	if(instruction_opcode == 001000 || instruction_opcode == 001001 || instruction_opcode == 001100 || instruction_opcode == 001101 || instruction_opcode == 100011 || instruction_opcode == 101011 || instruction_opcode == 000100){
 		result = 'i';
 	}
 	else if (instruction_opcode == 000000 || instruction_opcode == 011100 || instruction_opcode == 000101){
 		result = 'r';
 	}
-	else if (instruction_opcode == 010001 || instruction_opcode == 000010 || instruction_opcode == 000100 || instruction_opcode == 000011 || instruction_opcode == 000001 || instruction_opcode == 111111){
+	else if (instruction_opcode == 010001 || instruction_opcode == 0000010 || instruction_opcode == 000011 || instruction_opcode == 000001 || instruction_opcode == 111111){
 		result = 'j';
 	}
 	else{
@@ -73,7 +73,7 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//cmp RF == CONST terminar
 	else if(instruction_opcode == 011101){
-        if (registers[rd] >= registers[rs1])
+        if (registers[rd] == registers[rs1])
             registerflag = 1;
 	}
 }
@@ -99,42 +99,29 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	//sub - RD = RS1 - RS2
 	else if(function == 100010){
 		registers[rd] = registers[rs1] - registers[rs2];
-		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//and - RD = RS1 & RS2
 	else if(function == 100100){
 		registers[rd] = registers[rs1] & registers[rs2];
-		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//or
 	else if(function == 100101){
 		registers[rd] = registers[rs1] | registers[rs2];
-		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//mult - RD = RS1 . RS2
 	else if(function == 000010){
 		registers[rd] = registers[rs1] * registers[rs2];
-		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//div - RD = RS1 / RS2
 	else if(function == 000001){
 		registers[rd] = registers[rs1] / registers[rs2];
-		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//not
 	else if(function == 100111){
 		registers[rd] = ~registers[rs2];
-		printf("rs1: %x registers[rs2] %x\n",rs2, registers[rs2]);
-		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 	}
 	//nop
 	else if(function == 000000){
-	    printf("Nada acontece");
 	}
 }
 
@@ -153,13 +140,12 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//CALL
 	else if(instruction_opcode == 000011){
-            stack[tam_stack] = pc; //ponteiro para um endereço vazio da pilha
+            stack[0] = pc; //ponteiro para um endereço vazio da pilha
 			pc = pc_offset;
-			tam_stack++;
 	}
 	//RET -
 	else if(instruction_opcode == 000001){
-            pc = stack[tam_stack]; //fazer ponteiro
+            pc = stack[0]; //fazer ponteiro
 	}
 	//HALT - finish the program
 	else if(instruction_opcode == 111111){
@@ -180,7 +166,7 @@ void write_results(void){
 		fprintf(arq_registers, "%x\n", registers[j]);
 	}
 
-	for(j=0;j<65536;j++){
+	for(j=0;j<1000;j++){
 		fprintf(arq_mem, "%x\n", mem[j]);
 	}
 
@@ -197,7 +183,7 @@ void main (int argc, char *argv[]){
 	unsigned int instruction_opcode;
 	char *reading_result, *reading_result_opcode;
 	char instruction_type;
-	int  size_instruction;
+	int  size_instruction,i;
 	printf("Parametro: %s\n", argv[1]);
 	instruction = malloc(65536); //alterar tamanho da memória de instruções
 
@@ -211,14 +197,14 @@ void main (int argc, char *argv[]){
 
 	//Read all the instructions and storage in 'instruction' char vector
 	while(!feof(arq_instructions))
-	for(size_instruction = 0; (!feof(arq_instructions)); size_instruction++){
+	for(size_instruction=0; (!feof(arq_instructions)); size_instruction++){
 		reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]);
 
 	}
 	printf("size_instruction %d\n", size_instruction);
 	fclose(arq_instructions);
 
-	for(pc=0; pc < size_instruction; pc++){
+	for(pc=0;pc<size_instruction;pc++){
 
 		printf("Instruction : %x\n", instruction[pc]);
 		instruction_opcode = (instruction[pc] >> 26);
@@ -236,9 +222,6 @@ void main (int argc, char *argv[]){
 		}
 		else if(instruction_type == 'j'){
 			decode_j_type(instruction_opcode, instruction[pc]);
-		}
-		else {
-            printf("Error: Instrução inexistente");
 		}
 		printf("Valor de PC: %x\n\n\n", pc);
 	}
