@@ -16,18 +16,32 @@
 			\hline
 			\endlastfoot
 
-
-			data\_a & 32 & Entrada & Dado do primeiro operando. \\ \hline
-			data\_b & 32 & Entrada & Dado do segundo operando. \\ \hline
-			pc\_in & 14 & Entrada & Valor do PC atual. \\ \hline
-			rt\_data\_mem & 5 & Entrada & Dado vindo da memoria. \\ \hline
-			opcode & 5 & Entrada & Código da operação.\\ \hline
-			control\_signal & TBD & Entrada & Sinal de comando da unidade de controle. \\ \hline
-			alu\_result & 32 & Saída & Representação do resultado da operação. \\ \hline
-			pc\_out & 32 & Saída & Valor do PC atual. \\ \hline
-			write\_reg\_mem & 5 & Saída & Sinal proveniente da UC que habilita a escrita no registrador. \\ \hline
-			memory\_address & 32 & Saída & Endereço da memória. \\ \hline
-			memory\_write\_enable & TBD & Saída & Sinal proveniente da UC que habilita a escrita na memória.
+			clock & 1 & Entrada & Clock do sistema \\ \hline
+			reset & 1 & Entrada & Sinal de reinício do estágio\\ \hline
+			data\_a & 32 & Entrada & Dado do primeiro operando \\ \hline
+			data\_b & 32 & Entrada & Dado do segundo operando \\ \hline
+			pc\_in & 32 & Entrada & Valor do PC atual \\ \hline
+			pc\_1 & 32 & Entrada & Valor de PC + 1\\ \hline
+			immediate & 32 & Entrada & Constante numérica  \\ \hline
+			immediate\_div\_4 & 32 & Entrada & Contante numérica \\\hline
+			stack & 32 & Entrada & Valor do PC proveniente da Pilha de Instruções \\\hline
+			data\_a\_select & 2 & Entrada & Sinal para selecionar o conteúdo do primeiro operando \\\hline
+			data\_b\_select & 2 & Entrada & Sinal para selecionar o conteúdo do segundo operando operando \\\hline
+			pc\_select & 2 & Entrada & Sinal para selecionar o endereço da próxima instrução a ser executada \\\hline
+			alu\_control & 2 & Entrada & \\\hline
+			func & 6 & Saída & Variante especifica da operação \\\hline
+			result & 32 & Saída & Resultado da operação \\\hline
+			flag & 3 & Saída & Informações sobre o resultado da operação \\\hline
+			next\_pc & 32 & Saída & Endereço da próxima instrução a ser executada\\\hline
+			
+			%rt\_data\_mem & 5 & Entrada & Dado vindo da memoria \\ \hline
+			%opcode & 5 & Entrada & Código da operação\\ \hline
+			%control\_signal & TBD & Entrada & Sinal de comando da unidade de controle. \\ \hline
+			%alu\_result & 32 & Saída & Representação do resultado da operação. \\ \hline
+			%pc\_out & 32 & Saída & Valor do PC atual. \\ \hline
+			%write\_reg\_mem & 5 & Saída & Sinal proveniente da UC que habilita a escrita no registrador. \\ \hline
+			%memory\_address & 32 & Saída & Endereço da memória. \\ \hline
+			%memory\_write\_enable & TBD & Saída & Sinal proveniente da UC que habilita a escrita na memória.
 
 		\end{longtable}
 	\end{center}
@@ -36,7 +50,7 @@
 	
 	\begin{figure}[ht]
 		\begin{center}
-		\includegraphics[scale = 0.5]{./datapath/Graphic3.eps}
-		\caption*{Datapath interno do estágio de execução (EX).}
+		%\includegraphics[scale = 0.5]{./datapath/Graphic3.eps}
+		%\caption*{Datapath interno do estágio de execução (EX).}
 		\end{center}
 	\end{figure}

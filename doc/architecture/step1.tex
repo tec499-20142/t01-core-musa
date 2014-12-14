@@ -15,20 +15,25 @@
 			\endhead
 			\hline
 			\endlastfoot
-			pcInput & 32 & entrada & Valor do PC atual\\ \hline
+			clock & 1 & entrada & Clock do sistema \\ \hline
+			reset & 1 & entrada & Sinal de reinício do estágio\\ \hline
+			pcInput & 32 & entrada & Endereço da instrução a ser buscada \\ \hline
 			pcWrite & 1 & entrada & Sinal que habilita a modificação do valor de PC \\ \hline
-			pcOutput & 32 & saída & Valor do próximo PC \\ \hline
-			instruction & 32 & saída & Instrução a ser executada \\ \hline
+			push & 1 & entrada & Sinal que habilita a escrita na Pilha de Instruções\\ \hline
+			pop & 1 & entrada & Sinal que habilita a leitura da Pilha de Instruções\\ \hline
+			pcStack & 32 & saida & Valor do PC armazenado no topo da Pilha de Instruções\\ \hline
+			pcOutput & 32 & saída & Endereço da instrução que está sendo executada \\ \hline
+			instruction & 32 & saída & Instrução encontrada \\ \hline
 			
 		\end{longtable}
 	\end{center}
 	
-	\newpage
+	%\newpage
 	
 	\subsection{Datapath Interno}
 	\begin{figure}[htpb!]
 		\begin{center}
-		\includegraphics[scale=0.8]{./datapath/step1.eps}
+		%\includegraphics[scale=0.8]{./datapath/step1.eps}
 		\end{center}
 	\end{figure}
 	

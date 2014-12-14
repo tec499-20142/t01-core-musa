@@ -16,14 +16,16 @@
 			\hline
 			\endlastfoot
 			
+			clock & 1 & entrada & Clock do sistema \\ \hline
+			reset & 1 & entrada & Sinal de reinício do estágio\\ \hline
 			instruction & 32 & entrada & Instrução a ser executada. \\ \hline
 			writeData & 1 & entrada & Sinal de controle para escrita no registrador. \\ \hline
-			writeRegister & 1 & entrada & Endereço do registrador de destino do writeData. \\ \hline
-			word & 16 & entrada & é uma instrução. \\ \hline
+			writeRegister & 5 & entrada & Endereço do registrador de destino do writeData. \\ \hline
+			word & 16 & entrada & Os primeiros 16 bits da instrução \\ \hline
 			branch & 1 & saída & Sinal que informa ao circuito se a instrução é de branch. \\ \hline
 			memRead & 1 & saída & Sinal de controle para realizar leitura da memória. \\ \hline
 			memToReg & 1 & saída & Sinal de controle que define se o dado deve vir da ULA ou da memória \\ \hline
-			aluOp & 2 & saída & Sinal de controle que define se o código funct da instrução deve ser levado em consideração ou não. \\ \hline
+			aluOp & 2 & saída & Sinal de controle que define se o campo \textit{funct} da instrução deve ser levado em consideração ou não. \\ \hline
 			memWrite & 1 & saída & Sinal de controle para realizar escrita na memória. \\ \hline
 			aluSrc & 1 & saída & Sinal de controle que define qual entrada a ULA deve utilizar para realizar a operação. \\ \hline
 			regWrite & 1 & saída & Sinal de controle para realizar escrita no registrador. \\ \hline
@@ -94,12 +96,13 @@
 		\end{longtable}
 	\end{center}
    
+   \newpage
 	
 	\subsection{Datapath Interno}
 	
 	\begin{figure}[ht]
 		\begin{center}
-		\includegraphics{./datapath/Graphic2.eps}
-		\caption*{Datapath do estágio 2.}
+		%\includegraphics{./datapath/Graphic2.eps}
+		%\caption*{Datapath do estágio 2.}
 		\end{center}
 	\end{figure}
