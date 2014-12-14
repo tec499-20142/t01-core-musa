@@ -92,13 +92,13 @@
 							result_checker = data_a / data_b;
 						end 
 						AND: begin 
-							result = data_a & data_b; 
+							result_checker = data_a & data_b; 
 						end 
 						OR: begin 
-							result = data_a | data_b;
+							result_checker = data_a | data_b;
 						end 
 						NOT: begin
-							result = !data_a;
+							result_checker = ~data_a;
 						end 			
 					endcase
 					//verificação do overflow e underflow 
@@ -167,10 +167,10 @@
 					end 
 				end
 				ANDI: begin 
-					result = data_a & data_b;
+					result_checker = data_a & data_b;
 				end 
 				ORI: begin 
-					result = data_a | data_b;
+					result_checker = data_a | data_b;
 				end 
 				BRFL: begin 
 					result_checker[31:0] =  data_a;

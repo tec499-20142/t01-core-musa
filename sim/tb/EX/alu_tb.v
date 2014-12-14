@@ -10,16 +10,13 @@ output  [2:0] flag);
  
  initial begin
   reset = 0;
+  reset = 1;
   data_a = 20; 
   data_b = 20; 
-  alu_control = 6;
-  func = 32;
+  alu_control = 2;
+  func = 39;
   reset = 1;
-  data_a = 1; 
-  data_b = 1; 
-  alu_control = 5;
-  func = 0; 
-  reset = 1; 
+  
  end  
  
   alu alu_tb(
