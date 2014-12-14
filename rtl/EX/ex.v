@@ -75,7 +75,6 @@ module ex_stage(
 	.stack(stack), 
 	.jr(data_a),
 	.pc_select(pc_select),
-	.next_address(next_pc)
-);
+	.next_address(next_pc));
 	
 endmodule 

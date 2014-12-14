@@ -1,8 +1,8 @@
 module unit_control(
 	opcode, 
-clk, reset, 
-pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite, regDst, PCWrite, 
-aluOp, stage, aux_push_pop);
+	clk, reset, 
+	pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite, regDst, PCWrite, 	
+	aluOp, stage, aux_push_pop);
 
 input [5:0] opcode;
 input clk;
@@ -108,8 +108,8 @@ begin
 		      aluOp = 3'b011;
 		      memWrite = 1'b0;
 		      regWrite = 1'b1;
-				push = 1'b0;
-				pop = 1'b0;
+		      push = 1'b0;
+		      pop = 1'b0;
 		end
 	SUBI :
 		begin

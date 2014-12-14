@@ -16,7 +16,7 @@ output reg  [2:0] aluOp;
 output [31:0] jump_jpc;
 output reg [31:0] readData1 = 1'd0;
 output reg [31:0] readData2 = 1'd0;
-output reg [31:0] outputWord = 8'h00000000;
+output reg [31:0] outputWord = 8'h0;
 output reg [5:0] func;
 wire [31:0] read_data_1_rf, read_data_2_rf;
 wire [25:0] out_jump = instruction[25:0];

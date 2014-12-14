@@ -98,9 +98,8 @@ module alu(
 							result = data_a | data_b;
 						end 
 						NOT: begin
-							result = ~data_b;
-						end 
-						
+							result = ~data_a;
+						end 			
 					endcase
 					//verificação do overflow e underflow 
 					if(func == DIV) begin 
@@ -183,7 +182,7 @@ module alu(
 					end 
 				end 
 			endcase	
-			
+		
 			flag = reg_flag; 
 			result = result_checker[31:0];					
 		end
