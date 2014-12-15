@@ -52,8 +52,8 @@ class musa_monitor;
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
         @(posedge dut_if.clk_musa);
-/*        if(dut_if.data_wr_en)
-           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;*/
+        if(dut_if.data_wr_en)
+           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
     join_none
   endtask
@@ -98,9 +98,9 @@ class musa_monitor;
       $sformat (compile_c, "gcc ../model/mainBin.c -o mainBin_model.o");
       $system(compile_c);
       //$sformat (execute_c, "./udlx_golden_model.o ../tests/DLX_T1_1.hex");
-      $sformat (execute_c, "./mainBin_model.o %s ",DLX_TEST);
+      $sformat (execute_c, "./mainBin_model.o %s ",MUSA_TEST);
       $system(execute_c);
-      $display("DISPLAY: %s",DLX_TEST);
+      $display("DISPLAY: %s",MUSA_TEST);
 
       f_path = "./registers.hex";
       fp = $fopen( f_path, "r");

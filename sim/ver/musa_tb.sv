@@ -7,6 +7,7 @@
 // -----------------------------------------------------------------------------
 // PURPOSE: Testbench for MUSA Processor.
 // -----------------------------------------------------------------------------
+`include "../rtl/dlx_de2_115_defines.v"
 module musa_tb;
 
 `include "musa_monitor.sv"
@@ -24,7 +25,7 @@ reg clk_proc;
 wire [DATA_WIDTH-1:0] gpio_o;
 wire we_gpio;
 
-/*top
+top
       #(
          .DATA_WIDTH(DATA_WIDTH),
          .DATA_ADDR_WIDTH(DATA_ADDR_WIDTH),
@@ -37,7 +38,7 @@ wire we_gpio;
          .clk_proc(clk_proc),
          .gpio_o(gpio_o),
          .we_gpio(we_gpio)
-      );*/
+      );
 
 
 wire clk_dl;
@@ -58,7 +59,7 @@ end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
-/*   dut_if.reg_dst = top_u0.musa_processor_u0.regDst;
+   dut_if.reg_dst = top_u0.musa_processor_u0.regDst;
    dut_if.mem_read = top_u0.musa_processor_u0.memRead;
    dut_if.mem_to_reg = top_u0.musa_processor_u0.memToReg;
    dut_if.mem_write = top_u0.musa_processor_u0.memWrite;
@@ -73,7 +74,7 @@ always@(*)begin
    dut_if.clk_dl = clk_dl;
    for(int i=0;i<NUM_REGS;i++)begin
     dut_if.regs[i]= top_u0.musa_processor_u0.instruction_decode_u0.register_bank_u0.reg_file[i];
-   end */
+   end 
    
 end
 //--------------------------------------------------------------------------------------//
@@ -87,7 +88,7 @@ begin
    $display("\n");
    monitor_u0 = new(dut_if);
    $display("criou o dut_if");
-//   monitor_u0.reset();
+   monitor_u0.reset();
    $display("deu reset");
    monitor_u0.read_data();
    $display("deu read_data");
