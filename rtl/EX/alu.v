@@ -59,6 +59,7 @@
 							reg_flag = FLAG_OVERFLOW;
 						end
 					endcase			
+					branch = 0;
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
@@ -76,6 +77,7 @@
 							reg_flag = FLAG_OVERFLOW;
 						end
 					endcase	
+					branch = 0;
 				end 
 				TYPE_R: begin 
 					case(func)
@@ -101,7 +103,7 @@
 							result_checker = ~data_a;
 						end 			
 					endcase
-					//verificação do overflow e underflow 
+					//verificação do oerflow e underflow 
 					if(func == DIV) begin 
 						if(data_b == 0) begin 
 							reg_flag = FLAG_EXCEPTION;					
@@ -155,6 +157,7 @@
 							end
 						endcase					
 					end 			
+					branch = 0;
 				end
 				CMP: begin 
 					if(data_a == data_b) begin 
@@ -165,12 +168,15 @@
 							reg_flag = FLAG_ABOVE;
 						end 
 					end 
+					branch = 0;
 				end
 				ANDI: begin 
 					result_checker = data_a & data_b;
+					branch = 0;
 				end 
 				ORI: begin 
 					result_checker = data_a | data_b;
+					branch = 0;
 				end 
 				BRFL: begin 
 					result_checker[31:0] =  data_a;
