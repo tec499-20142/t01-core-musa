@@ -62,7 +62,7 @@ module ex_stage(
 	.data_0(result),
 	.data_1(pc_1),
 	.data_2(0), 
-	.data_3(0), 
+	.data_3(0),
 	.sel(branch), 
 	.data(branch_temp));
 	

@@ -1,4 +1,4 @@
-module dataPath(clk, rst);
+module dataPath(clk, rst, read1, read2, read3, read4);
 
 input clk, rst;
 wire [31:0] instruction;
@@ -16,6 +16,7 @@ wire [31:0] jump_jpc;
 wire [1:0] data_a_select, data_b_select;
 wire [31:0] stack_out;
 wire [5:0] func;
+output read1, read2, read3, read4;
 
 StageOne BLOCO1 (
   ._clk (clk),
@@ -49,6 +50,10 @@ StageTwo BLOCO2(
 .jump_jpc(jump_jpc),
 .data_a_select(data_a_select),
 .data_b_select(data_b_select),
+.read1(read1),
+.read2(read2),
+.read3(read3),
+.read4(read4),
 .func(func)
 );
 

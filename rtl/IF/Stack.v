@@ -27,7 +27,7 @@ input writeStack;
 input [31:0] pc;
 output reg [31:0] stackOut;
 reg [3:0] stackLevel = 4'b0000;
-reg [31:0] regStack [7:0];
+reg [31:0] regStack [0:7];
 output reg stackOverflow;
 
 always @(posedge clock)

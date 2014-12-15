@@ -3,7 +3,7 @@ module StageTwo(
 	pcSrc, memRead, memWrite, push_out, pop_out, PCWrite, 
 	aluOp,
 	AluOut, mem_Data,
-	readData1, readData2, outputWord, data_a_select, data_b_select, func, jump_jpc);
+	readData1, readData2, outputWord, data_a_select, data_b_select, func, jump_jpc, read1, read2, read3, read4);
 
 input [31:0] instruction;
 input clk, rst;
@@ -13,7 +13,7 @@ wire pop, push;
 output [1:0] data_a_select, data_b_select;
 output [2:0] pcSrc;
 output reg  [2:0] aluOp;
-
+output wire read1, read2, read3, read4;
 output reg [31:0] readData1 = 1'd0;
 output reg [31:0] readData2 = 1'd0;
 output reg [31:0] outputWord = 8'h0;
@@ -75,7 +75,11 @@ RegisterFile BLOCO1 (
   .WriteRegister(out_destination),
   .ReadData1(read_data_1_rf),
   .ReadData2(read_data_2_rf),
-  .RegWrite (_regWrite)
+  .RegWrite (_regWrite),
+  .read1(read1),
+  .read2(read2),
+  .read3(read3),
+  .read4(read4)
   );
   
  unit_control BLOCO2 (
