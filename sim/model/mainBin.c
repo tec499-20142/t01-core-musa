@@ -7,8 +7,8 @@
 //pc: Program Counter
 //registers[]: represent register bank
 //mem[]: Represent the data memory
-int  pc=0, registers[32], mem[65536], registerflag[1], stack[8], *sp;
-sp=stack;
+int  pc=0, registers[32], mem[65536], registerflag, stack[8], *sp;
+//sp = &stack[0];
 int tam_stack = 0;
 
 //Fuction to identify the instruction type:
@@ -74,7 +74,8 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	//cmp RF == CONST terminar
 	else if(instruction_opcode == 011101){
         if (registers[rd] >= registers[rs1])
-            registerflag = 1;
+            registerflag = 0001;
+            printf("Valor da Flag: %x\n", registerflag);
 	}
 }
 
@@ -212,8 +213,8 @@ void main (int argc, char *argv[]){
 	//Read all the instructions and storage in 'instruction' char vector
 	while(!feof(arq_instructions))
 	for(size_instruction = 0; (!feof(arq_instructions)); size_instruction++){
-		reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]);
-
+		//reading_result = fscanf(arq_instructions, "%x", &instruction[size_instruction]);
+		fscanf(arq_instructions, "%x", &instruction[size_instruction]);
 	}
 	printf("size_instruction %d\n", size_instruction);
 	fclose(arq_instructions);
