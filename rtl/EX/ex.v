@@ -70,7 +70,6 @@ module ex_stage(
 	.reset(reset),
 	.pc(pc),
 	.pc_1(pc_1), 
-	.jump_address(result), 
 	.branch_address(branch_temp), 
 	.stack(stack), 
 	.jr(data_a),
