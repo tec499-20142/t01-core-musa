@@ -23,4 +23,4 @@ localparam JPC_OPCODE = 6'b000010;
 localparam BRFL_OPCODE = 6'b000100;
 localparam CALL_OPCODE = 6'b000011;
 localparam RET_OPCODE = 6'b000001;
-localparam HALT_OPCODE = 6'b000010;
+localparam HALT_OPCODE = 6'b111111;

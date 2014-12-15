@@ -2,150 +2,207 @@ m255
 K3
 13
 cModel Technology
-dC:\altera\14.0
-Xdefines_sv_unit
-Z0 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-I=3bOneZzH6BmC88==;zk[2
-V=3bOneZzH6BmC88==;zk[2
-S1
-Z1 dC:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver
-w1418299518
-8C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\defines.sv
-FC:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\defines.sv
-L0 11
-Z2 OV;L;10.1e;51
+Z0 dC:\altera\14.0
+vcodigo
+Z1 I56`M6<MPK[ch`E8PlGLAm0
+Z2 Vd^nj71cDW;aH0H_;T@imM2
+Z3 dC:\Users\Manu\Documents\GitHub\t01-core-musa\sim\ver
+Z4 w1418316173
+Z5 8C:\Users\Manu\Documents\GitHub\t01-core-musa\sim\ver\codigo.v
+Z6 FC:\Users\Manu\Documents\GitHub\t01-core-musa\sim\ver\codigo.v
+L0 3
+Z7 OV;L;10.1e;51
 r1
 31
-Z3 o-work temp_ver -sv -O0
+Z8 o-work work -O0
+Z9 !s100 RCJVVlBaNUG1A5f?gMJL]0
+Z10 !s108 1418316998.572000
+Z11 !s107 C:\Users\Manu\Documents\GitHub\t01-core-musa\sim\ver\codigo.v|
+Z12 !s90 -reportprogress|300|-work|work|C:\Users\Manu\Documents\GitHub\t01-core-musa\sim\ver\codigo.v|
 !i10b 1
-!s100 DKQHJ[H^h]3RK<To^[HG[2
+!s85 0
+!s101 -O0
+Xdefines_sv_unit
+Z13 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z14 !s100 LFUEJ3JEZKAUgYz7JMM8K1
+Z15 I]gVfC[98E_L44]<X[>aP<3
+Z16 V]gVfC[98E_L44]<X[>aP<3
+S1
+R3
+R4
+Z17 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv
+Z18 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv
+L0 11
+R7
+r1
+31
+Z19 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv|
+Z20 o-work work -sv -O0
+Z21 !s108 1418604979.752000
+Z22 !s107 C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv|
+!i10b 1
 !i103 1
 !s85 0
-!s108 1418302812.855000
-!s107 C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\defines.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\defines.sv|
 !s101 -O0
 Ydut_if
-Z4 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-I0]z=LLegN>BFV_[AmR4To1
-VzRQ7oEkLB9jfi49;793FB1
+R13
+Z23 !s100 ;n;d^9]daK^S?Yz`PU^jK2
+Z24 IAO78HOdA8a6AfkE1D@D:;0
+Z25 VzRQ7oEkLB9jfi49;793FB1
+Z26 !s105 dut_if_sv_unit
 S1
-R1
-Z5 w1418302803
-8C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv
-FC:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv
-Z6 Fdefines.sv
-Z7 Fopcodes.sv
+R3
+Z27 w1418321768
+Z28 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv
+Z29 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv
+Z30 Fdefines.sv
+Z31 Fopcodes.sv
 L0 11
-R2
+R7
 r1
 31
-R3
+Z32 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv|
+R20
+Z33 !s108 1418604979.907000
+Z34 !s107 opcodes.sv|defines.sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv|
 !i10b 1
-!s100 >Ma]>ANz9BBH<785PokgZ3
-!s105 dut_if_sv_unit
 !s85 0
-!s108 1418302813.033000
-!s107 opcodes.sv|defines.sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv|
+!s101 -O0
+vdut_tb
+Z35 IId_W=K30f`>GjLc7`XD>T1
+Z36 VZz<?aXeZ5IY@4^lM<[D0A3
+R3
+R4
+Z37 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_tb.v
+Z38 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_tb.v
+L0 3
+R7
+r1
+31
+R8
+Z39 !s100 ZM4`aUZ2;AagPPPS@M_FS3
+Z40 !s108 1418316999.312000
+Z41 !s107 C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_tb.v|
+Z42 !s90 -reportprogress|300|-work|work|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_tb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vmodelo_referencia
+Z43 I;GK:[ZdXF[jT5NJ5D4[^Z1
+Z44 V^bONd4z8ULL_OCP<zo>W_2
+R3
+R4
+Z45 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/modelo_referencia.v
+Z46 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/modelo_referencia.v
+L0 3
+R7
+r1
+31
+R8
+Z47 !s100 OLz@TP7Nd658?Of>UGDVB1
+Z48 !s108 1418316999.583000
+Z49 !s107 C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/modelo_referencia.v|
+Z50 !s90 -reportprogress|300|-work|work|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/modelo_referencia.v|
+!i10b 1
+!s85 0
 !s101 -O0
 Xmusa_data_item_sv_unit
-R4
-Ik5:8lPbOUJK5D13KBfEaC3
-Vk5:8lPbOUJK5D13KBfEaC3
+R13
+Z51 !s100 ;77eeP2FFPgR=;I<z<HCQ0
+Z52 IiEAGg[GP[PNKEIdh9n=JX0
+Z53 ViEAGg[GP[PNKEIdh9n=JX0
 S1
-R1
-w1418302762
-8C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv
-FC:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv
-R6
+R3
+R4
+Z54 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv
+Z55 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv
+R30
 L0 10
-R2
+R7
 r1
 31
-R3
+Z56 !s90 -reportprogress|300|-work|work|-sv|+incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver|+incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/model|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv|
+R20
+Z57 !s92 -work work -sv +incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver +incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/model -O0
+Z58 !s108 1418604980.101000
+Z59 !s107 defines.sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv|
 !i10b 1
-!s100 lc0RmFQjGSO@gWMBSz9KA3
 !i103 1
 !s85 0
-!s108 1418302813.314000
-!s107 defines.sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv|
 !s101 -O0
 Xmusa_monitor_sv_unit
-R4
-IP<4Io>A9G[abPT9<I@^9T2
-VP<4Io>A9G[abPT9<I@^9T2
+R13
+Z60 II`NjJHN<Z^O1kPEhBi[D30
+Z61 VI`NjJHN<Z^O1kPEhBi[D30
 S1
-R1
-R5
-8C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv
-FC:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv
-Z8 Fmusa_data_item.sv
-R6
-R7
-R6
+R3
+Z62 w1418604976
+Z63 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv
+Z64 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv
+Z65 Fmusa_data_item.sv
+R30
+R31
+R30
 L0 11
-R2
+R7
 r1
 31
-R3
+Z66 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv|
+R20
+Z67 !s100 7TPo2oCYLQ:eHUV=DU:dF3
+Z68 !s108 1418604980.264000
+Z69 !s107 opcodes.sv|defines.sv|musa_data_item.sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv|
 !i10b 1
-!s100 K?FH>Oa9_gBgm=O`kLPN70
 !i103 1
 !s85 0
-!s108 1418302813.516000
-!s107 opcodes.sv|defines.sv|musa_data_item.sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/musa_monitor.sv|
 !s101 -O0
 vmusa_tb
-R4
-ICG?`7fH<oJ;=Za^mYPm;G1
-VaOgmRoRK3n0jL2CRb:LLe1
+R13
+Z70 I>_f[Ta^9?Tg115:J8=WU=2
+Z71 VaOgmRoRK3n0jL2CRb:LLe1
+Z72 !s105 musa_tb_sv_unit
 S1
-R1
-R5
-8C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\musa_tb.sv
-FC:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\musa_tb.sv
-Fmusa_monitor.sv
-R8
-R6
-R7
-R6
-R6
+R3
+R62
+Z73 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv
+Z74 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv
+Z75 Fmusa_monitor.sv
+R65
+R30
+R31
+R30
+R30
 L0 10
-R2
+R7
 r1
 31
-R3
+Z76 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv|
+R20
 !i10b 1
-!s100 K4kdcZ1?z6RdSX05?`:cb0
-!s105 musa_tb_sv_unit
+Z77 !s100 8J;[I?7Hkcj1>Ze[ZL[5j1
 !s85 0
-!s108 1418302813.867000
-!s107 opcodes.sv|defines.sv|musa_data_item.sv|musa_monitor.sv|C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\musa_tb.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|+incdir+C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver|C:\Users\mmcarvalho\Documents\GitHub\t01-core-musa\sim\ver\musa_tb.sv|
+Z78 !s108 1418604980.509000
+Z79 !s107 opcodes.sv|defines.sv|musa_data_item.sv|musa_monitor.sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv|
 !s101 -O0
-!s92 -work temp_ver -sv +incdir+C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver -O0
 Xopcodes_sv_unit
-R4
+R13
 !i10b 1
-!s100 L>Flc?9nJiNgFe]JDzZj00
-I4T^J8dk]I4f4NS:C][9Qg0
-V4T^J8dk]I4f4NS:C][9Qg0
+Z80 !s100 LmcRCeaFNOC3ifG]G:48`2
+Z81 IPC;YYKNh@bm[c:ITT?Um<2
+Z82 VPC;YYKNh@bm[c:ITT?Um<2
 !i103 1
 S1
-R1
-R5
-8C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv
-FC:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv
+R3
+Z83 w1418316925
+Z84 8C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv
+Z85 FC:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv
 L0 11
-R2
+R7
 r1
 !s85 0
 31
-!s108 1418302814.149000
-!s107 C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv|
-!s90 -reportprogress|300|-work|temp_ver|-sv|C:/Users/mmcarvalho/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv|
+!s108 1418604980.681000
+!s107 C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv|
+Z86 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv|
 !s101 -O0
-R3
+R20

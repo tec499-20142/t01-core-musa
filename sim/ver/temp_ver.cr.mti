@@ -1,1 +1,51 @@
+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv {1 {vlog -work work -sv +incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver +incdir+C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/model C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_data_item.sv
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
 
+Top level modules:
+	--none--
+
+} {} {}} C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv {1 {vlog -work work -sv C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/opcodes.sv
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+
+Top level modules:
+	--none--
+
+} {} {}} C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv {1 {vlog -work work -sv C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/defines.sv
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+
+Top level modules:
+	--none--
+
+} {} {}} C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv {1 {vlog -work work -sv C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/musa_tb.sv
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module musa_tb
+
+Top level modules:
+	musa_tb
+
+} {} {}} C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv {2 {vlog -work work -sv C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling interface dut_if
+** Warning: C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv(42): (vlog-2186) SystemVerilog testbench feature
+
+(randomization, coverage or assertion) detected in the design.
+
+These features are only supported in Questasim.
+
+** Warning: C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv(42): (vlog-2186) SystemVerilog testbench feature
+
+(randomization, coverage or assertion) detected in the design.
+
+These features are only supported in Questasim.
+
+** Warning: C:/Users/Manu/Documents/GitHub/t01-core-musa/sim/ver/dut_if.sv(49): (vlog-2186) SystemVerilog testbench feature
+
+(randomization, coverage or assertion) detected in the design.
+
+These features are only supported in Questasim.
+
+
+Top level modules:
+	--none--
+
+} {} {}}

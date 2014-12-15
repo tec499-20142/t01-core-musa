@@ -31,16 +31,19 @@ class musa_monitor;
   task reset();
     begin
       for(int i=0; i<MAX_LENGTH; i++)begin
+        $display("entrei_no_for_do_reset");
         data_collected.data_write[i] = 0;
       end
       dut_if.rst_n = 1;
       #10;
+              $display("não_sei1");
       dut_if.rst_n = 0;
       #30;
+      $display("não_sei2");
       @(posedge dut_if.clk_env);
       #1
       dut_if.rst_n = 1;
-      @(negedge dut_if.boot_mode);
+      $display("não_sei3");
     end
   endtask
 
@@ -49,8 +52,8 @@ class musa_monitor;
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
         @(posedge dut_if.clk_musa);
-        if(dut_if.data_wr_en)
-           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
+/*        if(dut_if.data_wr_en)
+           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;*/
       end
     join_none
   endtask
@@ -58,14 +61,16 @@ class musa_monitor;
   task read_instruction();
     fork
       forever begin
-        //$display("-------------- READ INSTRUCTION MONITOR ----------------");
+        $display("-------------- READ INSTRUCTION MONITOR ----------------");
         @(posedge dut_if.clk_musa);
-        //$display("instruction: %x", dut_if.instruction);
+        $display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
         if(instruction == 'h00) begin
+          $display("entrei no if1");
           if(cnt_stop == 5) begin
             cnt_stop = 0;
             repeat(15)@(negedge dut_if.clk_musa);
+            $display("vou entrar no check");
             check();
           end
           else begin
@@ -89,10 +94,11 @@ class musa_monitor;
       int error_reg;
       int error_mem;
 
-      $sformat (compile_c, "gcc ../model/mainBin.c -o udlx_golden_model.o");
+      $display("entrei no check");
+      $sformat (compile_c, "gcc ../model/mainBin.c -o mainBin_model.o");
       $system(compile_c);
       //$sformat (execute_c, "./udlx_golden_model.o ../tests/DLX_T1_1.hex");
-      $sformat (execute_c, "./udlx_golden_model.o %s ",DLX_TEST);
+      $sformat (execute_c, "./mainBin_model.o %s ",DLX_TEST);
       $system(execute_c);
       $display("DISPLAY: %s",DLX_TEST);
 
