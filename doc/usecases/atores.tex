@@ -3,12 +3,16 @@
   \begin{figure}[H]
     \centering
     \begin{tikzpicture} 
-      \umlactor{UC} 
-      \umlactor[x=4]{ULA}  
+      \umlactor{Instruction Fetch}
+      \umlactor[x=3]{Instruction Decode} 
+      \umlactor[x=5.3]{Unit Control} 
+      \umlactor[x=7.95]{Aritmethic Logical Unit}  
     \end{tikzpicture} 
   \end{figure}
 
   \begin{description}  
-    \actor{UC}{Unidade que controla a execução das operações.}
-    \actor{ULA}{Unidade que realiza as operações lógicas e aritméticas.}
+    \actor{Instruction Fetch}{Módulo responsável por buscar a instrução a ser executada.}
+    \actor{Instruction Decode}{Módulo reponsável por decodificar a instrução encontrada.}
+    \actor{Unit Control}{Unidade que controla a execução das operações.}
+    \actor{Aritmethic Logical Unit}{Unidade que realiza as operações lógicas e aritméticas.}
   \end{description}
