@@ -36,7 +36,7 @@ class musa_monitor;
       end
       dut_if.rst_n = 1;
       #10;
-              $display("não_sei1");
+      $display("não_sei1");
       dut_if.rst_n = 0;
       #30;
       $display("não_sei2");
@@ -52,8 +52,8 @@ class musa_monitor;
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
         @(posedge dut_if.clk_musa);
-        if(dut_if.data_wr_en)
-           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
+//        if(dut_if.data_wr_en)
+//           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
     join_none
   endtask
