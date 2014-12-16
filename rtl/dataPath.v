@@ -47,26 +47,26 @@ StageTwo BLOCO2(
 .instruction(instruction), 
 .clk(clk),
 .rst(rst),  
-.pcSrc(pcSrc), 
-.memRead(memRead), 
-.memWrite(memWrite),
-.push_out(push),
-.pop_out(pop), 
-.PCWrite(_pcWrite), 
-.aluOp(aluOp),
-.outputWord(word_sign),
-.AluOut(result),
-.mem_Data(_mem_Data),
-.readData1(readData1),
-.readData2(readData2), 
-.jump_jpc(jump_jpc),
-.data_a_select(data_a_select),
-.data_b_select(data_b_select),
-.read1(read1),
-.read2(read2),
-.read3(read3),
-.read4(read4),
-.func(func)
+.pcSrc(pcSrc), //fonte do PC
+.memRead(memRead), //leitura de memória
+.memWrite(memWrite), //escrita de memória
+.push_out(push), //coloca na pilha
+.pop_out(pop), //retira da pilha
+.PCWrite(_pcWrite), //escrita do PC
+.aluOp(aluOp), //operação da ULA
+.outputWord(word_sign), //?? 
+.AluOut(result), //resultado da ULA
+.mem_Data(_mem_Data), //??
+.readData1(readData1), //??
+.readData2(readData2), //??
+.jump_jpc(jump_jpc), //??
+.data_a_select(data_a_select),// seleção do mux do dado a
+.data_b_select(data_b_select),// seleção do mux do dado b
+.read1(read1),//??
+.read2(read2),//??
+.read3(read3),//??
+.read4(read4),//??
+.func(func)// func da instrução R ?
 );
 
 ex_stage BLOCO3 (
