@@ -203,7 +203,7 @@ void main (int argc, char *argv[]){
 	instruction = malloc(65536); //alterar tamanho da memória de instruções
 
 	//Read the file that contains the instructions
-	arq_instructions = fopen(argv[1], "rt");
+	arq_instructions = fopen("Estimulos_Binarios_Simples.bin", "rt");
 	if (arq_instructions == NULL)
 	{
     	printf("Instrunctions File was not opened\n");

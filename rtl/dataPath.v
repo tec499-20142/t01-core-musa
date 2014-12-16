@@ -1,4 +1,16 @@
-module dataPath(clk, rst, read1, read2, read3, read4);
+module dataPath(clk, rst, read1, read2, read3, read4, read_in);
+
+parameter ADDR_WIDTH = 32;
+parameter DATA_WIDTH = 32;
+
+// LCD signals
+wire [7:0] lcd_data_out; 	// LCD data
+wire lcd_on_out;			// LCD power on/off
+wire lcd_blon_out;		// LCD back light on/off
+wire lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
+wire lcd_en_out;			// LCD enable
+wire lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
+input read_in; 
 
 input clk, rst;
 wire [31:0] instruction;
@@ -84,6 +96,29 @@ stage_Four_Five BLOCO4 (
  .memRead(memRead),
  .memWrite(memWrite)
  );
+
+lcd_mem_read 
+#(
+	.ADDR_WIDTH(ADDR_WIDTH),
+	.DATA_WIDTH(DATA_WIDTH)
+) lcd_mem_read_u0 (
+	.clk_50(clk),    			// Board clock 50Mhz
+	.rst_n(rst),  				// Asynchronous reset active low key[0]
+	.read_in(read_in),			// Read trigger key[3]
+	
+	// Data memory
+	.mem_data_in(_mem_Data), 	// Data memory output
+	.addr_out(result),	// Data memory address
+	.data_mem_rd_en_out(memRead),			// Data memory read enable
+
+	// LCD signals
+	.lcd_data_out(lcd_data_out), 	// LCD data
+	.lcd_on_out(lcd_on_out),			// LCD power on/off
+	.lcd_blon_out(lcd_blon_out),		// LCD back light on/off
+	.lcd_rw_out(lcd_rw_out),			// LCD read/write select, 0 = write, 1 = read
+	.lcd_en_out(lcd_en_out),			// LCD enable
+	.lcd_rs_out(lcd_rs_out)			// LCD command/data select, 0 = command, 1 = data
+);
 
 
 
