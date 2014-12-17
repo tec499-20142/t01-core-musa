@@ -31,19 +31,12 @@ class musa_monitor;
   task reset();
     begin
       for(int i=0; i<MAX_LENGTH; i++)begin
-        $display("entrei_no_for_do_reset");
         data_collected.data_write[i] = 0;
       end
       dut_if.rst_n = 1;
       #10;
-      $display("não_sei1");
       dut_if.rst_n = 0;
       #30;
-      $display("não_sei2");
-      @(posedge dut_if.clk_env);
-      #1
-      dut_if.rst_n = 1;
-      $display("não_sei3");
     end
   endtask
 
