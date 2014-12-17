@@ -16,6 +16,11 @@ module musa_tb;
 musa_monitor monitor_u0;
 
 bit clk;
+logic led1=0;
+logic led2=0;
+logic led3=0;
+logic led4=0;
+logic read=1;
 
 //dut_if interface
 dut_if dut_if(clk);
@@ -29,19 +34,20 @@ dataPath
          .ADDR_WIDTH(ADDR_WIDTH)
       )
       musa_u0
-      (//autoport
+      (
          .clk(clk),
-         .rst_n(dut_if.rst_n)
+         .rst(dut_if.rst_n),
+         .read_in(),
+         .read1(led1).
+         .read2(led2),
+         .read3(led3),
+         .read4(led4)
       );
 
 
 
 initial begin
  clk = 0;
-end
-
-always begin
-   #100  clk = ~clk;
 end
 
 //------------------------------------ MONITOR -----------------------------------------//

@@ -58,7 +58,7 @@ class musa_monitor;
         @(posedge dut_if.clk_musa);
         $display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
-        if(instruction == 'b00) begin
+        if(instruction == 'h00) begin
           $display("entrei no if1");
           if(cnt_stop == 5) begin
             cnt_stop = 0;
