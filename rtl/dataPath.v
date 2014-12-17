@@ -1,15 +1,16 @@
-module dataPath(clk, rst, read1, read2, read3, read4, read_in);
+module dataPath(clk, rst, read1, read2, read3, read4, read_in, lcd_data_out, lcd_on_out,
+lcd_blon_out, lcd_rw_out, lcd_en_out, lcd_rs_out);
 
 parameter ADDR_WIDTH = 32;
 parameter DATA_WIDTH = 32;
 
 // LCD signals
-wire [7:0] lcd_data_out; 	// LCD data
-wire lcd_on_out;			// LCD power on/off
-wire lcd_blon_out;		// LCD back light on/off
-wire lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
-wire lcd_en_out;			// LCD enable
-wire lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
+output [7:0] lcd_data_out; 	// LCD data
+output lcd_on_out;			// LCD power on/off
+output lcd_blon_out;		// LCD back light on/off
+output lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
+output lcd_en_out;			// LCD enable
+output lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
 input read_in; 
 
 input clk, rst;
