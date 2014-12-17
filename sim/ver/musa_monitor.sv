@@ -45,8 +45,8 @@ class musa_monitor;
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
         @(posedge dut_if.clk_musa);
-//        if(dut_if.data_wr_en)
-//           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
+        if(dut_if.mem_write)
+           data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
     join_none
   endtask
@@ -58,7 +58,7 @@ class musa_monitor;
         @(posedge dut_if.clk_musa);
         $display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
-        if(instruction == 'h00) begin
+        if(instruction == 'b00) begin
           $display("entrei no if1");
           if(cnt_stop == 5) begin
             cnt_stop = 0;
@@ -90,7 +90,7 @@ class musa_monitor;
       $display("entrei no check");
       $sformat (compile_c, "gcc ../model/mainBin.c -o mainBin_model.o");
       $system(compile_c);
-      //$sformat (execute_c, "./udlx_golden_model.o ../tests/DLX_T1_1.hex");
+      $sformat (execute_c, "./mainBin_model.o ../tests/estimulos_binario_simples.bin");
       $sformat (execute_c, "./mainBin_model.o %s ",MUSA_TEST);
       $system(execute_c);
       $display("DISPLAY: %s",MUSA_TEST);

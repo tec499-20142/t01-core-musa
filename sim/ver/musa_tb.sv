@@ -23,15 +23,15 @@ dut_if dut_if(clk);
 //clk rst manager
 reg clk_proc;
 
-datapath
+dataPath
       #(
          .DATA_WIDTH(DATA_WIDTH),
-         .ADDR_WIDTH(ADDR_WIDTH),
+         .ADDR_WIDTH(ADDR_WIDTH)
       )
       musa_u0
       (//autoport
          .clk(clk),
-         .rst_n(dut_if.rst_n),
+         .rst_n(dut_if.rst_n)
       );
 
 
@@ -54,17 +54,13 @@ always@(*)begin
    dut_if.alu_op = musa_u0.BLOCO2.aluOp;
    dut_if.data_a_s = musa_u0.BLOCO3.data_a_select;
    dut_if.data_b_s = musa_u0.BLOCO3.data_b_select;
-   dut_if.instruction = musa_u0.BLOCO3.instruction;
-   
-   
-   dut_if.reg_dst = musa_u0.BLOCO2.regDst;
-   dut_if.mem_to_reg = musa_u0.BLOCO2.memToReg;
-      dut_if.reg_write = musa_u0.BLOCO2.regWrite;
-
-   
+   dut_if.instruction = musa_u0.BLOCO2.instruction;
+   dut_if.mem_to_reg = musa_u0.BLOCO2.StageTwo.memToReg;   
+   dut_if.reg_dst = musa_u0.BLOCO2.StageTwo.regDst;
+   dut_if.reg_write = musa_u0.BLOCO2.StageTwo._regWrite;
    dut_if.clk = musa_u0.BLOCO2.clk;
    for(int i=0;i<NUM_REGS;i++)begin
-    dut_if.regs[i]= musa_u0.BLOCO2.instruction_decode_u0.register_bank_u0.reg_file[i];
+    dut_if.regs[i]= musa_u0.BLOCO2.RegisterFile.MemoryFile[i];
    end 
    
 end
@@ -84,7 +80,7 @@ begin
    monitor_u0.read_data();
    $display("deu read_data");
    monitor_u0.read_instruction();
-   $display("leu instru??o");
+   $display("leu instrucao");
    repeat(100)@(posedge clk);
 end
 
