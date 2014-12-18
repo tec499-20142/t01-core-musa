@@ -16,11 +16,12 @@
           \hline
           \endlastfoot
 
-          address                  & 11  & entrada   & Endereço da memória de dados no qual o dado deve ser escrito   \\ \hline
+          address & 32 & entrada & Endereço da memória de dados no qual o dado deve ser escrito   \\ \hline
           memRead                  & 1   & entrada   & Sinal proveniente da UC que habilita leitura    \\ \hline
           memWrite                 & 1   & entrada   & Sinal proveniente da UC que habilita escrita    \\ \hline
-          writeData      		   & 32   & entrada   & Dado a ser escrito na memória. \\ \hline
-          writeBack	               & 32  & saída     & Dado proveniente da ALU que será escrito no bloco de registradores\\ \hline
+	      memToReg                 & 1   & entrada  & Sinal proveniente da UC que verifica qual dado será escrito no banco de registradores  \\ \hline
+          data\_in      		   & 32   & entrada   & Dado a ser escrito na memória. \\ \hline
+          writeBack	 & 32  & saída  & Dado que será escrito no banco de registradores \\ \hline
         \end{longtable}
       \end{center}
     

@@ -12,12 +12,12 @@
 	+ stack: input bit [32]\\
 	+ data\_a\_select: input bit [2]\\
 	+ data\_b\_select: input bit [2]\\
-	+ pc\_select: input bit [2] \\
+	+ pc\_Src: input bit [3] \\
 	+ alu\_control: input bit [2] \\
 	+ func: input bit [6] \\
 	+ result: output bit [32]\\
 	+ flag: output bit [3]\\
-	+ next\_pc: output bit [32]\\}			
+	+ next\_address: output bit [32]\\}			
 	{+ <<comb>> calc\_next\_pc() \\
 	+ <<comb>> cal\_al\_operation() }
 	\end{tikzpicture}
