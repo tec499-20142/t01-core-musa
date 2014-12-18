@@ -1,23 +1,10 @@
-<<<<<<< HEAD
-module dataPath(clk, rst, read1, read2, read3, read4);//, read_in);
-=======
 module dataPath(clk, rst, read1, read2, read3, read4, read_in, lcd_data_out, lcd_on_out,
 lcd_blon_out, lcd_rw_out, lcd_en_out, lcd_rs_out);
->>>>>>> 38914720581a193253e32892981fd083f03e9766
 
 parameter ADDR_WIDTH = 32;
 parameter DATA_WIDTH = 32;
 
 // LCD signals
-<<<<<<< HEAD
-wire [7:0] lcd_data_out; 	// LCD data
-wire lcd_on_out;			// LCD power on/off
-wire lcd_blon_out;		// LCD back light on/off
-wire lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
-wire lcd_en_out;			// LCD enable
-wire lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
-//input read_in; 
-=======
 output [7:0] lcd_data_out; 	// LCD data
 output lcd_on_out;			// LCD power on/off
 output lcd_blon_out;		// LCD back light on/off
@@ -25,11 +12,12 @@ output lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
 output lcd_en_out;			// LCD enable
 output lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
 input read_in; 
->>>>>>> 38914720581a193253e32892981fd083f03e9766
 
 input clk, rst;
 wire [31:0] instruction;
-wire  push, pop, memRead, memWrite, aluSrc;
+wire  push, pop, memRead, memWrite;
+wire memRead_lcd;
+wire [31:0] addr_out;
 wire [2:0] pcSrc;
 wire  [2:0] aluOp;
 wire  [31:0] word_sign;
@@ -63,25 +51,25 @@ StageTwo BLOCO2(
 .clk(clk),
 .rst(rst),  
 .pcSrc(pcSrc), //fonte do PC
-.memRead(memRead), //leitura de memória
-.memWrite(memWrite), //escrita de memória
+.memRead(memRead), //leitura de memï¿½ria
+.memWrite(memWrite), //escrita de memï¿½ria
 .push_out(push), //coloca na pilha
 .pop_out(pop), //retira da pilha
 .PCWrite(_pcWrite), //escrita do PC
-.aluOp(aluOp), //operação da ULA
+.aluOp(aluOp), //operaï¿½ï¿½o da ULA
 .outputWord(word_sign), //?? 
 .AluOut(result), //resultado da ULA
 .mem_Data(_mem_Data), //??
 .readData1(readData1), //??
 .readData2(readData2), //??
 .jump_jpc(jump_jpc), //??
-.data_a_select(data_a_select),// seleção do mux do dado a
-.data_b_select(data_b_select),// seleção do mux do dado b
+.data_a_select(data_a_select),// seleï¿½ï¿½o do mux do dado a
+.data_b_select(data_b_select),// seleï¿½ï¿½o do mux do dado b
 .read1(read1),//??
 .read2(read2),//??
 .read3(read3),//??
 .read4(read4),//??
-.func(func)// func da instrução R ?
+.func(func)// func da instruï¿½ï¿½o R ?
 );
 
 ex_stage BLOCO3 (
@@ -112,30 +100,31 @@ stage_Four_Five BLOCO4 (
  .memWrite(memWrite)
  );
 
-/*
-lcd_mem_read 
-#(
+
+lcd_mem_read #(
 	.ADDR_WIDTH(ADDR_WIDTH),
 	.DATA_WIDTH(DATA_WIDTH)
-) lcd_mem_read_u0 (
-	.clk_50(clk),    			// Board clock 50Mhz
-	.rst_n(rst),  				// Asynchronous reset active low key[0]
-	.read_in(read_in),			// Read trigger key[3]
+	) 
 	
-	// Data memory
-	.mem_data_in(_mem_Data), 	// Data memory output
-	.addr_out(result),	// Data memory address
-	.data_mem_rd_en_out(memRead),			// Data memory read enable
+	lcd_mem_read_u0 (
+		.clk_50(clk),    			// Board clock 50Mhz
+		.rst_n(rst),  				// Asynchronous reset active low key[0]
+		.read_in(read_in),			// Read trigger key[3]
+	
+		// Data memory
+		.mem_data_in(_mem_Data), 	// Data memory output
+		.addr_out(addr_out),	// Data memory address
+		.data_mem_rd_en_out(memRead_lcd),			// Data memory read enable
 
-	// LCD signals
-	.lcd_data_out(lcd_data_out), 	// LCD data
-	.lcd_on_out(lcd_on_out),			// LCD power on/off
-	.lcd_blon_out(lcd_blon_out),		// LCD back light on/off
-	.lcd_rw_out(lcd_rw_out),			// LCD read/write select, 0 = write, 1 = read
-	.lcd_en_out(lcd_en_out),			// LCD enable
-	.lcd_rs_out(lcd_rs_out)			// LCD command/data select, 0 = command, 1 = data
-);
+		// LCD signals
+		.lcd_data_out(lcd_data_out), 	// LCD data
+		.lcd_on_out(lcd_on_out),			// LCD power on/off
+		.lcd_blon_out(lcd_blon_out),		// LCD back light on/off
+		.lcd_rw_out(lcd_rw_out),			// LCD read/write select, 0 = write, 1 = read
+		.lcd_en_out(lcd_en_out),			// LCD enable
+		.lcd_rs_out(lcd_rs_out)			// LCD command/data select, 0 = command, 1 = data
+	);
 
-*/
+
 
 endmodule

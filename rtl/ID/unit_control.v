@@ -98,7 +98,7 @@ begin
 		end
 		
 		ANDI :
-		begin
+  		begin
 		      regDst = 1'b0;
 		      data_a_select = 2'b10;
 		      data_b_select = 2'b00;

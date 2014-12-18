@@ -15,7 +15,7 @@ assign read1 = MemoryFile[1][0];
 assign read2 = MemoryFile[1][1];
 assign read3 = MemoryFile[1][2];
 assign read4 = MemoryFile[1][3];
-initial $readmemh("b.b", MemoryFile);
+//initial $readmemh("b.b", MemoryFile);
 
 assign ReadData1 = MemoryFile [ReadRegister1];
 assign ReadData2 = MemoryFile [ReadRegister2];

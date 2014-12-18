@@ -6,11 +6,10 @@ module stage_Four_Five(
 	memRead,
 	memWrite);
 
-
-input [31 : 0] addr;
+input [31:0] addr;
 input clk;
-input [31 : 0] data_in;
-output [31 : 0] data_out;
+input [31:0] data_in;
+output [31:0] data_out;
 input memRead;
 input memWrite;
 
