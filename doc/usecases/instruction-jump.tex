@@ -18,7 +18,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional JR. 
 \subsubsection*{Fluxo Básico}
 \begin{itemize}
 \item O módulo \textbf{IF} busca a instrução JR a ser executada.
-\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador. 
 \end{itemize}
 
 \usecase{Instrução JPC}
@@ -114,6 +114,30 @@ Este caso de uso especifica a ação da instrução de desvio incondicional RET.
 \begin{itemize}
 	\item O módulo \textbf{IF} busca a instrução RET a ser executada.
 	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+\end{itemize}
+
+\usecase{Instrução HALT}
+
+Este caso de uso especifica a ação da instrução HALT. O principal objetivo é finalizar a execução de novas instruções, parar o sistema.
+
+\subsubsection*{Atores}
+\textbf{IF, ID, EX}
+
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução HALT.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+	\item Não ser executado mais nenhuma instrução.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução HALT a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+	\item O módulo \textbf{EX} não atualiza o valor para próxima instrução, ficando direcionado para a mesma instrução HALT (loop infinito).
 \end{itemize}
 
 \begin{figure}[htpb!]
