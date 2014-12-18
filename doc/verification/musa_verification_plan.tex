@@ -11,6 +11,7 @@
 \usepackage{rotating} % rotate table 90 degrees
 \usepackage{pdflscape} % set ladscape/portrait pdf pages
 \usepackage[table]{xcolor}
+\usepackage{verbatim}
 
 %\usepackage[author={João Carlos Nunes Bittencourt}]{pdfcomment}
 
@@ -64,19 +65,19 @@
 	\subsection{Propósito do Documento}
 	O objetivo deste documento é definir o plano de verificação da implementação MUSA. Este documento inclui o ambiente de verificação utilizado para realizar a verificação do processador, ao lado das principais características do design, a lista de testes, lista de \textit{assertions} e outros.
 	
-	\subsection{Stakeholders}
-  \FloatBarrier  
-  \begin{table}[H] 
-    \begin{center}
-      \begin{tabular}[pos]{|m{5cm} | m{8cm}|} 
-        \hline % este comando coloca uma linha na tabela
-        \cellcolor[gray]{0.9}\textbf{Nome} & \cellcolor[gray]{0.9}\textbf{Papéis/Responsabilidades} \\ \hline
-        Anderson, Manuelle e Weverson & Verificação Funcional \\ \hline
-        Gabriel, Lucas, Mirela, Patrick, Vinicius e Tarles & Implementação \\ \hline
-        Anderson e Manuelle & Analise \\ \hline       
-      \end{tabular}
-    \end{center}
-  \end{table} 
+  \section{Stakeholders}
+    \FloatBarrier
+    \begin{table}[H] 
+      \begin{center}
+        \begin{tabular}[pos]{|m{6cm} | m{8cm}|} 
+          \hline 
+          \cellcolor[gray]{0.9}\textbf{Nome} & \cellcolor[gray]{0.9}\textbf{Papel/Responsabilidades} \\  
+           \hline Manuelle 	& Gerência \\
+           \hline Manuelle, Vinicius, Weverson, Patrick 	& Análise \\
+           \hline Patrick, Lucas, Mirela, Vinícius, Gabriel, Anderson e Tarles 	& Projeto \\ \hline
+        \end{tabular}
+      \end{center}
+    \end{table}
   
   \subsection{Siglas e Abreviações}
   \FloatBarrier
@@ -138,10 +139,10 @@ testbench e a uma nova simulação.
 
   Quando a execução do programa chega ao fim, o monitor deve invocar o \textit{checker}. O \textit{monitor} identifica o final da execução do programa a partir da instrução HALT.
 
-	O teste que será executado no modelo de referência deve ser definido no arquivo \texttt{sim/tb/defines.sv}. Para executar o teste no DUT, o procedimento deve ser realizado no arquivo de memória de instruções \texttt{sim/tests/instrucoesMars.asm}, a partir da alteração do caminho especificado na funcão \texttt{read\_memh}.
+	O teste que será executado no modelo de referência deve ser definido no arquivo \texttt{sim/tb/defines.sv}. Para executar o teste no DUT, o procedimento deve ser realizado no arquivo de memória de instruções \texttt{sim/model/test.txt}, a partir da alteração do caminho especificado na funcão \texttt{read\_memh}.
 
 	\subsection{Modelo de Referência}
-  Tendo em vista garantir que o processador executará as instruções corretamente, foi desenvolvido um modelo de referência, capaz de simular o comportamento do processador MUSA. Este modelo é capaz de executar todas as instruções suportadas pelo MUSA. O arquivo do modelo de referência está localizado no diretório \texttt{sim/model/main2.c}.
+  Tendo em vista garantir que o processador executará as instruções corretamente, foi desenvolvido um modelo de referência, capaz de simular o comportamento do processador MUSA. Este modelo é capaz de executar todas as instruções suportadas pelo MUSA. O arquivo do modelo de referência está localizado no diretório \texttt{sim/model/mainHex.c}.
 	
 	\subsection{Especificações de Projeto do Ambiente de Verificação}
   \FloatBarrier
@@ -166,14 +167,14 @@ testbench e a uma nova simulação.
         \hline
         \endlastfoot
       	Nome do Documento         		          & Plano de Verificação do MUSA  	\\ \hline
-      	Versão e data do documento 		          & Versão 1.0, 23 de outubro de 2014  	\\ \hline      	
-      	Autor(es) / Proprietário(s) 		        & Terseu Hunter  	\\ \hline
+      	Versão e data do documento 		          & Versão 3.0, 18 de dezembro de 2014  	\\ \hline      	
+      	Autor(es) / Proprietário(s) 		        & Terseu Hunter, Manuelle Macedo e Anderson Queiroz  	\\ \hline
       	Metodologia de Verificação	          	& Top-Down  	\\ \hline
       	Métodos de Verificação	          			& Simulation and Formal Verification  	\\ \hline
       	Aplicação   		          			        & ModelSim ALTERA Edition  	\\ \hline
-      	Linguagens 		          			          & System Verilog  	\\ \hline
+      	Linguagens 		          			          & System Verilog   	\\ \hline
       	Ambiente de verificação   	            &	Custom testbench  \\ \hline	
-      	Arquivos de teste				                &	No diretório: sim/tests \\ \hline
+      	Arquivos de teste				                &	No diretório: sim/model e sim/tests \\ \hline
       	Tecnologias	                            &	FPGA Cyclone 3 Development Board  \\ \hline
       \end{longtable}
     \end{center}	
@@ -186,8 +187,8 @@ testbench e a uma nova simulação.
 			\rowcolors{1}{white}{gray!25} 
       \begin{longtable}[pos]{| c | m{9cm} | c |} \hline  %14cm
 	      \rowcolor{black}
-        \multicolumn{1}{|m{2cm}|}{\centering\textbf{\textcolor{white}{Feature Número}}} & 
-        \multicolumn{1}{m{9cm}|}{\centering\textbf{\textcolor{white}{Feature Descrição}}} &
+        \multicolumn{1}{|m{2cm}|}{\centering\textbf{\textcolor{white}{Número}}} & 
+        \multicolumn{1}{m{9cm}|}{\centering\textbf{\textcolor{white}{Descrição}}} &
         \multicolumn{1}{c|}{\textbf{\textcolor{white}{Prioridade}}}  \\ \hline
         \endfirsthead
         \hline
@@ -195,8 +196,8 @@ testbench e a uma nova simulação.
         {{\bfseries continuação da página anterior}} \\
         \hline
         \rowcolor{black}
-        \multicolumn{1}{|m{2cm}|}{\centering\textbf{\textcolor{white}{Feature Número}}} & 
-        \multicolumn{1}{m{9cm}|}{\textbf{\textcolor{white}{Feature Descrição}}} &
+        \multicolumn{1}{|m{2cm}|}{\centering\textbf{\textcolor{white}{Número}}} & 
+        \multicolumn{1}{m{9cm}|}{\textbf{\textcolor{white}{Descrição}}} &
         \multicolumn{1}{c|}{\textbf{\textcolor{white}{Prioridade}}}  \\ \hline
         \endhead
         \hline \multicolumn{3}{|r|}{{continua na próxima página}} \\ \hline
@@ -204,11 +205,11 @@ testbench e a uma nova simulação.
 
         \hline
         \endlastfoot
-      	MUSA\_F1      & Signal are activated based on the instruction.  &	10 \\ \hline   	
-      	MUSA\_F2      & Communication with Instruction Memory &	9 \\ \hline
-      	MUSA\_F3      & Read and write operation to the Data Memory. &	9 \\ \hline
-      	MUSA\_F4      & Read and write operation to the Register File. &	10 \\ \hline
-      	MUSA\_F5      & All interfaces protocols must work properly. &	9 \\ \hline     	
+      	MUSA\_F1      & Os sinais são ativados baseados na instrução &	10 \\ \hline   	
+      	MUSA\_F2      & COmunicação com a memória de instruções &	9 \\ \hline
+      	MUSA\_F3      & Operação de leitura e escrita na memória de dados &	9 \\ \hline
+      	MUSA\_F4      & Operação de leitura e escrita no arquivo de registro &	10 \\ \hline
+      	MUSA\_F5      & Todas os protocolos de interface devem estar funcionando apropriadamente &	9 \\ \hline     	
       \end{longtable}
     \end{center}	
 
@@ -249,15 +250,15 @@ testbench e a uma nova simulação.
 
         \hline
         \endlastfoot
-      	MUSA\_T1      & Execução de todas as instruções da categoria aritmética.          &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 70\% \\ \hline   
-      	MUSA\_T2      & Execução de todas as instruções de transferência de dados.        &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 70\% \\ \hline   
-      	MUSA\_T3      & Execução de todas as instruções da categoria lógica.              &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 70\% \\ \hline  
-      	MUSA\_T4      & Execução de todas as instruções da categoria salto condicional.   &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 70\% \\ \hline 
-      	MUSA\_T5      & Execução de todas as instruções da categoria salto incondicional. &	Sim       & Unit & MUSA\_F1, MUSA\_F2 & 5 & Anderson & 70\% \\ \hline 
-	      MUSA\_T6      & Acesso à memória de declarados                                    &	Assertion & Unit & MUSA\_F3           & 7 & Manuelle e Weverson & 80\% \\ \hline        
-	      MUSA\_T7      & Acesso à memória de instruções                                    &	Assertion & Unit & MUSA\_F4           & 9 & Manuelle e Weverson & 80\% \\ \hline        
-	      MUSA\_T8      & Execução de programas completos sob a arquitetura.                &	Sim       & Unit & MUSA\_F3, MUSA\_F4 & 8 & Anderson, Manuelle e Weverson & 0\% \\ \hline        
-	      MUSA\_T9      & Teste de todos os protocolos de interface.                        & Assertion & Unit & MUSA\_F5           & 8 & Anderson, Manuelle e Weverson & 0\% \\ \hline        
+      	MUSA\_T1      & Execução de todas as instruções da categoria aritmética.          &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 90\% \\ \hline   
+      	MUSA\_T2      & Execução de todas as instruções de transferência de dados.        &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson  & 90\% \\ \hline   
+      	MUSA\_T3      & Execução de todas as instruções da categoria lógica.              &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 90\% \\ \hline  
+      	MUSA\_T4      & Execução de todas as instruções da categoria salto condicional.   &	Sim       & Unit & MUSA\_F1, MUSA\_F4 & 5 & Anderson & 90\% \\ \hline 
+      	MUSA\_T5      & Execução de todas as instruções da categoria salto incondicional. &	Sim       & Unit & MUSA\_F1, MUSA\_F2 & 5 & Anderson & 90\% \\ \hline 
+	      MUSA\_T6      & Acesso à memória de declarados                                    &	Assertion & Unit & MUSA\_F3           & 7 & Manuelle & 90\% \\ \hline        
+	      MUSA\_T7      & Acesso à memória de instruções                                    &	Assertion & Unit & MUSA\_F4           & 9 & Manuelle & 90\% \\ \hline        
+	      MUSA\_T8      & Execução de programas completos sob a arquitetura.                &	Sim       & Unit & MUSA\_F3, MUSA\_F4 & 8 & Anderson & 90\% \\ \hline        
+	      MUSA\_T9      & Teste de todos os protocolos de interface.                        & Assertion & Unit & MUSA\_F5           & 8 & Manuelle & 90\% \\ \hline        
 
       \end{longtable}
     \end{center}		
@@ -289,12 +290,13 @@ testbench e a uma nova simulação.
 
         \hline
         \endlastfoot
-      	MUSA\_A1      & Assertion para a busca correta das instrução.            &	Em andamento \\ \hline   	
-      	MUSA\_A2      & Assertion para verificar a operação de decodificação     &	Em andamento \\ \hline
-      	MUSA\_A3      & Assertion para verificar a operação do bloco de execução.&	Em andamento \\ \hline      	
-      	MUSA\_A4      & Assertion para leitura da memória de dados e write back. &	Em andamento \\ \hline      	
-      	MUSA\_A5      & Assertion para branches e instruções de salto. 		       &	Em andamento \\ \hline      	
-      	MUSA\_A6      & Assertion para verificar os protocolos de interface. 		 &	Em andamento \\ \hline      	
+      	MUSA\_A1      & Assertion para a busca correta das instrução.            &	Concluído \\ \hline   	
+      	MUSA\_A2      & Assertion para verificar a operação de decodificação     &	Concluído \\ \hline
+      	MUSA\_A3      & Assertion para verificar a operação do bloco de execução.&	Concluído \\ \hline      	
+      	MUSA\_A4      & Assertion para leitura da memória de dados e write back. &	Concluído \\ \hline      	
+      	MUSA\_A5      & Assertion para branches e instruções de salto. 		       &	Concluído \\ \hline      	
+      	MUSA\_A6      & Assertion para verificar os protocolos de interface. 		 &	Concluído \\ \hline 
+      	MUSA\_A7      & Assertion para os sinais de controle de cada instrução. 		 &	Concluído \\ \hline      	
       \end{longtable}
     \end{center}		
   
@@ -329,18 +331,19 @@ testbench e a uma nova simulação.
         \endlastfoot
         \rowcolor{gray}
 				\textbf{Recursos de Engenharia}     & 		&										 	& 		 			&  \\ \hline   	
-      	Engenheiro de Verificação  					& 3 &	Alunos                	& 10/11 	      & 15 dias \\ \hline   
+      	Engenheiro de Verificação  					& 3 &	Alunos                	& 10/11 	      & 25 dias \\ \hline   
       	\rowcolor{gray}
 				\textbf{Recursos Computacionais}     			& 		&										 	& 		 			&  \\ \hline   
 				Computador 														& 3 &	Intel i5                	& N.A. 	      & N.A. \\ \hline   
       	\rowcolor{gray}
 				\textbf{Recursos de Software} 				& 		&										 	& 		 			&  \\ \hline   
-				ALTERA Quartus 											& 1		& WEB Edition					& 10/11	      & 21 dias \\ \hline 				
-				ALTERA ModelSIM		 									& 1		& ALTERA WEB Edition	& 	  14/11    & 21 dias \\ \hline 
+				ALTERA Quartus 											& 1		& WEB Edition					& 10/11	      & 30 dias \\ \hline 				
+				ALTERA ModelSIM		 									& 1		& ALTERA WEB Edition	& 	  14/11    & 30 dias \\ \hline 
       \end{longtable}
     \end{center}		
   
   \newpage
+\begin{comment}
 	\section{Cronograma}
 
   \FloatBarrier
@@ -370,12 +373,15 @@ testbench e a uma nova simulação.
 
         \hline
         \endlastfoot
-      	TBD     					& TBD	&	TBD dias 	& Definam as tarefas nesta tabela :) 	& N/A \\ \hline
-
-
+      	TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
+      	TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
+        TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
+      	TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
+		TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
+		TBD & TBD & TBD dias & Definam as tarefas nesta tabela :)& N/A \\ \hline
       \end{longtable}
-    \end{center}	
-		
-	
+    \end{center}
+    	
+\end{comment}		
 
 \end{document}
