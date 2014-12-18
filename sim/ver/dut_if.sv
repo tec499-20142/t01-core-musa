@@ -19,12 +19,10 @@ interface dut_if (input bit clk);
     logic [DATA_WIDTH-1:0] instruction; //
     logic [DATA_WIDTH-1:0] data_read; // leitura de dados
     logic [DATA_WIDTH-1:0] data_write; // escrita de dados
-    logic [DATA_ADDR_WIDTH-1:0] data_addr; //endereço do dado
+    logic [ADDR_WIDTH-1:0] data_addr; //endereço do dado
     logic [DATA_WIDTH-1:0] regs [0:(2**ADDRESS_WIDTH)-1]; //banco de registradores
     bit rst_n; //
     bit clk_musa; //
-    bit clk_dl; //
-    bit clk_env; //
 
     logic reg_dst;
     logic mem_read;

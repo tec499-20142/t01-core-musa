@@ -31,19 +31,12 @@ class musa_monitor;
   task reset();
     begin
       for(int i=0; i<MAX_LENGTH; i++)begin
-        $display("entrei_no_for_do_reset");
         data_collected.data_write[i] = 0;
       end
       dut_if.rst_n = 1;
       #10;
-              $display("não_sei1");
       dut_if.rst_n = 0;
       #30;
-      $display("não_sei2");
-      @(posedge dut_if.clk_env);
-      #1
-      dut_if.rst_n = 1;
-      $display("não_sei3");
     end
   endtask
 
@@ -52,7 +45,7 @@ class musa_monitor;
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
         @(posedge dut_if.clk_musa);
-        if(dut_if.data_wr_en)
+        if(dut_if.mem_write)
            data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
     join_none
@@ -97,7 +90,7 @@ class musa_monitor;
       $display("entrei no check");
       $sformat (compile_c, "gcc ../model/mainBin.c -o mainBin_model.o");
       $system(compile_c);
-      //$sformat (execute_c, "./udlx_golden_model.o ../tests/DLX_T1_1.hex");
+      $sformat (execute_c, "./mainBin_model.o ../tests/estimulos_binario_simples.bin");
       $sformat (execute_c, "./mainBin_model.o %s ",MUSA_TEST);
       $system(execute_c);
       $display("DISPLAY: %s",MUSA_TEST);

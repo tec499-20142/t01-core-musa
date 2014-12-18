@@ -1,3 +1,4 @@
+
 // +----------------------------------------------------------------------------
 // Universidade Estadual de Feira de Santana
 //------------------------------------------------------------------------------
@@ -7,7 +8,6 @@
 // -----------------------------------------------------------------------------
 // PURPOSE: Testbench for MUSA Processor.
 // -----------------------------------------------------------------------------
-`include "../rtl/dlx_de2_115_defines.v"
 module musa_tb;
 
 `include "musa_monitor.sv"
@@ -16,64 +16,57 @@ module musa_tb;
 musa_monitor monitor_u0;
 
 bit clk;
+logic led1=0;
+logic led2=0;
+logic led3=0;
+logic led4=0;
+logic read=1;
 
 //dut_if interface
 dut_if dut_if(clk);
 
 //clk rst manager
 reg clk_proc;
-wire [DATA_WIDTH-1:0] gpio_o;
-wire we_gpio;
 
-top
+dataPath
       #(
          .DATA_WIDTH(DATA_WIDTH),
-         .DATA_ADDR_WIDTH(DATA_ADDR_WIDTH),
-         .INST_ADDR_WIDTH(INST_ADDR_WIDTH)
+         .ADDR_WIDTH(ADDR_WIDTH)
       )
-      top_u0
-      (//autoport
+      musa_u0
+      (
          .clk(clk),
-         .rst_n(dut_if.rst_n),
-         .clk_proc(clk_proc),
-         .gpio_o(gpio_o),
-         .we_gpio(we_gpio)
+         .rst(dut_if.rst_n),
+         .read_in(),
+         .read1(led1).
+         .read2(led2),
+         .read3(led3),
+         .read4(led4)
       );
 
 
-wire clk_dl;
 
 initial begin
  clk = 0;
- clk_proc =0;
 end
-
-always begin
-   #100  clk = ~clk;
-end
-
-always begin
-   #1000  clk_proc = ~clk_proc;
-end
-
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
-   dut_if.reg_dst = top_u0.musa_processor_u0.regDst;
-   dut_if.mem_read = top_u0.musa_processor_u0.memRead;
-   dut_if.mem_to_reg = top_u0.musa_processor_u0.memToReg;
-   dut_if.mem_write = top_u0.musa_processor_u0.memWrite;
-   dut_if.reg_write = top_u0.musa_processor_u0.regWrite;
-   dut_if.data_a_s = top_u0.musa_processor_u0.data_a_s;
-   dut_if.data_b_s = top_u0.musa_processor_u0.data_b_s;
-   dut_if.pc_src = top_u0.musa_processor_u0.pcSrc;
-   dut_if.alu_op = top_u0.musa_processor_u0.aluOp;
-   dut_if.pop = top_u0.musa_processor_u0.pop;
-   dut_if.push = top_u0.musa_processor_u0.push;
-//   dut_if.clk_dlx = top_u0.musa_processor_u0.clk;
-   dut_if.clk_dl = clk_dl;
+   dut_if.pc_src = musa_u0.BLOCO2.pcSrc;
+   dut_if.mem_read = musa_u0.BLOCO2.memRead;
+   dut_if.mem_write = musa_u0.BLOCO2.memWrite;
+   dut_if.push = musa_u0.BLOCO2.push_out;
+   dut_if.pop = musa_u0.BLOCO2.pop_out;
+   dut_if.alu_op = musa_u0.BLOCO2.aluOp;
+   dut_if.data_a_s = musa_u0.BLOCO3.data_a_select;
+   dut_if.data_b_s = musa_u0.BLOCO3.data_b_select;
+   dut_if.instruction = musa_u0.BLOCO2.instruction;
+   dut_if.mem_to_reg = musa_u0.BLOCO2.StageTwo.memToReg;   
+   dut_if.reg_dst = musa_u0.BLOCO2.StageTwo.regDst;
+   dut_if.reg_write = musa_u0.BLOCO2.StageTwo._regWrite;
+   dut_if.clk = musa_u0.BLOCO2.clk;
    for(int i=0;i<NUM_REGS;i++)begin
-    dut_if.regs[i]= top_u0.musa_processor_u0.instruction_decode_u0.register_bank_u0.reg_file[i];
+    dut_if.regs[i]= musa_u0.BLOCO2.RegisterFile.MemoryFile[i];
    end 
    
 end
@@ -93,7 +86,7 @@ begin
    monitor_u0.read_data();
    $display("deu read_data");
    monitor_u0.read_instruction();
-   $display("leu instrução");
+   $display("leu instrucao");
    repeat(100)@(posedge clk);
 end
 

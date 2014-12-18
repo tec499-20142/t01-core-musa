@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 module dataPath(clk, rst, read1, read2, read3, read4);//, read_in);
+=======
+module dataPath(clk, rst, read1, read2, read3, read4, read_in, lcd_data_out, lcd_on_out,
+lcd_blon_out, lcd_rw_out, lcd_en_out, lcd_rs_out);
+>>>>>>> 38914720581a193253e32892981fd083f03e9766
 
 parameter ADDR_WIDTH = 32;
 parameter DATA_WIDTH = 32;
 
 // LCD signals
+<<<<<<< HEAD
 wire [7:0] lcd_data_out; 	// LCD data
 wire lcd_on_out;			// LCD power on/off
 wire lcd_blon_out;		// LCD back light on/off
@@ -11,6 +17,15 @@ wire lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
 wire lcd_en_out;			// LCD enable
 wire lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
 //input read_in; 
+=======
+output [7:0] lcd_data_out; 	// LCD data
+output lcd_on_out;			// LCD power on/off
+output lcd_blon_out;		// LCD back light on/off
+output lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
+output lcd_en_out;			// LCD enable
+output lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
+input read_in; 
+>>>>>>> 38914720581a193253e32892981fd083f03e9766
 
 input clk, rst;
 wire [31:0] instruction;
@@ -47,26 +62,26 @@ StageTwo BLOCO2(
 .instruction(instruction), 
 .clk(clk),
 .rst(rst),  
-.pcSrc(pcSrc), 
-.memRead(memRead), 
-.memWrite(memWrite),
-.push_out(push),
-.pop_out(pop), 
-.PCWrite(_pcWrite), 
-.aluOp(aluOp),
-.outputWord(word_sign),
-.AluOut(result),
-.mem_Data(_mem_Data),
-.readData1(readData1),
-.readData2(readData2), 
-.jump_jpc(jump_jpc),
-.data_a_select(data_a_select),
-.data_b_select(data_b_select),
-.read1(read1),
-.read2(read2),
-.read3(read3),
-.read4(read4),
-.func(func)
+.pcSrc(pcSrc), //fonte do PC
+.memRead(memRead), //leitura de memória
+.memWrite(memWrite), //escrita de memória
+.push_out(push), //coloca na pilha
+.pop_out(pop), //retira da pilha
+.PCWrite(_pcWrite), //escrita do PC
+.aluOp(aluOp), //operação da ULA
+.outputWord(word_sign), //?? 
+.AluOut(result), //resultado da ULA
+.mem_Data(_mem_Data), //??
+.readData1(readData1), //??
+.readData2(readData2), //??
+.jump_jpc(jump_jpc), //??
+.data_a_select(data_a_select),// seleção do mux do dado a
+.data_b_select(data_b_select),// seleção do mux do dado b
+.read1(read1),//??
+.read2(read2),//??
+.read3(read3),//??
+.read4(read4),//??
+.func(func)// func da instrução R ?
 );
 
 ex_stage BLOCO3 (
