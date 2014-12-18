@@ -8,6 +8,7 @@
 	+ pop : input bit \\
 	+ pcInput : input bit[32] \\ 
 	+ pcOutput : output bit[32] \\
+	+ PC+1 : output bit[32] \\
 	+ pcStack : output bit [32] \\
 	+ instruction : output bit[32] }			
 	{

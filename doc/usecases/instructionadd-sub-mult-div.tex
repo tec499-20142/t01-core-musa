@@ -1,0 +1,145 @@
+\usecase{Instrução ADD}
+
+Este caso de uso especifica a ação de execução de uma instrução de soma, principal objetivo é realizar uma soma entre dois valores de 32 bits.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução ADD.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir execução de futuras instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução ADD a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+\item O módulo \textbf{EX} realiza a operação de soma dos dois valores e atualiza para a próxima instrução.
+\item O módulo \textbf{MEM/WB} armazena o resultado no módulo \textbf{ID}.
+\end{itemize}
+
+\subsubsection*{Fluxos Alternativos}
+\begin{itemize}
+\item O resultado da operação pode ser maior ou menor do que o suportado:
+\subitem O módulo \textbf{EX} detecta e registra a ocorrência.
+\end{itemize}
+
+%\begin{figure}[htpb!]
+%	\subsubsection*{Diagrama de Caso de Uso}
+%		\input{./usecases/instructionFetch.tikz}
+%\end{figure}
+
+\usecase{Instrução SUB}
+
+Este caso de uso especifica a ação da instrução de subtração, principal objetivo é realizar a subtração entre dois valores de 32 bits.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução SUB.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir execução de futuras instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução SUB a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+\item O módulo \textbf{EX} realiza a operação de subtração dos dois valores e atualiza para a próxima instrução.
+\item O módulo \textbf{MEM/WB} armazena o resultado da subtração no módulo \textbf{ID}.
+\end{itemize}
+
+\subsubsection*{Fluxos Alternativos}
+\begin{itemize}
+\item O resultado da operação pode ser maior ou menor do que o suportado:
+\subitem O módulo \textbf{EX} detecta e registra a ocorrência.
+\end{itemize}
+
+%\begin{figure}[htpb!]
+%	\subsubsection*{Diagrama de Caso de Uso}
+%		\input{./usecases/instructionFetch.tikz}
+%\end{figure}
+
+\usecase{Instrução MUL}
+
+Este caso de uso especifica a ação da instrução de multiplicação, seu objetivo é realizar a multiplicação entre dois valores.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução MUL.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir execução de futuras instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução MUL a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+\item O módulo \textbf{EX} realiza a operação de multiplicação dos dois valores e atualiza para a próxima instrução.
+\item O módulo \textbf{MEM/WB} armazena o resultado da multiplicação no módulo \textbf{ID}.
+\end{itemize}
+
+\subsubsection*{Fluxos Alternativos}
+\begin{itemize}
+\item O resultado da operação pode ser maior ou menor do que o suportado:
+\subitem O módulo \textbf{EX} detecta e registra a ocorrência.
+\end{itemize}
+
+%\begin{figure}[htpb!]
+%	\subsubsection*{Diagrama de Caso de Uso}
+%		\input{./usecases/instructionFetch.tikz}
+%\end{figure}
+
+
+\usecase{Instrução DIV}
+
+Este caso de uso especifica a ação da instrução de divisão, seu objetivo é realizar a divisão entre dois valores.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução DIV.
+\end{itemize}
+
+\postconditions
+\begin{itemize}	
+  \item Permitir execução de futuras instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução DIV a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+\item O módulo \textbf{EX} realiza a operação de divisão dos valores e atualiza para a próxima instrução.
+\item O módulo \textbf{MEM/WB} armazena o resultado da divisão no módulo \textbf{ID}.
+\end{itemize}
+
+\subsubsection*{Fluxos Alternativos}
+\begin{itemize}
+\item O divisor disponibilizado pelo módulo \textbf{ID} para o módulo \textbf{EX} for 0 (zero):
+\subitem O módulo \textbf{EX} detecta e registra a ocorrência.
+\end{itemize}
+
+%\begin{figure}[htpb!]
+%	\subsubsection*{Diagrama de Caso de Uso}
+%		\input{./usecases/instructionFetch.tikz}
+%\end{figure}
+

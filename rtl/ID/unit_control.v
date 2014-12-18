@@ -1,18 +1,21 @@
 module unit_control(
 	opcode, 
 	clk, reset, 
-	pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite, regDst, PCWrite, 	
+	pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite_out, regDst, PCWrite, 	
 	aluOp, stage, aux_push_pop);
 
 input [5:0] opcode;
 input clk;
 input reset;
-output reg memRead, memToReg, memWrite, regWrite, regDst,PCWrite, push, pop;
+output reg memRead, memToReg, memWrite, regDst,PCWrite, push, pop;
+reg regWrite;
 output reg [2:0] stage = 3'b000;
 output reg [2:0] pcSrc;
 output reg [1:0] data_a_select, data_b_select; 
 output reg [2:0] aluOp;
 output reg aux_push_pop;
+output wire regWrite_out;
+reg aux_reg_write;
 
 
 parameter nop = 6'b000000;
@@ -22,18 +25,20 @@ parameter DIV = 6'b000101;
 parameter CMP= 6'b011101;		
 
 parameter ADDI = 6'b001000;		
-parameter SUBI= 6'b001001; //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: addiu		
+parameter SUBI= 6'b001001; //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: addiu		
 parameter ANDI = 6'b001100;		
 parameter ORI	= 6'b001101;
 parameter LW	= 6'b100011;
 parameter SW	= 6'b101011;
 
-parameter JR = 6'b010001;            //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: bclf
-parameter JPC	=	6'b000010;			  	  //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: j
-parameter BRFL	=	6'b000100;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: beq
-parameter CALL	=  6'b000011;				    //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: jal
+parameter JR = 6'b010001;            //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: bclf
+parameter JPC	=	6'b000010;			  	  //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: j
+parameter BRFL	=	6'b000100;				    //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: beq
+parameter CALL	=  6'b000011;				    //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: jal
 parameter RET	=  6'b000001;
 parameter HALT = 6'b111111;
+
+assign regWrite_out = regWrite & aux_reg_write;
 
 always@ (*)
 begin
@@ -299,7 +304,8 @@ end
     stage <= stage + 3'b001;
 		if(stage == 3'b100)begin
 			stage <= 3'b000;
-			PCWrite <= 1;
+			PCWrite <= 0;
+			aux_reg_write <= 0;
 		end
 		else if(stage == 3'b001)begin
 		  PCWrite <= 0;
@@ -307,7 +313,13 @@ end
 		end else if(stage == 3'b010)begin
 		  PCWrite <= 0;
 		  aux_push_pop <= 0;
-		  end else PCWrite <= 0;
+		  end else if(stage == 3'b011)begin
+					PCWrite <= 1;
+					aux_reg_write <= 1;
+				end else begin
+					PCWrite <= 0;
+					aux_reg_write <= 0;
+					end
 		
 	end
 endmodule

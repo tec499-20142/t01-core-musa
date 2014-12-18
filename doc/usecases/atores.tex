@@ -3,16 +3,16 @@
   \begin{figure}[H]
     \centering
     \begin{tikzpicture} 
-      \umlactor{Instruction Fetch}
-      \umlactor[x=3]{Instruction Decode} 
-      \umlactor[x=5.3]{Unit Control} 
-      \umlactor[x=7.95]{Aritmethic Logical Unit}  
+      \umlactor{IF}
+      \umlactor[x=1]{ID} 
+      \umlactor[x=2]{EX} 
+      \umlactor[x=3]{MEM/WB}  
     \end{tikzpicture} 
   \end{figure}
 
   \begin{description}  
-    \actor{Instruction Fetch}{Módulo responsável por buscar a instrução a ser executada.}
-    \actor{Instruction Decode}{Módulo reponsável por decodificar a instrução encontrada.}
-    \actor{Unit Control}{Unidade que controla a execução das operações.}
-    \actor{Aritmethic Logical Unit}{Unidade que realiza as operações lógicas e aritméticas.}
+    \actor{IF}{Módulo responsável por buscar a instrução a ser executada.}
+    \actor{ID}{Módulo responsável por decodificar a instrução encontrada e armazenar alguns dados.}
+    \actor{EX}{Módulo responsável pela execução das operações.}
+    \actor{MEM/WB}{Módulo onde se realiza o acesso a memória e armazenamento no módulo ID.}
   \end{description}
