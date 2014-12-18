@@ -11,9 +11,9 @@ output  [2:0] flag);
  initial begin
   reset = 0;
   reset = 1;
-  data_a = 20; 
-  data_b = 20; 
-  alu_control = 2;
+  data_a = 32'b10000000000000000000000000000000; 
+  data_b = 32'b10000000000000000000000000000000; 
+  alu_control = 0;
   func = 39;
   reset = 1;
   

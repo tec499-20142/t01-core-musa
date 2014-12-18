@@ -3,7 +3,7 @@ module musa_tb();
 parameter PERIODO_CLK = 20;
 reg clk = 0;
 reg rst = 1;
-reg read1, read2, read3, read4;
+wire [0:0]read1, read2, read3, read4;
 
 initial begin
 	#(PERIODO_CLK);  

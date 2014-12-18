@@ -20,7 +20,15 @@ initial $readmemh("b.b", MemoryFile);
 assign ReadData1 = MemoryFile [ReadRegister1];
 assign ReadData2 = MemoryFile [ReadRegister2];
 
-	always @(posedge clk) begin
+
+/* inicializa o banco de registradores com 0
+integer i;
+initial begin 
+  for(i = 0; i < 32; i = i + 1)
+    MemoryFile[i] = 0;
+end*/
+
+always @(posedge clk) begin
 		 if (RegWrite && (WriteRegister != 5'b00000)) MemoryFile [WriteRegister] <= WriteData;
 	end
 

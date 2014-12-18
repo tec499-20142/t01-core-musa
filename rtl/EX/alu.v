@@ -30,11 +30,10 @@
 	parameter FLAG_NOT_ACTIVED = 000;
 	parameter FLAG_EQUAL = 001; 
 	parameter FLAG_EXCEPTION = 010; 
-	parameter FLAG_OVERFLOW = 011;
-	parameter FLAG_UNDERFLOW = 100;
-	parameter FLAG_ABOVE = 101;
+	parameter FLAG_OVERFLOW_UNDERFLOW = 011;
+	parameter FLAG_ABOVE = 100;
 	
-	reg [31:0] reg_flag;   //registrador de flag
+	reg [2:0] reg_flag;   //registrador de flag
 	reg [64:0] result_checker; 
 
 	always @(alu_control, func, data_a, data_b, reset) 
@@ -43,55 +42,40 @@
 		end
 		else begin 
 			case (alu_control)
-				ADDI: begin
-					result_checker = data_a + data_b;  
-					case ({result_checker[32], result_checker[31]}) 
-						2'b00: begin 
-							reg_flag = FLAG_NOT_ACTIVED;
-						end 
-						2'b01: begin 
-							reg_flag = FLAG_OVERFLOW;
-						end 
-						2'b10: begin
-							reg_flag = FLAG_UNDERFLOW;
-						end 
-						2'b11: begin
-							reg_flag = FLAG_OVERFLOW;
-						end
-					endcase			
+				ADDI: 
+				begin
+					result_checker = data_a + data_b;
+					reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag; 
 					branch = 0;
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
-					case ({result_checker[32], result_checker[31]}) 
-						2'b00: begin 
-							reg_flag = FLAG_NOT_ACTIVED;
-						end 
-						2'b01: begin 
-							reg_flag = FLAG_OVERFLOW;
-						end 
-						2'b10: begin
-							reg_flag = FLAG_UNDERFLOW;
-						end 
-						2'b11: begin
-							reg_flag = FLAG_OVERFLOW;
-						end
-					endcase	
+					reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
 					branch = 0;
 				end 
 				TYPE_R: begin 
 					case(func)
 						ADD: begin 
 							result_checker = data_a + data_b;
+							reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
 						end 
 						SUB: begin 
 							result_checker = data_a - data_b;
+							reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
 						end
 						MUL: begin 
 							result_checker = data_a * data_b;
+							reg_flag = ((result_checker[64]^result_checker[63]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
 						end 
 						DIV: begin 
-							result_checker = data_a / data_b;
+						  if(data_b == 0) begin 
+						    reg_flag = FLAG_EXCEPTION;
+						    result_checker = 64'b0;
+						  end 
+						  else begin 
+							   result_checker = data_a / data_b;
+							   reg_flag = ((result_checker[64]^result_checker[63]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
+						  end 
 						end 
 						AND: begin 
 							result_checker = data_a & data_b; 
@@ -102,61 +86,7 @@
 						NOT: begin
 							result_checker = ~data_a;
 						end 			
-					endcase
-					//verificação do oerflow e underflow 
-					if(func == DIV) begin 
-						if(data_b == 0) begin 
-							reg_flag = FLAG_EXCEPTION;					
-						end 
-						else begin 						
-							case ({result_checker[64], result_checker[63]}) 
-								2'b00: begin 
-									reg_flag = FLAG_NOT_ACTIVED;
-								end 
-								2'b01: begin 
-									reg_flag = FLAG_OVERFLOW;
-								end 
-								2'b10: begin
-									reg_flag = FLAG_UNDERFLOW;
-								end 
-								2'b11: begin
-								reg_flag = FLAG_OVERFLOW;
-								end 
-							endcase
-						end 
-					end 
-					else if(func == MUL) begin
-						case ({result_checker[64], result_checker[63]}) 
-							2'b00: begin 
-								reg_flag = FLAG_NOT_ACTIVED;
-							end 
-							2'b01: begin 
-								reg_flag = FLAG_OVERFLOW;
-							end 
-							2'b10: begin
-								reg_flag = FLAG_UNDERFLOW;
-							end 
-							2'b11: begin
-								reg_flag = FLAG_OVERFLOW;
-							end 
-						endcase
-					end 
-					else begin  
-						case ({result_checker[32], result_checker[31]}) 
-							2'b00: begin 
-								reg_flag = FLAG_NOT_ACTIVED;
-							end 
-							2'b01: begin 
-								reg_flag = FLAG_OVERFLOW;
-							end 
-							2'b10: begin
-								reg_flag = FLAG_UNDERFLOW;
-							end 
-							2'b11: begin
-								reg_flag = FLAG_OVERFLOW;
-							end
-						endcase					
-					end 			
+					endcase			
 					branch = 0;
 				end
 				CMP: begin 
@@ -181,10 +111,10 @@
 				BRFL: begin 
 					result_checker[31:0] =  data_a;
 					if(reg_flag == data_b[2:0]) begin 	
-						branch = 0;
+						branch = 1;
 					end 
 					else begin
-						branch = 1;
+						branch = 0;
 					end 
 				end 
 			endcase	

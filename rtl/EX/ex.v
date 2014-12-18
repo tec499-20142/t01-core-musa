@@ -13,21 +13,29 @@ module ex_stage(
 	input[2:0] pc_select,
 	input[2:0] alu_control,
 	input[5:0] func,
-	output reg [31:0] result = 1'd0, 
+	output [31:0] result, 
 	output [2:0] flag,
 	output [31:0] next_pc 
 	); 
 
 	wire [31:0] data_a_temp;
 	wire [31:0] data_b_temp;
+  reg [31:0] data_a_reg; 
+  reg [31:0] data_b_reg; 
 	wire [0:0] branch_temp;
 	wire [0:0] branch;	
 	wire [31:0] res_out;
 	
-	always@ (posedge clk)
+	always@ (posedge clk) 
+	begin 
+	 data_a_reg <= data_a_temp; 
+	 data_b_reg <= data_b_temp; 
+	end 
+	
+	/*always@ (posedge clk)
 	begin
 		result <= res_out;
-	end
+	end*/
 	
 	
 	mux m_data_a(
@@ -54,7 +62,7 @@ module ex_stage(
 	.data_b(data_b_temp),
 	.alu_control(alu_control),
 	.func(func),  
-	.result(res_out), 
+	.result(result), 
 	.flag(flag),
 	.branch(branch));
 	

@@ -25,7 +25,7 @@ input wire [31:0] address;
 output reg [31:0] data; 
 reg [2047:0] mem [31:0];  
 initial begin
-    $readmemb("a.b", mem);
+    $readmemb("/home/lasilva/altera/13.0/a.b", mem);
 end
 
   always @(posedge clock) begin
