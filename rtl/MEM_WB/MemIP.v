@@ -1,6 +1,6 @@
 module Mem_Data(
 	addr,
-	clk,
+	clk, rst,
 	data_in,
 	data_out,
 	memRead,
@@ -8,7 +8,7 @@ module Mem_Data(
 
 
 input [10:0] addr;
-input clk;
+input clk, rst;
 input [31:0] data_in;
 output [31:0] data_out;
 input memRead;
@@ -34,6 +34,11 @@ end
 always @(posedge clk) begin
 	if (memWrite) 
 		musaRAM [addr] <= data_in;
+	if(~rst)begin
+		for (i=0; i<2047; i=i+1)begin
+			musaRAM[i] <= 0;
+		end
+	end
 end
  
 endmodule

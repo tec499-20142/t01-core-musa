@@ -43,11 +43,20 @@ assign push_out = aux_push_pop & push;
 
 always@ (posedge clk)
 begin
-	readData1 <= read_data_1_rf;
-	readData2 <= read_data_2_rf;
-	outputWord <= word_sign;
-	aluOp <= aluOp_out;
-	func <= func_out;
+	if(~rst)begin
+		readData1 <= 0;
+		readData2 <= 0;
+		outputWord <= 0;
+		aluOp <= 0;
+		func <= 0;
+	end else begin
+		readData1 <= read_data_1_rf;
+		readData2 <= read_data_2_rf;
+		outputWord <= word_sign;
+		aluOp <= aluOp_out;
+		func <= func_out;
+	end
+
 end
 
 always@ (*)

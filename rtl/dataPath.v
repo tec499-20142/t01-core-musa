@@ -96,6 +96,7 @@ ex_stage BLOCO3 (
 stage_Four_Five BLOCO4 (
   .clk (clk),
   .addr (result),
+  .rst (rst),
   .data_in(readData2),
   .data_out(_mem_Data),
  .memRead(memRead),
