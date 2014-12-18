@@ -1,0 +1,51 @@
+\usecase{Instrução LW}
+
+Este caso de uso especifica a ação da instrução LW. O objetivo é carregar um dado da memória para um registrador.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução LW.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir a execução da próxima instrução.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução LW a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
+\item O módulo \textbf{EX} realiza o cálculo do endereçamento do dado na memória e atualiza para o endereço da próxima instrução.
+
+\item O módulo \textbf{MEM/WB} armazena o dado buscado no módulo \textbf{ID}.
+\end{itemize}
+
+\usecase{Instrução SW}
+
+Este caso de uso especifica a ação da instrução SW. O objetivo é armazenar um dado de um registrador na memória.
+
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução SW.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+	\item Permitir a execução da próxima instrução.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução SW a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
+	\item O módulo \textbf{EX} realiza o cálculo do endereçamento do dado na memória e atualiza para o endereço da próxima instrução.
+	
+	\item O módulo \textbf{MEM/WB} armazena o dado buscado no módulo \textbf{ID}.
+\end{itemize}
