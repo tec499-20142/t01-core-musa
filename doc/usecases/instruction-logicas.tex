@@ -1,6 +1,6 @@
 \usecase{Instrução AND}
 
-Este caso de uso especifica a ação da instrução AND (também chamada de conjunção lógica), que realiza a operação lógica entre dois valores.
+Este caso de uso especifica a ação da instrução AND. O objetivo é realizar uma a operação lógica AND entre dois valores.
  
 \subsubsection*{Atores}
 \textbf{IF, ID, EX, MEM/WB}
@@ -12,7 +12,7 @@ Este caso de uso especifica a ação da instrução AND (também chamada de conj
 
 \postconditions
 \begin{itemize}	
-  \item Permitir execução de futuras instruções.
+  \item Permitir execução da próxima instrução.
 \end{itemize}
 
 \subsubsection*{Fluxo Básico}
@@ -23,19 +23,9 @@ Este caso de uso especifica a ação da instrução AND (também chamada de conj
 \item O módulo \textbf{MEM/WB} armazena o resultado da operação no módulo \textbf{ID}.
 \end{itemize}
 
-\subsubsection*{Fluxos Alternativos}
-\begin{itemize}
-\item Esta instrução não possui fluxos alternativos.
-\end{itemize}
-
-%\begin{figure}[htpb!]
-%	\subsubsection*{Diagrama de Caso de Uso}
-%		\input{./usecases/instructionFetch.tikz}
-%\end{figure}
-
 \usecase{Instrução OR}
 
-Este caso de uso especifica a ação da instrução OR (também chamada de disjunção lógica), que realiza a operação lógica entre dois valores.
+Este caso de uso especifica a ação da instrução OR. O objetivo é realizar a operação lógica OR entre dois valores.
  
 \subsubsection*{Atores}
 \textbf{IF, ID, EX, MEM/WB}
@@ -47,7 +37,7 @@ Este caso de uso especifica a ação da instrução OR (também chamada de disju
 
 \postconditions
 \begin{itemize}	
-  \item Permitir execução de futuras instruções.
+  \item Permitir execução da próxima instrução.
 \end{itemize}
 
 \subsubsection*{Fluxo Básico}
@@ -58,20 +48,9 @@ Este caso de uso especifica a ação da instrução OR (também chamada de disju
 \item O módulo \textbf{MEM/WB} armazena o resultado da operação no módulo \textbf{ID}.
 \end{itemize}
 
-\subsubsection*{Fluxos Alternativos}
-\begin{itemize}
-\item Esta instrução não possui fluxos alternativos.
-\end{itemize}
-
-%\begin{figure}[htpb!]
-%	\subsubsection*{Diagrama de Caso de Uso}
-%		\input{./usecases/instructionFetch.tikz}
-%\end{figure}
-
-
 \usecase{Instrução NOT}
 
-Este caso de uso especifica a ação da instrução NOT (também chamada de inversora), pois realiza a negação (inversão) lógica de um valor.
+Este caso de uso especifica a ação da instrução NOT. O objetivo é realizar a operação lógica NOT sobre um valor.
  
 \subsubsection*{Atores}
 \textbf{IF, ID, EX, MEM/WB}
@@ -94,48 +73,84 @@ Este caso de uso especifica a ação da instrução NOT (também chamada de inve
 \item O módulo \textbf{MEM/WB} armazena o resultado da operação no módulo \textbf{ID}.
 \end{itemize}
 
-\subsubsection*{Fluxos Alternativos}
-\begin{itemize}
-\item Esta instrução não possui fluxos alternativos.
-\end{itemize}
+\usecase{Instrução ANDI}
 
-%\begin{figure}[htpb!]
-%	\subsubsection*{Diagrama de Caso de Uso}
-%		\input{./usecases/instructionFetch.tikz}
-%\end{figure}
+Este caso de uso especifica a ação da instrução ANDI. O objetivo é realizar uma a operação lógica AND entre dois valores sendo um destes imediato.
 
-
-\usecase{Instrução NOP}
-
-Este caso de uso especifica a ação da instrução NOP, essa instrução não realiza nenhuma operação.
- 
 \subsubsection*{Atores}
-\textbf{IF, ID, EX}
+\textbf{IF, ID, EX, MEM/WB}
 
 \preconditions 
 \begin{itemize}
- \item O módulo \textbf{IF} precisa buscar uma instrução NOP.
+	\item O módulo \textbf{IF} precisa buscar uma instrução ANDI.
 \end{itemize}
 
 \postconditions
 \begin{itemize}	
-  \item Permitir execução de futuras instruções.
+	\item Permitir execução da próxima instrução.
 \end{itemize}
 
 \subsubsection*{Fluxo Básico}
 \begin{itemize}
-\item O módulo \textbf{IF} busca a instrução NOP a ser executada.
-\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
-\item O módulo \textbf{EX} atualiza para a próxima instrução.
+	\item O módulo \textbf{IF} busca a instrução ANDI a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+	\item O módulo \textbf{EX} realiza a operação lógica determinada dos valores e atualiza para a próxima instrução.
+	\item O módulo \textbf{MEM/WB} armazena o resultado da operação no módulo \textbf{ID}.
 \end{itemize}
 
-\subsubsection*{Fluxos Alternativos}
+
+\usecase{Instrução ORI}
+
+Este caso de uso especifica a ação da instrução ORI. O objetivo é realizar a operação lógica OR entre dois valores sendo um destes imediato.
+
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
 \begin{itemize}
-\item Esta instrução não possui fluxos alternativos.
+	\item O módulo \textbf{IF} precisa buscar uma instrução ORI.
 \end{itemize}
 
-Basicamente as instruções lógicas e Aritméticas seguem um mesmo fluxo de execução.
-\begin{figure}[htpb!]
+\postconditions
+\begin{itemize}	
+	\item Permitir execução da próxima instrução.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução ORI a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+	\item O módulo \textbf{EX} realiza a operação lógica determinada dos valores e atualiza para a próxima instrução.
+	\item O módulo \textbf{MEM/WB} armazena o resultado da operação no módulo \textbf{ID}.
+\end{itemize}
+
+\usecase{Instrução CMP}
+
+Este caso de uso especifica a ação da instrução CMP. O objetivo é realizar a comparação entre dois valores.
+
+\subsubsection*{Atores}
+\textbf{IF, ID, EX}
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução CMP.
+\end{itemize}
+
+\postconditions
+\begin{itemize}	
+	\item Permitir execução da próxima instrução.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução CMP a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e disponibiliza os valores para o módulo \textbf{EX}.
+	\item O módulo \textbf{EX} realiza a comparação dos valores, atualiza o registrador de ocorrências e atualiza para a próxima instrução.
+\end{itemize}
+
+
+Basicamente, as instruções Lógicas e Aritméticas seguem um mesmo fluxo de execução:
+
+\begin{figure}[H]
 	\subsubsection*{Diagrama de Caso de Uso}
 		\input{./usecases/instructionFetch.tikz}
 \end{figure}

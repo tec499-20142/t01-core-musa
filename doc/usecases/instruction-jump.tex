@@ -1,6 +1,6 @@
 \usecase{Instrução JR}
 
-Este caso de uso especifica a ação da instrução de desvio incondicional JR. O principal objetivo é realizar um salto para o endereço armazenado em um registrador.
+Este caso de uso especifica a ação da instrução de desvio incondicional JR. O objetivo é realizar um salto para o endereço armazenado em um registrador.
  
 \subsubsection*{Atores}
 \textbf{IF, ID}
@@ -23,7 +23,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional JR. 
 
 \usecase{Instrução JPC}
 
-Este caso de uso especifica a ação da instrução de desvio incondicional JPC. O principal objetivo é realizar um salto para o endereço relativo ao endereço da instrução atual.
+Este caso de uso especifica a ação da instrução de desvio incondicional JPC. O objetivo é realizar um salto para o endereço relativo ao endereço da instrução atual.
  
 \subsubsection*{Atores}
 \textbf{IF, ID, EX}
@@ -47,7 +47,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional JPC.
 
 \usecase{Instrução BRFL}
 
-Este caso de uso especifica a ação da instrução de desvio condicional BRFL. O principal objetivo é realizar um salto para um endereço com base nas ocorrências registradas pelo módulo \textbf{EX}.
+Este caso de uso especifica a ação da instrução de desvio condicional BRFL. O objetivo é realizar um salto para um endereço com base nas ocorrências registradas pelo módulo \textbf{EX}.
  
 \subsubsection*{Atores}
 \textbf{IF, ID, EX}
@@ -67,12 +67,12 @@ Este caso de uso especifica a ação da instrução de desvio condicional BRFL. 
 \begin{itemize}
 \item O módulo \textbf{IF} busca a instrução BRFL a ser executada.
 \item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
-\item O módulo \textbf{EX} verifica qual(is) foi(ram) a(s) ocorrência(s). Com base nisso, modifica o endereço da próxima instrução.
+\item O módulo \textbf{EX} verifica qual foi a ocorrência. Com base nisso, modifica o endereço da próxima instrução.
 \end{itemize}
 
 \usecase{Instrução CALL}
 
-Este caso de uso especifica a ação da instrução de desvio incondicional CALL. O principal objetivo é realizar um salto para uma sub-rotina.
+Este caso de uso especifica a ação da instrução de desvio incondicional CALL. O objetivo é realizar um salto para uma sub-rotina.
 
 \subsubsection*{Atores}
 \textbf{IF, ID}
@@ -95,7 +95,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional CALL
 
 \usecase{Instrução RET}
 
-Este caso de uso especifica a ação da instrução de desvio incondicional RET. O principal objetivo é realizar um salto de uma sub-rotina.
+Este caso de uso especifica a ação da instrução de desvio incondicional RET. O objetivo é realizar um salto de uma sub-rotina.
 
 \subsubsection*{Atores}
 \textbf{IF, ID}
@@ -118,7 +118,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional RET.
 
 \usecase{Instrução HALT}
 
-Este caso de uso especifica a ação da instrução HALT. O principal objetivo é finalizar a execução de novas instruções, parar o sistema.
+Este caso de uso especifica a ação da instrução HALT. O objetivo é finalizar a execução de novas instruções.
 
 \subsubsection*{Atores}
 \textbf{IF, ID, EX}
@@ -130,17 +130,19 @@ Este caso de uso especifica a ação da instrução HALT. O principal objetivo �
 
 \postconditions
 \begin{itemize}
-	\item Não ser executado mais nenhuma instrução.
+	\item Nenhuma instrução deve ser executada.
 \end{itemize}
 
 \subsubsection*{Fluxo Básico}
 \begin{itemize}
 	\item O módulo \textbf{IF} busca a instrução HALT a ser executada.
 	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
-	\item O módulo \textbf{EX} não atualiza o valor para próxima instrução, ficando direcionado para a mesma instrução HALT (loop infinito).
+	\item O módulo \textbf{EX} atualiza o valor da próxima instrução para o endereço da instrução atual (\textit{loop} infinito).
 \end{itemize}
 
-\begin{figure}[htpb!]
+De maneira análoga as instruções Lógicas e Aritméticas, as Instruções de Jump seguem um mesmo fluxo de execução:
+
+\begin{figure}[H]
 	\subsubsection*{Diagrama de Caso de Uso}
 	\input{./usecases/instruction-jump.tikz}
 \end{figure}
