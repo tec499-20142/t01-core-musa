@@ -19,7 +19,7 @@ parameter nop = 6'b000000;
 parameter LOGICAS = 6'b000000;	
 parameter MUL = 6'b011100;		
 parameter DIV = 6'b000101;	
-parameter CMP= 6'b000000;		
+parameter CMP= 6'b011101;		
 
 parameter ADDI = 6'b001000;		
 parameter SUBI= 6'b001001; //InstruÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: addiu		
@@ -174,30 +174,46 @@ begin
 		
 	 JR :
 		begin
-				regDst = 1'b0;
-		      data_a_select = 2'b00;
-		  	   data_b_select = 2'b00;
-		  	   pcSrc = 3'b001;
-				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b000;
-	         regWrite = 1'b0;
-				push = 1'b0;
-				pop = 1'b0;
+			regDst = 1'b0;
+		  data_a_select = 2'b00;
+		  data_b_select = 2'b00;
+		  pcSrc = 3'b001;
+			memWrite = 1'b0;
+	    memRead = 1'b0;
+	    memToReg = 1'b0;
+	    aluOp = 3'b000;
+	    regWrite = 1'b0;
+		  push = 1'b0;
+			pop = 1'b0;
 		end
 		
 		JPC :
 		begin
 				regDst = 1'b0;
-		      data_a_select = 2'b00;
-		  	   data_b_select = 2'b10;
-		  	   pcSrc = 3'b011;
+		    data_a_select = 2'b00;
+		  	 data_b_select = 2'b10;
+		  	 pcSrc = 3'b011;
 				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b000;
-	         regWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b000;
+	      regWrite = 1'b0;
+				push = 1'b0;
+				pop = 1'b0;
+		end
+		
+		
+		CMP :
+		begin
+				regDst = 1'b0;
+		    data_a_select = 2'b10;
+		  	 data_b_select = 2'b01;
+		  	 pcSrc = 3'b001;
+				memWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b110;
+	      regWrite = 1'b0;
 				push = 1'b0;
 				pop = 1'b0;
 		end
@@ -205,14 +221,14 @@ begin
 		BRFL :
 		begin
 				regDst = 1'b0;
-		      data_a_select = 2'b10;
-		  	   data_b_select = 2'b00;
-		  	   pcSrc = 3'b001;
+		    data_a_select = 2'b10;
+		  	 data_b_select = 2'b00;
+		  	 pcSrc = 3'b001;
 				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b101;
-	         regWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b101;
+	      regWrite = 1'b0;
 				push = 1'b0;
 				pop = 1'b0;
 		end
@@ -220,49 +236,48 @@ begin
 		CALL :
 		begin
 				regDst = 1'b0;
-		      data_a_select = 2'b00;
-		  	   data_b_select = 2'b00;
-		  	   pcSrc = 3'b001;
+		    data_a_select = 2'b00;
+		  	 data_b_select = 2'b00;
+		  	 pcSrc = 3'b001;
 				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b000;
-	         regWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b000;
+	      regWrite = 1'b0;
 				push = 1'b1;
 				pop = 1'b0;
 		end
-		
-		
+
 	 RET :
 		begin
 				regDst = 1'b0;
-		      data_a_select = 2'b00;
-		  	   data_b_select = 2'b00;
-		  	   pcSrc = 3'b000;
+		    data_a_select = 2'b00;
+		  	 data_b_select = 2'b00;
+		  	 pcSrc = 3'b000;
 				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b000;
-	         regWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b000;
+	      regWrite = 1'b0;
 				pop = 1'b1;
 				push = 1'b0;
 		end
 			
 	 HALT :
 		begin
-		      regDst = 1'b0;
-		      data_a_select = 2'b00;
-		  	   data_b_select = 2'b00;
-		  	   pcSrc = 3'b100;
+		    regDst = 1'b0;
+		    data_a_select = 2'b00;
+		    data_b_select = 2'b00;
+		    pcSrc = 3'b100;
 				memWrite = 1'b0;
-	         memRead = 1'b0;
-	         memToReg = 1'b0;
-	         aluOp = 3'b000;
-	         regWrite = 1'b0;
+	      memRead = 1'b0;
+	      memToReg = 1'b0;
+	      aluOp = 3'b000;
+	      regWrite = 1'b0;
 				push = 1'b0;
 				pop = 1'b0;
 		end
-		 default :
+	default :
 		 begin
 		      regDst = 1'b0;//nop
 		      memRead = 1'b0;

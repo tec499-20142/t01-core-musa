@@ -1,4 +1,4 @@
-module dataPath(clk, rst, read1, read2, read3, read4, read_in);
+module dataPath(clk, rst, read1, read2, read3, read4);//, read_in);
 
 parameter ADDR_WIDTH = 32;
 parameter DATA_WIDTH = 32;
@@ -10,7 +10,7 @@ wire lcd_blon_out;		// LCD back light on/off
 wire lcd_rw_out;			// LCD read/write select, 0 = write, 1 = read
 wire lcd_en_out;			// LCD enable
 wire lcd_rs_out;			// LCD command/data select, 0 = command, 1 = data
-input read_in; 
+//input read_in; 
 
 input clk, rst;
 wire [31:0] instruction;
@@ -97,6 +97,7 @@ stage_Four_Five BLOCO4 (
  .memWrite(memWrite)
  );
 
+/*
 lcd_mem_read 
 #(
 	.ADDR_WIDTH(ADDR_WIDTH),
@@ -120,6 +121,6 @@ lcd_mem_read
 	.lcd_rs_out(lcd_rs_out)			// LCD command/data select, 0 = command, 1 = data
 );
 
-
+*/
 
 endmodule
