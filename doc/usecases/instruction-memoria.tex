@@ -20,7 +20,6 @@ Este caso de uso especifica a ação da instrução LW. O objetivo é carregar u
 \item O módulo \textbf{IF} busca a instrução LW a ser executada.
 \item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
 \item O módulo \textbf{EX} realiza o cálculo do endereçamento do dado na memória e atualiza para o endereço da próxima instrução.
-
 \item O módulo \textbf{MEM/WB} armazena o dado buscado no módulo \textbf{ID}.
 \end{itemize}
 
@@ -47,5 +46,10 @@ Este caso de uso especifica a ação da instrução SW. O objetivo é armazenar 
 	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
 	\item O módulo \textbf{EX} realiza o cálculo do endereçamento do dado na memória e atualiza para o endereço da próxima instrução.
 	
-	\item O módulo \textbf{MEM/WB} armazena o dado buscado no módulo \textbf{ID}.
+	\item O módulo \textbf{MEM/WB} armazena o dado buscado na memória no módulo \textbf{MEM/WB}.
 \end{itemize}
+
+\begin{figure}[H]
+	\subsubsection*{Diagrama de Caso de Uso}
+		\input{./usecases/instructionmemory.tikz}
+\end{figure}
