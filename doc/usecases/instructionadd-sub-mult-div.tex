@@ -1,0 +1,35 @@
+\usecase{Instrução ADD}
+
+Este caso de uso especifica a ação de execução de uma instrução de soma, principal objetivo é realizar uma soma entre dois valores de 32 bits.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX, MEM/WB}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução ADD.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir execução de futuras instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução ADD a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle e disponibiliza os dados para o módulo \textbf{EX}.
+\item O módulo \textbf{EX} realiza a operação de soma dos dois valores e atualiza para a próxima instrução.
+\item O módulo \textbf{MEM/WB} armazena o resultado no módulo \textbf{ID}.
+\end{itemize}
+
+\subsubsection*{Fluxos Alternativos}
+\begin{itemize}
+\item O resultado da operação pode ser maior ou menor do que o suportado:
+\subitem O módulo \textbf{EX} detecta e registra a ocorrência.
+\end{itemize}
+
+%\begin{figure}[htpb!]
+%	\subsubsection*{Diagrama de Caso de Uso}
+%		\input{./usecases/instructionFetch.tikz}
+%\end{figure}
