@@ -1,0 +1,122 @@
+\usecase{Instrução JR}
+
+Este caso de uso especifica a ação da instrução de desvio incondicional JR. O principal objetivo é realizar um salto para o endereço armazenado em um registrador.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução JR.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir a execução da instrução endereçada pela conteúdo do registrador.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução JR a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
+\end{itemize}
+
+\usecase{Instrução JPC}
+
+Este caso de uso especifica a ação da instrução de desvio incondicional JPC. O principal objetivo é realizar um salto para o endereço relativo ao endereço da instrução atual.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução JPC.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir a execução da instrução com o endereço relativo ao endereço da instrução atual.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução JPC a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o valor do desvio.
+\item O módulo \textbf{EX} realiza a operação de soma do endereço da instrução atual com o valor selecionado e atualiza o endereço da próxima instrução.
+\end{itemize}
+
+\usecase{Instrução BRFL}
+
+Este caso de uso especifica a ação da instrução de desvio condicional BRFL. O principal objetivo é realizar um salto para um endereço com base nas ocorrências registradas pelo módulo \textbf{EX}.
+ 
+\subsubsection*{Atores}
+\textbf{IF, ID, EX}
+
+\preconditions 
+\begin{itemize}
+ \item O módulo \textbf{IF} precisa buscar uma instrução BRFL.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+  \item Permitir a execução da próxima instrução.
+  \item O registrador de ocorrências deve ser limpo.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+\item O módulo \textbf{IF} busca a instrução BRFL a ser executada.
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+\item O módulo \textbf{EX} verifica qual(is) foi(ram) a(s) ocorrência(s). Com base nisso, modifica o endereço da próxima instrução.
+\end{itemize}
+
+\usecase{Instrução CALL}
+
+Este caso de uso especifica a ação da instrução de desvio incondicional CALL. O principal objetivo é realizar um salto para uma sub-rotina.
+
+\subsubsection*{Atores}
+\textbf{IF, ID}
+
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução CALL.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+	\item Permitir a execução da sub-rotina.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução CALL a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+\end{itemize}
+
+\usecase{Instrução RET}
+
+Este caso de uso especifica a ação da instrução de desvio incondicional RET. O principal objetivo é realizar um salto de uma sub-rotina.
+
+\subsubsection*{Atores}
+\textbf{IF, ID}
+
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução RET.
+\end{itemize}
+
+\postconditions
+\begin{itemize}
+	\item Permitir a execução da instrução armazenada no topo da Pilha de Instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução RET a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+\end{itemize}
+
+\begin{figure}[htpb!]
+	\subsubsection*{Diagrama de Caso de Uso}
+	\input{./usecases/instruction-jump.tikz}
+\end{figure}
