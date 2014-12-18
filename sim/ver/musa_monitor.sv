@@ -90,7 +90,7 @@ class musa_monitor;
       $display("entrei no check");
       $sformat (compile_c, "gcc ../model/mainBin.c -o mainBin_model.o");
       $system(compile_c);
-      $sformat (execute_c, "./mainBin_model.o ../tests/estimulos_binario_simples.bin");
+      //$sformat (execute_c, "./mainBin_model.o ../tests/estimulos_binario_simples.bin");
       $sformat (execute_c, "./mainBin_model.o %s ",MUSA_TEST);
       $system(execute_c);
       $display("DISPLAY: %s",MUSA_TEST);

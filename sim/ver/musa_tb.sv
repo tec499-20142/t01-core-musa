@@ -16,11 +16,7 @@ module musa_tb;
 musa_monitor monitor_u0;
 
 bit clk;
-logic led1=0;
-logic led2=0;
-logic led3=0;
-logic led4=0;
-logic read=1;
+
 
 //dut_if interface
 dut_if dut_if(clk);
@@ -38,13 +34,11 @@ dataPath
          .clk(clk),
          .rst(dut_if.rst_n),
          .read_in(),
-         .read1(led1).
-         .read2(led2),
-         .read3(led3),
-         .read4(led4)
+         .read1(),
+         .read2(),
+         .read3(),
+         .read4()
       );
-
-
 
 initial begin
  clk = 0;
@@ -66,7 +60,7 @@ always@(*)begin
    dut_if.reg_write = musa_u0.BLOCO2.StageTwo._regWrite;
    dut_if.clk = musa_u0.BLOCO2.clk;
    for(int i=0;i<NUM_REGS;i++)begin
-    dut_if.regs[i]= musa_u0.BLOCO2.RegisterFile.MemoryFile[i];
+    dut_if.regs[i]= musa_u0.BLOCO2.StageTwo.BLOCO1.RegisterFile.MemoryFile[i];
    end 
    
 end

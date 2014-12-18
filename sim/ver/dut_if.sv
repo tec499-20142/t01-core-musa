@@ -47,6 +47,7 @@ interface dut_if (input bit clk);
     property activate_control_signals_lw0; // testa se os sinais de LW são ativados
         @(posedge clk_musa)
         (instruction[31:26] == LW_OPCODE) |-> ##[1:5] ((mem_read) and
+                                                      (mem_to_reg) and
                                                       (reg_write) and
                                                       (pc_src == 3'b010));
     endproperty
@@ -57,12 +58,13 @@ interface dut_if (input bit clk);
          (instruction[31:26] == ANDI_OPCODE) or
          (instruction[31:26] == ORI_OPCODE)) |-> ##[1:5] ((reg_write) and 
                                                           (data_a_s == 2'b10) and
+                                                          (data_b_s == 2'b00) and
                                                           (pc_src == 3'b010));
     endproperty
     property activate_control_signals_jpc0; //testa se os sinais de JPC são ativados
         @(posedge clk_musa)
-        (instruction[31:26] == JPC_OPCODE) |-> ##[1:5] ((data_b_s) and
-                                                        (pc_src == 3'b100));
+        (instruction[31:26] == JPC_OPCODE) |-> ##[1:5] ((data_b_s == 2'b10) and
+                                                        (pc_src == 3'b011));
     endproperty
     property activate_control_signals_brfl0; //testa se os sinais de BRFL são ativados
         @(posedge clk_musa)
@@ -102,13 +104,16 @@ interface dut_if (input bit clk);
                                                                                               (data_b_s == 2'b01) and
                                                                                               (pc_src == 3'b010));
     endproperty
-//    property activate_control_signals_cmp0; //testa os sinais do CMP
-//        @(posedge clk_musa)
-//        (instruction[31:26] == CMP_OPCODE) |-> ##[1:5] ;
-//    endproperty
+    property activate_control_signals_cmp0; //testa os sinais do CMP
+        @(posedge clk_musa)
+        (instruction[31:26] == CMP_OPCODE) |-> ##[1:5] ((alu_op == 3'b110) and
+                                                        (data_a_s == 2'b10) and
+                                                        (data_b_s == 2'b01) and
+                                                        (pc_src == 3'b010));
+    endproperty
     property activate_control_signals_halt0; //testa os sinais do HALT
         @(posedge clk_musa)
-        (instruction[31:26] == HALT_OPCODE) |-> ##[1:5] (pc_src == 3'b110);
+        (instruction[31:26] == HALT_OPCODE) |-> ##[1:5] (pc_src == 3'b100);
     endproperty
 
     assert property (activate_control_signals_sw0);
@@ -121,7 +126,7 @@ interface dut_if (input bit clk);
     assert property (activate_control_signals_ret0);    
     assert property (activate_control_signals_rtype0);
     assert property (activate_control_signals_muldiv0);
-//    assert property (activate_control_signals_cmp0);
+    assert property (activate_control_signals_cmp0);
     assert property (activate_control_signals_halt0);
 endinterface
 
