@@ -1,0 +1,60 @@
+library verilog;
+use verilog.vl_types.all;
+entity unit_control is
+    generic(
+        nop             : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0);
+        LOGICAS         : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0);
+        MUL             : vl_logic_vector(0 to 5) := (Hi0, Hi1, Hi1, Hi1, Hi0, Hi0);
+        DIV             : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi1, Hi0, Hi1);
+        CMP             : vl_logic_vector(0 to 5) := (Hi0, Hi1, Hi1, Hi1, Hi0, Hi1);
+        ADDI            : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi1, Hi0, Hi0, Hi0);
+        SUBI            : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi1, Hi0, Hi0, Hi1);
+        ANDI            : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi1, Hi1, Hi0, Hi0);
+        ORI             : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi1, Hi1, Hi0, Hi1);
+        LW              : vl_logic_vector(0 to 5) := (Hi1, Hi0, Hi0, Hi0, Hi1, Hi1);
+        SW              : vl_logic_vector(0 to 5) := (Hi1, Hi0, Hi1, Hi0, Hi1, Hi1);
+        JR              : vl_logic_vector(0 to 5) := (Hi0, Hi1, Hi0, Hi0, Hi0, Hi1);
+        JPC             : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0);
+        BRFL            : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi1, Hi0, Hi0);
+        CALL            : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi1);
+        RET             : vl_logic_vector(0 to 5) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi1);
+        HALT            : vl_logic_vector(0 to 5) := (Hi1, Hi1, Hi1, Hi1, Hi1, Hi1)
+    );
+    port(
+        opcode          : in     vl_logic_vector(5 downto 0);
+        clk             : in     vl_logic;
+        reset           : in     vl_logic;
+        pcSrc           : out    vl_logic_vector(2 downto 0);
+        memRead         : out    vl_logic;
+        pop             : out    vl_logic;
+        push            : out    vl_logic;
+        memToReg        : out    vl_logic;
+        memWrite        : out    vl_logic;
+        data_a_select   : out    vl_logic_vector(1 downto 0);
+        data_b_select   : out    vl_logic_vector(1 downto 0);
+        regWrite_out    : out    vl_logic;
+        regDst          : out    vl_logic;
+        PCWrite         : out    vl_logic;
+        aluOp           : out    vl_logic_vector(2 downto 0);
+        stage           : out    vl_logic_vector(2 downto 0);
+        aux_push_pop    : out    vl_logic
+    );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of nop : constant is 1;
+    attribute mti_svvh_generic_type of LOGICAS : constant is 1;
+    attribute mti_svvh_generic_type of MUL : constant is 1;
+    attribute mti_svvh_generic_type of DIV : constant is 1;
+    attribute mti_svvh_generic_type of CMP : constant is 1;
+    attribute mti_svvh_generic_type of ADDI : constant is 1;
+    attribute mti_svvh_generic_type of SUBI : constant is 1;
+    attribute mti_svvh_generic_type of ANDI : constant is 1;
+    attribute mti_svvh_generic_type of ORI : constant is 1;
+    attribute mti_svvh_generic_type of LW : constant is 1;
+    attribute mti_svvh_generic_type of SW : constant is 1;
+    attribute mti_svvh_generic_type of JR : constant is 1;
+    attribute mti_svvh_generic_type of JPC : constant is 1;
+    attribute mti_svvh_generic_type of BRFL : constant is 1;
+    attribute mti_svvh_generic_type of CALL : constant is 1;
+    attribute mti_svvh_generic_type of RET : constant is 1;
+    attribute mti_svvh_generic_type of HALT : constant is 1;
+end unit_control;

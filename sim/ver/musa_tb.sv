@@ -15,18 +15,11 @@ module musa_tb;
 
 musa_monitor monitor_u0;
 
-bit clk;
-logic led1=0;
-logic led2=0;
-logic led3=0;
-logic led4=0;
-logic read=1;
+reg clk;
 
 //dut_if interface
 dut_if dut_if(clk);
 
-//clk rst manager
-reg clk_proc;
 
 dataPath
       #(
@@ -38,20 +31,21 @@ dataPath
          .clk(clk),
          .rst(dut_if.rst_n),
          .read_in(),
-         .read1(led1).
-         .read2(led2),
-         .read3(led3),
-         .read4(led4)
+         .read1(),
+         .read2(),
+         .read3(),
+         .read4()
       );
-
-
 
 initial begin
  clk = 0;
 end
 
+
+
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
+   clk = musa_u0.clk;
    dut_if.pc_src = musa_u0.BLOCO2.pcSrc;
    dut_if.mem_read = musa_u0.BLOCO2.memRead;
    dut_if.mem_write = musa_u0.BLOCO2.memWrite;
@@ -64,9 +58,9 @@ always@(*)begin
    dut_if.mem_to_reg = musa_u0.BLOCO2.StageTwo.memToReg;   
    dut_if.reg_dst = musa_u0.BLOCO2.StageTwo.regDst;
    dut_if.reg_write = musa_u0.BLOCO2.StageTwo._regWrite;
-   dut_if.clk = musa_u0.BLOCO2.clk;
+   dut_if.clk = musa_u0.clk;
    for(int i=0;i<NUM_REGS;i++)begin
-    dut_if.regs[i]= musa_u0.BLOCO2.RegisterFile.MemoryFile[i];
+    dut_if.regs[i]= musa_u0.BLOCO2.StageTwo.BLOCO1.RegisterFile.MemoryFile[i];
    end 
    
 end

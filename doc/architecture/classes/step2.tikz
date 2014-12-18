@@ -13,8 +13,19 @@
 	+ data\_a\_select: output bit[2] \\
 	+ data\_b\_select: output bit[2] \\
 	+ pcSrc : output bit[3] \\
+	+ pcWrite : output bit \\
 	+ pop: output bit \\
 	+ push: output bit \\
+	+ writeData: input bit [32] \\
+	+ writeRegister: input bit [5] \\
+	+ function : output bit [6] \\
+	+ inst\_out: output bit [32] \\
+	+ imdt\_div\_4: output bit [32]\\
+	+ opcode: input bit [6] \\
+	+ readRegister1: input bit [5] \\
+	+ readRegister2: input bit [5] \\
+	+ readData1: output bit [32] \\
+	+ readData2: output bit [32] \\
 	}			
 	{ % procedures
           - \underline{<<comb>> opcode\_decoder()} \\
