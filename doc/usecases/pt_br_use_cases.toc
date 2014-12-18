@@ -7,10 +7,13 @@
 \contentsline {section}{\numberline {\color {gray}2}Atores do Sistema}{4}
 \contentsline {section}{\numberline {\color {gray}3}Casos de Usos}{4}
 \contentsline {subsection}{\numberline {\color {gray}3.1}\color {gray}[UC~\padzeroes [3]{\@decimal {1}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o ADD}{4}
-\contentsline {subsection}{\numberline {\color {gray}3.2}\color {gray}[UC~\padzeroes [3]{\@decimal {2}}]~\color {black} Decodificar Instru\IeC {\c c}\IeC {\~a}o}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.3}\color {gray}[UC~\padzeroes [3]{\@decimal {3}}]~\color {black} Somar dois valores}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.4}\color {gray}[UC~\padzeroes [3]{\@decimal {4}}]~\color {black} Subtrair dois valores}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.5}\color {gray}[UC~\padzeroes [3]{\@decimal {5}}]~\color {black} Multiplicar dois valores}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.6}\color {gray}[UC~\padzeroes [3]{\@decimal {6}}]~\color {black} Dividir dois valores}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.7}\color {gray}[UC~\padzeroes [3]{\@decimal {7}}]~\color {black} Realizar um AND l\IeC {\'o}gico}{5}
-\contentsline {subsection}{\numberline {\color {gray}3.8}\color {gray}[UC~\padzeroes [3]{\@decimal {8}}]~\color {black} Realizar um OR l\IeC {\'o}gico}{5}
+\contentsline {subsection}{\numberline {\color {gray}3.2}\color {gray}[UC~\padzeroes [3]{\@decimal {2}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o SUB}{5}
+\contentsline {subsection}{\numberline {\color {gray}3.3}\color {gray}[UC~\padzeroes [3]{\@decimal {3}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o MUL}{6}
+\contentsline {subsection}{\numberline {\color {gray}3.4}\color {gray}[UC~\padzeroes [3]{\@decimal {4}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o DIV}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.5}\color {gray}[UC~\padzeroes [3]{\@decimal {5}}]~\color {black} Decodificar Instru\IeC {\c c}\IeC {\~a}o}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.6}\color {gray}[UC~\padzeroes [3]{\@decimal {6}}]~\color {black} Somar dois valores}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.7}\color {gray}[UC~\padzeroes [3]{\@decimal {7}}]~\color {black} Subtrair dois valores}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.8}\color {gray}[UC~\padzeroes [3]{\@decimal {8}}]~\color {black} Multiplicar dois valores}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.9}\color {gray}[UC~\padzeroes [3]{\@decimal {9}}]~\color {black} Dividir dois valores}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.10}\color {gray}[UC~\padzeroes [3]{\@decimal {10}}]~\color {black} Realizar um AND l\IeC {\'o}gico}{7}
+\contentsline {subsection}{\numberline {\color {gray}3.11}\color {gray}[UC~\padzeroes [3]{\@decimal {11}}]~\color {black} Realizar um OR l\IeC {\'o}gico}{7}

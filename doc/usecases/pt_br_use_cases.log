@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.10.16)  18 DEC 2014 00:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.10.16)  18 DEC 2014 03:20
 entering extended mode
 **pt_br_use_cases.tex
 
@@ -1469,9 +1469,20 @@ usecases/pictures/ipcore_single_exemple.png>]
 dd-sub-mult-div.tex
 File: pictures/header.png Graphic file (type png)
  <use pictures/header.png>
-Package pdftex.def Info: pictures/header.png used on input line 13.
+Package pdftex.def Info: pictures/header.png used on input line 16.
 (pdftex.def)             Requested size: 298.75264pt x 24.3923pt.
- [4])
+ [4]
+File: pictures/header.png Graphic file (type png)
+ <use pictures/header.png>
+Package pdftex.def Info: pictures/header.png used on input line 60.
+(pdftex.def)             Requested size: 298.75264pt x 24.3923pt.
+
+[5]
+File: pictures/header.png Graphic file (type png)
+ <use pictures/header.png>
+Package pdftex.def Info: pictures/header.png used on input line 117.
+(pdftex.def)             Requested size: 298.75264pt x 24.3923pt.
+ [6])
 (C:\Users\Tarles\Documents\pbl-SD\t01-core-musa\trunk\doc\usecases\instruction-
 logicas.tex)
 (C:\Users\Tarles\Documents\pbl-SD\t01-core-musa\trunk\doc\usecases\instruction-
@@ -1484,7 +1495,7 @@ File: pictures/header.png Graphic file (type png)
  <use pictures/header.png>
 Package pdftex.def Info: pictures/header.png used on input line 95.
 (pdftex.def)             Requested size: 298.75264pt x 24.3923pt.
- [5]
+ [7]
 (C:\Users\Tarles\Documents\pbl-SD\t01-core-musa\trunk\doc\usecases\pt_br_use_ca
 ses.aux) ) 
 Here is how much of TeX's memory you used:
@@ -1500,9 +1511,9 @@ c}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/libertine/lbtn_afusau.enc}<C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/libertine/LinBiolinumT.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/libertine/LinBiolinumTB.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/libertine/LinBiolinumTI.pfb>
-Output written on pt_br_use_cases.pdf (6 pages, 264935 bytes).
+Output written on pt_br_use_cases.pdf (8 pages, 269161 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  129 words of extra memory for PDF output out of 10000 (max. 10000000)
 
