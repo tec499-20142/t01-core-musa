@@ -19,19 +19,34 @@
 			clock & 1 & entrada & Clock do sistema \\ \hline
 			reset & 1 & entrada & Sinal de reinício do estágio\\ \hline
 			instruction & 32 & entrada & Instrução a ser executada. \\ \hline
-			regDst & 1 & \\ \hline
-			regDst &&& \\ \hline
-			memRead &&& \\ \hline
-			memToReg &&& \\ \hline
-			aluOp &&& \\ \hline
-			memWrite &&& \\ \hline
-			regWrite &&& \\ \hline
-			data\_a\_select & 2 && \\ \hline
-			data\_b\_select 2 &&& \\ \hline
-			pcSrc 3 &&& \\ \hline
-			pop &&& \\ \hline
-			push &&& \\ \hline
-			\hline
+			regDst & 1 & saída & Sinal que seleciona o endereço do registrador a ser escrito no banco registradores \\ \hline
+			memRead & 1 & saída & Sinal de controle para realizar leitura da
+			memória.
+			\\ \hline
+			memToReg & 1 & saída & Sinal de controle que define se o dado
+			deve vir da ULA ou da memória
+			\\ \hline
+			aluOp & 3 & saída & Sinal que informa qual o tipo da operação que será realizada \\ \hline
+			memWrite & 1 & saída & Sinal de controle para realizar escrita na
+			memória. \\ \hline
+			regWrite & 1 & saída & Sinal de controle para realizar escrita no
+			registrador. \\ \hline
+			data\_a\_select & 2 & saída &  Sinal para selecionar o conteúdo do primeiro operando \\ \hline
+			data\_b\_select & 2 & saída & Sinal para selecionar o conteúdo do segundo operando operando \\ \hline
+			pcSrc & 3 & saída & Sinal para selecionar o endereço da próxima instrução a ser executada \\ \hline
+			pcWrite & 1 & saída & Sinal que habilita a modificação do valor de PC \\ \hline
+			pop & 1 & saída & Sinal que habilita a leitura da Pilha de Instruções \\ \hline
+			push & 1 & saída & Sinal que habilita a escrita na Pilha de Instruções \\ \hline
+			writeData & 32 & entrada & Dado que será escrito no banco de registradores. \\ \hline
+			writeRegister & 5 & entrada & Endereço do registrador a ser escrito no banco registradores \\ \hline
+			function & 6 & saída & Variante especifica da operação \\\hline
+			inst\_out & 32 & saída & Constante numérica  \\ \hline
+			imdt\_div\_4 & 32 & saída & Contante numérica \\\hline
+			opcode & 6 & entrada & Código da instrução a ser executada \\ \hline
+			readRegister1 & 5 & entrada & Endereço do primeiro registrador \\ \hline
+			readRegister2 & 5 & entrada & Endereço do segundo registrador\\ \hline 
+			readData1 & 32 & saída & Conteúdo do primeiro registrador \\ \hline 
+			readData2 & 32 & saída & Conteúdo do segundo registrador \\ \hline
 		\end{longtable}
 	\end{center}
     
@@ -85,21 +100,21 @@
 			\hline
 			\endlastfoot
 			
-			\small regDst 			& 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0  & 0 \\ \hline
-            \small memRead 			& 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 \\ \hline
-            \small memToReg 		& 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 \\ \hline
+			\small regDst 			& 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0  & 0 & 0 \\ \hline
+            \small memRead 			& 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 & 0\\ \hline
+            \small memToReg 		& 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 & 0 \\ \hline
             
-            \small aluOp 			& \small 010 & \small 000 & \small 011 & \small 001 & \small 100 & \small 000 & \small 000 & \small 000 & \small 000 & \small 101 & \small 000 & \small 000 & \small 000 & \small 010\\ \hline
+            \small aluOp 			& \small 010 & \small 000 & \small 011 & \small 001 & \small 100 & \small 000 & \small 000 & \small 000 & \small 000 & \small 101 & \small 000 & \small 000 & \small 000 & \small 010 & \small 110\\ \hline
             
-            \small memWrite 		& 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0  & 0 \\ \hline
-            \small regWrite 		& 1   & 1   & 1   & 1   & 1   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 \\ \hline
-            \small data\_a\_select	& 10  & 10  & 10  & 10  & 10  & 10  & 10  & 00  & 00  & 10  & 00  & 00  & 00 & 00\\ \hline
-            \small data\_b\_select 	& 01  & 00  & 00  & 00  & 00  & 00  & 00  & 00  & 10  & 00  & 00  & 00  & 00 & 00\\ \hline
+            \small memWrite 		& 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0   & 0  & 0 & 0\\ \hline
+            \small regWrite 		& 1   & 1   & 1   & 1   & 1   & 0   & 1   & 0   & 0   & 0   & 0   & 0   & 0  & 0 & 0 \\ \hline
+            \small data\_a\_select	& 10  & 10  & 10  & 10  & 10  & 10  & 10  & 00  & 00  & 10  & 00  & 00  & 00 & 00 & 10\\ \hline
+            \small data\_b\_select 	& 01  & 00  & 00  & 00  & 00  & 00  & 00  & 00  & 10  & 00  & 00  & 00  & 00 & 00 & 01\\ \hline
             
-            \small pcSrc 			& \small 010 & \small 010   & \small 010 & \small 010 & \small 010 & \small 010 & \small 010 & \small 001 & \small 011 & \small 001 & \small 001 & \small 000 & \small 100 & \small 010\\ \hline
+            \small pcSrc 			& \small 010 & \small 010   & \small 010 & \small 010 & \small 010 & \small 010 & \small 010 & \small 001 & \small 011 & \small 001 & \small 001 & \small 000 & \small 100 & \small 010 & \small 001\\ \hline
             
-            \small pop 				& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0  & 0 \\ \hline
-            \small push 			& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0  & 0 \\ \hline
+            \small pop 				& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0  & 0 & 0\\ \hline
+            \small push 			& 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 0   & 1   & 0   & 0  & 0 & 0\\ \hline
 
 		\end{longtable}
 	\end{center}
