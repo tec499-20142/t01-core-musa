@@ -1,0 +1,33 @@
+\flushleft
+  \begin{tikzpicture} 
+    \begin{umlsystem}[x=0, fill=red!10]{Instruções de Acesso a Memória} 
+      \umlusecase[x=-4,y=-3,name=buscar]{Buscar} 
+      \umlusecase[x=0,y=-3, fill=green!20,width=1cm, name=enviar]{Enviar} 
+
+	  \umlusecase[x=0,y=-5,name=decodificar]{Decodificar} 
+      \umlusecase[x=-4,y=-5, fill=green!20,width=1cm, name=emitir]{Emitir}
+
+	  \umlusecase[x=-4,y=-7,name=operar]{Operar/Calcular} 
+      \umlusecase[x=0,y=-9, fill=green!20,width=1cm, name=emitir_resultado]{Emitir Resultado}
+	  \umlusecase[x=0,y=-7, fill=green!20,width=1.5cm, name=armazenar]{Armazenar}
+
+      \umlactor[x=-8,y=-3]{IF} 
+      \umlactor[x=4,y=-4]{ID}   
+      \umlactor[x=-8,y=-6]{EX}
+      \umlactor[x=4,y=-7]{MEM/WB}   
+
+      \umlassoc{IF}{buscar}
+      \umlassoc{enviar}{ID}
+      \umlassoc{buscar}{enviar}
+      
+      \umlassoc{ID}{decodificar}
+      \umlassoc{emitir}{EX}
+      \umlassoc{decodificar}{emitir}
+
+      \umlassoc{EX}{operar}
+      \umlassoc{emitir_resultado}{MEM/WB}
+      \umlassoc{operar}{emitir_resultado}
+	  \umlassoc{armazenar}{MEM/WB}
+    \end{umlsystem} 
+
+  \end{tikzpicture} 
