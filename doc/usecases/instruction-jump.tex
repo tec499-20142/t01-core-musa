@@ -3,7 +3,7 @@
 Este caso de uso especifica a ação da instrução de desvio incondicional JR. O objetivo é realizar um salto para o endereço armazenado em um registrador.
  
 \subsubsection*{Atores}
-\textbf{IF, ID}
+\textbf{IF, ID, EX}
 
 \preconditions 
 \begin{itemize}
@@ -18,7 +18,8 @@ Este caso de uso especifica a ação da instrução de desvio incondicional JR. 
 \subsubsection*{Fluxo Básico}
 \begin{itemize}
 \item O módulo \textbf{IF} busca a instrução JR a ser executada.
-\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador. 
+\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos e seleciona o conteúdo do registrador.
+\item O módulo \textbf{EX} atualiza para o endereço para a instrução do salto.
 \end{itemize}
 
 \usecase{Instrução JPC}
@@ -75,7 +76,7 @@ Este caso de uso especifica a ação da instrução de desvio condicional BRFL. 
 Este caso de uso especifica a ação da instrução de desvio incondicional CALL. O objetivo é realizar um salto para uma sub-rotina.
 
 \subsubsection*{Atores}
-\textbf{IF, ID}
+\textbf{IF, ID, EX}
 
 \preconditions 
 \begin{itemize}
@@ -91,6 +92,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional CALL
 \begin{itemize}
 	\item O módulo \textbf{IF} busca a instrução CALL a ser executada.
 	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+	\item O módulo \textbf{EX} atualiza para o endereço da sub-rotina.
 \end{itemize}
 
 \usecase{Instrução RET}
@@ -98,7 +100,7 @@ Este caso de uso especifica a ação da instrução de desvio incondicional CALL
 Este caso de uso especifica a ação da instrução de desvio incondicional RET. O objetivo é realizar um salto de uma sub-rotina.
 
 \subsubsection*{Atores}
-\textbf{IF, ID}
+\textbf{IF, ID, EX}
 
 \preconditions 
 \begin{itemize}
@@ -107,13 +109,38 @@ Este caso de uso especifica a ação da instrução de desvio incondicional RET.
 
 \postconditions
 \begin{itemize}
-	\item Permitir a execução da instrução armazenada no topo da Pilha de Instruções.
+	\item Permitir a execução da próxima instrução cujo endereço está depois da instrução de CALL.
 \end{itemize}
 
 \subsubsection*{Fluxo Básico}
 \begin{itemize}
 	\item O módulo \textbf{IF} busca a instrução RET a ser executada.
 	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+	\item O módulo \textbf{EX} atualiza o endereço da próxima instrução para endereço depois da instrução de CALL.
+\end{itemize}
+
+\usecase{Instrução NOP}
+
+Este caso de uso especifica a ação da instrução NOP. O objetivo dessa instrução é realizar nenhuma operação.
+
+\subsubsection*{Atores}
+\textbf{IF, ID, EX}
+
+\preconditions 
+\begin{itemize}
+	\item O módulo \textbf{IF} precisa buscar uma instrução NOP.
+\end{itemize}
+
+\postconditions
+\begin{itemize}	
+	\item Permitir execução das próximas instruções.
+\end{itemize}
+
+\subsubsection*{Fluxo Básico}
+\begin{itemize}
+	\item O módulo \textbf{IF} busca a instrução NOP a ser executada.
+	\item O módulo \textbf{ID} decodifica o tipo da instrução, emite sinais de controle para os demais módulos.
+	\item O módulo \textbf{EX} atualiza para a próxima instrução.
 \end{itemize}
 
 \usecase{Instrução HALT}
@@ -140,7 +167,7 @@ Este caso de uso especifica a ação da instrução HALT. O objetivo é finaliza
 	\item O módulo \textbf{EX} atualiza o valor da próxima instrução para o endereço da instrução atual (\textit{loop} infinito).
 \end{itemize}
 
-De maneira análoga as instruções Lógicas e Aritméticas, as Instruções de Jump seguem um mesmo fluxo de execução:
+De maneira análoga as instruções Lógicas e Aritméticas, as instruções de Desvio seguem um mesmo fluxo de execução:
 
 \begin{figure}[H]
 	\subsubsection*{Diagrama de Caso de Uso}

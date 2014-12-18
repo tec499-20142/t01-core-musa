@@ -26,4 +26,5 @@
 \contentsline {subsection}{\numberline {\color {gray}3.18}\color {gray}[UC~\padzeroes [3]{\@decimal {18}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o BRFL}{18}
 \contentsline {subsection}{\numberline {\color {gray}3.19}\color {gray}[UC~\padzeroes [3]{\@decimal {19}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o CALL}{19}
 \contentsline {subsection}{\numberline {\color {gray}3.20}\color {gray}[UC~\padzeroes [3]{\@decimal {20}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o RET}{19}
-\contentsline {subsection}{\numberline {\color {gray}3.21}\color {gray}[UC~\padzeroes [3]{\@decimal {21}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o HALT}{20}
+\contentsline {subsection}{\numberline {\color {gray}3.21}\color {gray}[UC~\padzeroes [3]{\@decimal {21}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o NOP}{20}
+\contentsline {subsection}{\numberline {\color {gray}3.22}\color {gray}[UC~\padzeroes [3]{\@decimal {22}}]~\color {black} Instru\IeC {\c c}\IeC {\~a}o HALT}{21}
