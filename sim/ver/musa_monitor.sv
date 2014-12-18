@@ -44,7 +44,7 @@ class musa_monitor;
     fork
       forever begin
         //$display("----------------- READ DATA MONITOR --------------------");
-        @(posedge dut_if.clk_musa);
+        @(posedge dut_if.clk);
         if(dut_if.mem_write)
            data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end
@@ -55,14 +55,14 @@ class musa_monitor;
     fork
       forever begin
         $display("-------------- READ INSTRUCTION MONITOR ----------------");
-        @(posedge dut_if.clk_musa);
+        @(posedge dut_if.clk);
         $display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
         if(instruction == 'h00) begin
           $display("entrei no if1");
           if(cnt_stop == 5) begin
             cnt_stop = 0;
-            repeat(15)@(negedge dut_if.clk_musa);
+            repeat(15)@(negedge dut_if.clk);
             $display("vou entrar no check");
             check();
           end
