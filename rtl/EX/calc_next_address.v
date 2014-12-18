@@ -5,6 +5,7 @@ module cal_next_address(
 	input [31:0] branch_address, 
 	input [31:0] stack, 
 	input [31:0] jr,
+	input [31:0] jpc, 
 	input [2:0] pc_select,
 	output reg [31:0] next_address
 );
@@ -14,6 +15,7 @@ module cal_next_address(
 	parameter NPC = 3'b010; 
 	parameter BRANCH = 3'b011; 
 	parameter HALT = 3'b100;
+	parameter JPC = 3'b101; 
 	
 
 always @(*)begin 
@@ -33,6 +35,9 @@ always @(*)begin
 		HALT: begin
 			next_address = pc; 
 		end 
+		JPC: begin 
+			next_address = jpc; 
+		end
 		default: begin 
 		  next_address = pc_1; 
 		end 

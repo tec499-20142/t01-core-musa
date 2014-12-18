@@ -21,14 +21,19 @@ assign ReadData1 = MemoryFile [ReadRegister1];
 assign ReadData2 = MemoryFile [ReadRegister2];
 
 
-/* inicializa o banco de registradores com 0
+// inicializa o banco de registradores com 0
+
 integer i;
 initial begin 
   for(i = 0; i < 32; i = i + 1)
     MemoryFile[i] = 0;
-end*/
+end
 
 always @(posedge clk) begin
+		if(~reset)begin
+		  for(i = 0; i < 32; i = i + 1)
+				MemoryFile[i] = 0;
+		end
 		 if (RegWrite && (WriteRegister != 5'b00000)) MemoryFile [WriteRegister] <= WriteData;
 	end
 

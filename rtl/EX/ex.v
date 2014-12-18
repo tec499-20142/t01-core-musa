@@ -81,6 +81,7 @@ module ex_stage(
 	.branch_address(branch_temp), 
 	.stack(stack), 
 	.jr(data_a),
+	.jpc(result),
 	.pc_select(pc_select),
 	.next_address(next_pc));
 	

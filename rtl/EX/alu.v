@@ -111,10 +111,10 @@
 				BRFL: begin 
 					result_checker[31:0] =  data_a;
 					if(reg_flag == data_b[2:0]) begin 	
-						branch = 1;
+						branch = 0;
 					end 
 					else begin
-						branch = 0;
+						branch = 1;
 					end 
 				end 
 			endcase	
