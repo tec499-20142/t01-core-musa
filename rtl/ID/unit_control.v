@@ -1,18 +1,21 @@
 module unit_control(
 	opcode, 
 	clk, reset, 
-	pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite, regDst, PCWrite, 	
+	pcSrc, memRead, pop, push, memToReg, memWrite, data_a_select, data_b_select, regWrite_out, regDst, PCWrite, 	
 	aluOp, stage, aux_push_pop);
 
 input [5:0] opcode;
 input clk;
 input reset;
-output reg memRead, memToReg, memWrite, regWrite, regDst,PCWrite, push, pop;
+output reg memRead, memToReg, memWrite, regDst,PCWrite, push, pop;
+reg regWrite;
 output reg [2:0] stage = 3'b000;
 output reg [2:0] pcSrc;
 output reg [1:0] data_a_select, data_b_select; 
 output reg [2:0] aluOp;
 output reg aux_push_pop;
+output wire regWrite_out;
+reg aux_reg_write;
 
 
 parameter nop = 6'b000000;
@@ -34,6 +37,8 @@ parameter BRFL	=	6'b000100;				    //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ�
 parameter CALL	=  6'b000011;				    //InstruÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o: jal
 parameter RET	=  6'b000001;
 parameter HALT = 6'b111111;
+
+assign regWrite_out = regWrite & aux_reg_write;
 
 always@ (*)
 begin
@@ -300,6 +305,7 @@ end
 		if(stage == 3'b100)begin
 			stage <= 3'b000;
 			PCWrite <= 0;
+			aux_reg_write <= 0;
 		end
 		else if(stage == 3'b001)begin
 		  PCWrite <= 0;
@@ -309,7 +315,11 @@ end
 		  aux_push_pop <= 0;
 		  end else if(stage == 3'b011)begin
 					PCWrite <= 1;
-				end else PCWrite <= 0;
+					aux_reg_write <= 1;
+				end else begin
+					PCWrite <= 0;
+					aux_reg_write <= 0;
+					end
 		
 	end
 endmodule

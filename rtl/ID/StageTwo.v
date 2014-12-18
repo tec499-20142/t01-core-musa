@@ -90,7 +90,7 @@ RegisterFile BLOCO1 (
   .memRead (memRead),
   .memWrite(memWrite),
   .memToReg(memToReg),
-  .regWrite (_regWrite),
+  .regWrite_out (_regWrite),
   .aux_push_pop (aux_push_pop),
   .data_a_select(data_a_select),
   .data_b_select(data_b_select),
