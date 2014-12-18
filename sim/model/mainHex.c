@@ -84,8 +84,8 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 		} else {
 			registerflag = 0x00;
 		}
-		            
-            printf("Valor da Flag: %x\n", registerflag);
+		   
+             system("PAUSE");
 	}
 }
 
@@ -153,16 +153,18 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 //Function responsible to reproduce the results of the j-type instructions
 void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	int pc_offset, rd;
-	pc_offset = (instruction);
+	pc_offset = (instruction << 18);
+	pc_offset = (pc_offset >> 18);
 	rd = ((instruction >> 11) & 0x1F);
-
+	printf("VALOR DE rd: %x", rd);
+	printf("\nPCOFSSET: %x\n", pc_offset);
 	//JR  pc = addr
 	if(instruction_opcode == 0x11){
-            pc = pc_offset - 1;// -1 because the increment of for.
+            pc = registers[rd];
 	}
 	//JPC  pc = pc + addr
 	else if(instruction_opcode == 0x02){
-            pc = pc + pc_offset;// -1 because the increment of for.
+            pc = pc + pc_offset;
 	}
 	//BRFL
 	else if(instruction_opcode == 0x04){
@@ -186,7 +188,7 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//HALT - finish the program
 	else if(instruction_opcode == 0x3F){
-            pc = pc_offset - 1;
+            pc = pc_offset;
 	}
 
 }
@@ -218,7 +220,6 @@ void main (int argc, char *argv[]){
 	FILE *arq_instructions;
 	unsigned int *instruction;//[65536];
 	unsigned int instruction_opcode;
-	char *reading_result, *reading_result_opcode;
 	char instruction_type;
 	int  size_instruction;
 	//printf("Parametro: %s\n", argv[1]);
