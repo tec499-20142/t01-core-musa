@@ -1,4 +1,5 @@
   module alu(
+  input clk, 
 	input reset, 
 	input[31:0] data_a, 
 	input[31:0] data_b,
@@ -6,7 +7,7 @@
 	input[5:0] func,  
 	output reg[31:0] result, 
 	output reg [2:0] flag, 
-	output reg [0:0] branch);
+	output reg [1:0] branch);
 	
 	//functions das operaçoes logicas e aritmeticas (instruçoes do tipo R)
 	parameter ADD = 6'b100000;
@@ -34,7 +35,7 @@
 	parameter FLAG_ABOVE = 100;
 	
 	reg [2:0] reg_flag;   //registrador de flag
-	reg [64:0] result_checker; 
+	reg [64:0] result_checker;
 
 	always @(alu_control, func, data_a, data_b, reset) 
 		if(~reset) begin
@@ -46,12 +47,12 @@
 				begin
 					result_checker = data_a + data_b;
 					reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag; 
-					branch = 0;
+					branch = 2'b00;
 				end 
 				SUBI: begin 
 					result_checker = data_a - data_b;
 					reg_flag = ((result_checker[32]^result_checker[31]) == 1)? FLAG_OVERFLOW_UNDERFLOW : reg_flag;
-					branch = 0;
+					branch = 2'b00;
 				end 
 				TYPE_R: begin 
 					case(func)
@@ -87,7 +88,7 @@
 							result_checker = ~data_a;
 						end 			
 					endcase			
-					branch = 0;
+					branch = 2'b00;
 				end
 				CMP: begin 
 					if(data_a == data_b) begin 
@@ -98,28 +99,29 @@
 							reg_flag = FLAG_ABOVE;
 						end 
 					end 
-					branch = 0;
+					branch = 2'b00;
 				end
 				ANDI: begin 
 					result_checker = data_a & data_b;
-					branch = 0;
+					branch = 2'b00;
 				end 
 				ORI: begin 
 					result_checker = data_a | data_b;
-					branch = 0;
+					branch = 2'b00;
 				end 
 				BRFL: begin 
-					result_checker[31:0] =  data_a;
 					if(reg_flag == data_b[2:0]) begin 	
-						branch = 0;
+					  result_checker[31:0] =  data_a;
+						branch = 2'b00;
 					end 
 					else begin
-						branch = 1;
+						branch = 2'b01;
 					end 
 				end 
 			endcase	
-		
+			
 			flag = reg_flag; 
-			result = result_checker[31:0];					
+			result = result_checker[31:0];
 		end
+		
 endmodule 

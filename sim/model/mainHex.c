@@ -7,7 +7,8 @@
 //pc: Program Counter
 //registers[]: represent register bank
 //mem[]: Represent the data memory
-int  pc=0, registers[32], mem[65536], registerflag, stack[8], *sp;
+int  pc=0, registers[32], mem[65536], stack[8], *sp;
+unsigned int registerflag = 0x00;
 //sp = &stack[0];
 int tam_stack = 0;
 
@@ -74,9 +75,17 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//cmp RF == CONST terminar
 	else if(instruction_opcode == 0x1D){
-        if (registers[rd] >= registers[rs1])
-            registerflag = 0x01;
-            printf("Valor da Flag: %x\n", registerflag);
+		
+        if (registers[rs1] == imm){
+        	registerflag = 0x01;
+		} 		
+		else if(registers[rs1] > imm){
+			registerflag = 0x04;
+		} else {
+			registerflag = 0x00;
+		}
+		   
+             system("PAUSE");
 	}
 }
 
@@ -124,7 +133,7 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//div - RD = RS1 / RS2
 	else if(function == 0x01){
-		//registers[rd] = registers[rs1] / registers[rs2];
+		registers[rd] = registers[rs1] / registers[rs2];
 		printf("rs1: %x registers[rs1] %x\n",rs1, registers[rs1]);
 		printf("Valor escrito no registrador %x eh: %x\n", rd, registers[rd]);
 		printf("\n PASSA DAQUI\n");
@@ -140,23 +149,28 @@ void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	    printf("Nada acontece");
 	}
 }
-
+//Implementar o BRFL
 //Function responsible to reproduce the results of the j-type instructions
 void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
-	int pc_offset;
-	pc_offset = (instruction);
-
+	int pc_offset, rd;
+	pc_offset = (instruction << 18);
+	pc_offset = (pc_offset >> 18);
+	rd = ((instruction >> 11) & 0x1F);
+	printf("VALOR DE rd: %x", rd);
+	printf("\nPCOFSSET: %x\n", pc_offset);
 	//JR  pc = addr
 	if(instruction_opcode == 0x11){
-            pc = pc_offset - 1;// -1 because the increment of for.
+            pc = registers[rd];
 	}
 	//JPC  pc = pc + addr
 	else if(instruction_opcode == 0x02){
-            pc = pc + pc_offset;// -1 because the increment of for.
+            pc = pc + pc_offset;
 	}
 	//BRFL
 	else if(instruction_opcode == 0x04){
-			pc = pc_offset; //Perguntar essa instrução depois.
+			if(registerflag == 0x01 || registerflag == 0x04){
+				pc = registers[rd];
+			}			
 	}
 	//CALL
 	else if(instruction_opcode == 0x03){
@@ -166,7 +180,11 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//RET -
 	else if(instruction_opcode == 0x01){
-            pc = stack[tam_stack]; //fazer ponteiro
+            if(tam_stack >= 0){
+            	pc = stack[tam_stack]; //fazer ponteiro
+				tam_stack--;	
+			}
+			
 	}
 	//HALT - finish the program
 	else if(instruction_opcode == 0x3F){
@@ -202,14 +220,13 @@ void main (int argc, char *argv[]){
 	FILE *arq_instructions;
 	unsigned int *instruction;//[65536];
 	unsigned int instruction_opcode;
-	char *reading_result, *reading_result_opcode;
 	char instruction_type;
 	int  size_instruction;
 	//printf("Parametro: %s\n", argv[1]);
 	instruction = malloc(65536); //alterar tamanho da memória de instruções
 
 	//Read the file that contains the instructions
-	arq_instructions = fopen("test.txt", "rt");
+	arq_instructions = fopen("fibonatti_hex.txt", "rt");
 	if (arq_instructions == NULL)
 	{
     	printf("Instrunctions File was not opened\n");
@@ -245,7 +262,7 @@ void main (int argc, char *argv[]){
 			decode_j_type(instruction_opcode, instruction[pc]);
 		}
 		else {
-            printf("Error: Instrucao inexistente");
+            printf("Error: Instrucao inexistente\n");
 		}
 		printf("Valor de PC: %x\n\n\n", pc);
 		

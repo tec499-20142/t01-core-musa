@@ -213,7 +213,7 @@ begin
 				regDst = 1'b0;
 		    data_a_select = 2'b10;
 		  	 data_b_select = 2'b01;
-		  	 pcSrc = 3'b001;
+		  	 pcSrc = 3'b010;
 				memWrite = 1'b0;
 	      memRead = 1'b0;
 	      memToReg = 1'b0;
@@ -228,7 +228,7 @@ begin
 				regDst = 1'b0;
 		    data_a_select = 2'b10;
 		  	 data_b_select = 2'b00;
-		  	 pcSrc = 3'b010;
+		  	 pcSrc = 3'b011;
 				memWrite = 1'b0;
 	      memRead = 1'b0;
 	      memToReg = 1'b0;

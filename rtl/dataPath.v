@@ -103,7 +103,7 @@ stage_Four_Five BLOCO4 (
  .memWrite(memWrite)
  );
 
-
+/*
 lcd_mem_read #(
 	.ADDR_WIDTH(ADDR_WIDTH),
 	.DATA_WIDTH(DATA_WIDTH)
@@ -127,7 +127,7 @@ lcd_mem_read #(
 		.lcd_en_out(lcd_en_out),			// LCD enable
 		.lcd_rs_out(lcd_rs_out)			// LCD command/data select, 0 = command, 1 = data
 	);
-
+*/
 
 
 endmodule

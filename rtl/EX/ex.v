@@ -22,8 +22,8 @@ module ex_stage(
 	wire [31:0] data_b_temp;
   reg [31:0] data_a_reg; 
   reg [31:0] data_b_reg; 
-	wire [0:0] branch_temp;
-	wire [0:0] branch;	
+	wire [31:0] branch_temp;
+	wire [1:0] branch;	
 	wire [31:0] res_out;
 	
 	always@ (posedge clk) 
@@ -62,6 +62,7 @@ module ex_stage(
 	.data_b(data_b_temp),
 	.alu_control(alu_control),
 	.func(func),  
+	.clk(clk),
 	.result(result), 
 	.flag(flag),
 	.branch(branch));

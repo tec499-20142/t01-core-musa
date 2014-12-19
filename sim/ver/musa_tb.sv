@@ -41,11 +41,14 @@ initial begin
  clk = 0;
 end
 
-
+always begin
+   #1000  clk = ~clk;
+end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
    clk = musa_u0.clk;
+ //dut_if.clk = musa_u0.clk;
    dut_if.pc_src = musa_u0.BLOCO2.pcSrc;
    dut_if.mem_read = musa_u0.BLOCO2.memRead;
    dut_if.mem_write = musa_u0.BLOCO2.memWrite;
@@ -58,7 +61,7 @@ always@(*)begin
    dut_if.mem_to_reg = musa_u0.BLOCO2.StageTwo.memToReg;   
    dut_if.reg_dst = musa_u0.BLOCO2.StageTwo.regDst;
    dut_if.reg_write = musa_u0.BLOCO2.StageTwo._regWrite;
-   dut_if.clk = musa_u0.clk;
+
    for(int i=0;i<NUM_REGS;i++)begin
     dut_if.regs[i]= musa_u0.BLOCO2.StageTwo.BLOCO1.RegisterFile.MemoryFile[i];
    end 
