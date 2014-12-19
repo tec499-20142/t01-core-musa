@@ -84,8 +84,6 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 		} else {
 			registerflag = 0x00;
 		}
-		   
-             system("PAUSE");
 	}
 }
 
@@ -174,7 +172,7 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//CALL
 	else if(instruction_opcode == 0x03){
-            stack[tam_stack] = pc; //ponteiro para um endereço vazio da pilha
+            stack[tam_stack] = pc; //ponteiro para um endereÃ§o vazio da pilha
 			pc = pc_offset;
 			tam_stack++;
 	}
@@ -223,7 +221,7 @@ void main (int argc, char *argv[]){
 	char instruction_type;
 	int  size_instruction;
 	//printf("Parametro: %s\n", argv[1]);
-	instruction = malloc(65536); //alterar tamanho da memória de instruções
+	instruction = malloc(65536); //alterar tamanho da memÃ³ria de instruÃ§Ãµes
 
 	//Read the file that contains the instructions
 	arq_instructions = fopen("fibonatti_hex.txt", "rt");
