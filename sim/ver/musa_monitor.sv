@@ -17,10 +17,11 @@ class musa_monitor;
   musa_data_item data_collected = new;
   virtual interface dut_if dut_if;
 
-  int cnt_stop;
   logic [DATA_WIDTH-1:0] instruction;
   logic [DATA_WIDTH-1:0] regs_reference [0:(2**ADDRESS_WIDTH)-1];
   logic [DATA_WIDTH-1:0] data_write_reference [0:MAX_LENGTH-1];
+  logic [ADDRESS_WIDTH:0] opcode;
+  
 
   function new (virtual interface dut_if m_dut_if);
   begin
@@ -58,20 +59,12 @@ class musa_monitor;
         @(posedge dut_if.clk);
         $display("instruction: %x", dut_if.instruction);
         instruction = dut_if.instruction;
-        if(instruction == 'h00) begin
+        opcode = instruction[31:26];
+        if(opcode == 2'h3F) begin
           $display("entrei no if1");
-          if(cnt_stop == 5) begin
-            cnt_stop = 0;
-            repeat(15)@(negedge dut_if.clk);
+          repeat(15)@(negedge dut_if.clk);
             $display("vou entrar no check");
             check();
-          end
-          else begin
-            cnt_stop = cnt_stop + 1;
-          end
-        end
-        else begin
-          cnt_stop = 0;
         end
     end
     join_none
@@ -90,7 +83,6 @@ class musa_monitor;
       $display("entrei no check");
       $sformat (compile_c, "gcc ../model/mainHex.c -o mainHex_model.o");
       $system(compile_c);
-      //$sformat (execute_c, "./mainHex_model.o ../tests/estimulos_binario_simples.bin");
       $sformat (execute_c, "./mainHex_model.o %s ",MUSA_TEST);
       $system(execute_c);
       $display("DISPLAY: %s",MUSA_TEST);

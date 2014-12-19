@@ -37,17 +37,17 @@ dataPath
          .read4()
       );
 
-//initial begin
-// clk = 0;
-//end
+initial begin
+ clk = 0;
+end
 
-//always begin
-//   #10  clk = ~clk;
-//end
+always begin
+   #10  clk = ~clk;
+end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
-   clk = musa_u0.clk;
+   //clk = musa_u0.clk;
    //dut_if.clk = musa_u0.clk;
    dut_if.pc_src = musa_u0.BLOCO2.pcSrc;
    dut_if.mem_read = musa_u0.BLOCO2.memRead;

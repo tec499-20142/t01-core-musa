@@ -15,4 +15,4 @@ localparam ADDRESS_WIDTH = 5;
 localparam NUM_REGS = 32;
 localparam EOF = 32'hFFFF_FFFF;
 
-localparam MUSA_TEST = "../tests/Estimulos_Binario_Simples.bin";
+localparam MUSA_TEST = "../tests/fibonatti_hex.hex";

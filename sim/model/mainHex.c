@@ -18,7 +18,7 @@ int tam_stack = 0;
 // j - J-type Instruction
 char identify_instruction_type(int instruction_opcode){
 	char result;
-	
+
 	if(instruction_opcode == 0x08 || instruction_opcode == 0x09 || instruction_opcode == 0x0C || instruction_opcode == 0x0D || instruction_opcode == 0x23 || instruction_opcode == 0x2B || instruction_opcode == 0x1D){
 		result = 'i';
 	}
@@ -38,10 +38,10 @@ char identify_instruction_type(int instruction_opcode){
 //Function responsible to reproduce the results of the i-type instructions
 void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	int rd, rs1, imm;
-	
+
 	//Define the fields of the instructions
 	rs1 = ((instruction >> 21) & 0x1F);
-	rd = ((instruction >> 16) & 0x1F);		
+	rd = ((instruction >> 16) & 0x1F);
 	imm = (instruction & 0xFFFF);
 	printf("RS1: %x RD: %x IMM: %x\n", rs1, rd, imm);
 
@@ -75,10 +75,10 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 	}
 	//cmp RF == CONST terminar
 	else if(instruction_opcode == 0x1D){
-		
+
         if (registers[rs1] == imm){
         	registerflag = 0x01;
-		} 		
+		}
 		else if(registers[rs1] > imm){
 			registerflag = 0x04;
 		} else {
@@ -90,15 +90,15 @@ void decode_i_type(unsigned int instruction_opcode, unsigned int instruction){
 //Function responsible to reproduce the results of the r-type instructions
 void decode_r_type(unsigned int instruction_opcode, unsigned int instruction){
 	int rd, rs1, rs2, function;
-	
+
 	//Define the fields of the instructions
 	rs1 = ((instruction >> 21) & 0x1F);
 	rs2 = ((instruction >> 16) & 0x1F);
-	rd = ((instruction >> 11) & 0x1F);	
+	rd = ((instruction >> 11) & 0x1F);
 	function = (instruction & 0x3F);
 
 	printf("RS1: %x RS2: %x RD: %x Function: %x\n", rs1, rs2, rd, function);
-	
+
 	//add - RD = RS1 + RS2
 	if(function == 0x20){
 		registers[rd] = registers[rs1] + registers[rs2];
@@ -168,7 +168,7 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(instruction_opcode == 0x04){
 			if(registerflag == 0x01 || registerflag == 0x04){
 				pc = registers[rd];
-			}			
+			}
 	}
 	//CALL
 	else if(instruction_opcode == 0x03){
@@ -180,9 +180,9 @@ void decode_j_type(unsigned int instruction_opcode, unsigned int instruction){
 	else if(instruction_opcode == 0x01){
             if(tam_stack >= 0){
             	pc = stack[tam_stack]; //fazer ponteiro
-				tam_stack--;	
+				tam_stack--;
 			}
-			
+
 	}
 	//HALT - finish the program
 	else if(instruction_opcode == 0x3F){
@@ -220,11 +220,11 @@ void main (int argc, char *argv[]){
 	unsigned int instruction_opcode;
 	char instruction_type;
 	int  size_instruction;
-	//printf("Parametro: %s\n", argv[1]);
+	printf("Parametro: %s\n", argv[1]);
 	instruction = malloc(65536); //alterar tamanho da memória de instruções
 
 	//Read the file that contains the instructions
-	arq_instructions = fopen("fibonatti_hex.txt", "rt");
+	arq_instructions = fopen(argv[1], "rt");
 	if (arq_instructions == NULL)
 	{
     	printf("Instrunctions File was not opened\n");
@@ -249,7 +249,7 @@ void main (int argc, char *argv[]){
 		instruction_type = identify_instruction_type(instruction_opcode);
 
 		printf("Instruction Type: %c\n", instruction_type);
-		
+
 		if(instruction_type == 'i'){
 			decode_i_type(instruction_opcode, instruction[pc]);
 		}
@@ -263,7 +263,7 @@ void main (int argc, char *argv[]){
             printf("Error: Instrucao inexistente\n");
 		}
 		printf("Valor de PC: %x\n\n\n", pc);
-		
+
 	}
 
 	write_results();
