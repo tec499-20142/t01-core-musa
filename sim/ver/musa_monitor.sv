@@ -43,8 +43,8 @@ class musa_monitor;
   task read_data();
     fork
       forever begin
-        //$display("----------------- READ DATA MONITOR --------------------");
-        @(posedge dut_if.clk);
+        $display("----------------- READ DATA MONITOR --------------------");
+        @(posedge dut_if.clk);   
         if(dut_if.mem_write)
            data_collected.data_write[dut_if.data_addr] = dut_if.data_write;
       end

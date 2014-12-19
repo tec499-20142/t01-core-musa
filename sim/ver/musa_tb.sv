@@ -37,18 +37,18 @@ dataPath
          .read4()
       );
 
-initial begin
- clk = 0;
-end
+//initial begin
+// clk = 0;
+//end
 
-always begin
-   #1000  clk = ~clk;
-end
+//always begin
+//   #10  clk = ~clk;
+//end
 
 //------------------------------------ MONITOR -----------------------------------------//
 always@(*)begin
    clk = musa_u0.clk;
- //dut_if.clk = musa_u0.clk;
+   //dut_if.clk = musa_u0.clk;
    dut_if.pc_src = musa_u0.BLOCO2.pcSrc;
    dut_if.mem_read = musa_u0.BLOCO2.memRead;
    dut_if.mem_write = musa_u0.BLOCO2.memWrite;
@@ -77,13 +77,9 @@ begin
    $display("--------------------------------------------------------");
    $display("\n");
    monitor_u0 = new(dut_if);
-   $display("criou o dut_if");
    monitor_u0.reset();
-   $display("deu reset");
    monitor_u0.read_data();
-   $display("deu read_data");
    monitor_u0.read_instruction();
-   $display("leu instrucao");
    repeat(100)@(posedge clk);
 end
 
